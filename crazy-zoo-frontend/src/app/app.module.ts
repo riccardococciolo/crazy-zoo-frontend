@@ -28,6 +28,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { NavbarComponent } from './componenti/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     CreateTipologiaComponent,
     UpdateTipologiaComponent,
     RecensioniComponent,
-    OrdineComponent
+    OrdineComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +64,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatInputModule, 
     MatIconModule,
     MatSelectModule,
-    MatPaginatorModule
-
+    MatPaginatorModule,
+    MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [
     provideClientHydration(withEventReplay())
