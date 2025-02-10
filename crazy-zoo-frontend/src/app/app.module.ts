@@ -22,6 +22,8 @@ import { CreateTipologiaComponent } from './componenti/admin/create-tipologia/cr
 import { UpdateTipologiaComponent } from './componenti/admin/update-tipologia/update-tipologia.component';
 import { RecensioniComponent } from './componenti/recensioni/recensioni.component';
 import { OrdineComponent } from './componenti/ordine/ordine.component';
+import { NavbarComponent } from './componenti/navbar/navbar.component';
+import { FooterComponent } from './componenti/footer/footer.component';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
@@ -31,7 +33,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { NavbarComponent } from './componenti/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { NavbarComponent } from './componenti/navbar/navbar.component';
     UpdateTipologiaComponent,
     RecensioniComponent,
     OrdineComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
