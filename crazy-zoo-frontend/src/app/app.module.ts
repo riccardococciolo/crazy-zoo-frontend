@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideHttpClient, withFetch } from '@angular/common/http'; 
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +35,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -70,10 +74,14 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule with fetch
+    provideClientHydration(withEventReplay()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

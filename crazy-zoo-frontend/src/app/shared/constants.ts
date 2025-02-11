@@ -1,5 +1,5 @@
 export const CONSTANTS = {
-    API_URL: 'https://api.example.com',
-    APP_VERSION: '1.0.0'
+    API_URL: 'http://localhost:8080/rest/',
+ 
   };
   

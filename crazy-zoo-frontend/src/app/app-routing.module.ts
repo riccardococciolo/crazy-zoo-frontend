@@ -18,43 +18,35 @@ import { UpdateTipologiaComponent } from './componenti/admin/update-tipologia/up
 import { CreateTipologiaComponent } from './componenti/admin/create-tipologia/create-tipologia.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'prodotti', component: ProdottiComponent,
-    children: [
-      { path: ':id', component: DettaglioProdottoComponent }
-    ]
-  },
-  { path: 'utente', component: DettaglioUtenteComponent},
-  { path: 'admin',
-    children: [
-      { path: 'animale', component: AnimaleComponent,
-        children: [
-          { path: 'update', component: UpdateAnimaleComponent },
-          { path: 'create', component: CreateAnimaleComponent },
-        ]
-       },
-       { path: 'marca', component: MarcaComponent,
-        children: [
-          { path: 'update', component: UpdateMarcaComponent },
-          { path: 'create', component: CreateMarcaComponent },
-        ]
-       },
-       { path: 'prodotto', component: ProdottoComponent,
-        children: [
-          { path: 'update', component: UpdateProdottoComponent },
-          { path: 'create', component: CreateProdottoComponent },
-        ]
-       },
-       { path: 'tipologia', component: TipologiaComponent,
-        children: [
-          { path: 'update', component: UpdateTipologiaComponent },
-          { path: 'create', component: CreateTipologiaComponent },
-        ]
-       },
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  
+  // Prodotti
+  { path: 'prodotti', component: ProdottiComponent },
+  { path: 'prodotti/:id', component: DettaglioProdottoComponent },
 
-    ]
-  },
+  // Utente
+  { path: 'utente', component: DettaglioUtenteComponent },
+
+  // Admin - Animali
+  { path: 'admin/animale', component: AnimaleComponent },
+  { path: 'admin/animale/update', component: UpdateAnimaleComponent },
+  { path: 'admin/animale/create', component: CreateAnimaleComponent },
+
+  // Admin - Marche
+  { path: 'admin/marca', component: MarcaComponent },
+  { path: 'admin/marca/update', component: UpdateMarcaComponent },
+  { path: 'admin/marca/create', component: CreateMarcaComponent },
+
+  // Admin - Prodotti
+  { path: 'admin/prodotto', component: ProdottoComponent },
+  { path: 'admin/prodotto/update', component: UpdateProdottoComponent },
+  { path: 'admin/prodotto/create', component: CreateProdottoComponent },
+
+  // Admin - Tipologie
+  { path: 'admin/tipologia', component: TipologiaComponent },
+  { path: 'admin/tipologia/update', component: UpdateTipologiaComponent },
+  { path: 'admin/tipologia/create', component: CreateTipologiaComponent },
 ];
 
 @NgModule({
