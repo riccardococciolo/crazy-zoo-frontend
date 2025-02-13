@@ -1,1 +1,6 @@
 <p>update-marca works!</p>
+<form [formGroup]="marcaForm" (ngSubmit)="onUpdate()">
+    <input type="hidden" formControlName="id">
+    <input type="text" formControlName="nome">
+    <button type="submit" class="btn btn-success mt-2" >Aggiorna</button>
+</form>
