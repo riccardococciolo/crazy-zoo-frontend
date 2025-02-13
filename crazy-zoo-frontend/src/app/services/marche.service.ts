@@ -22,7 +22,7 @@ export class MarcheService {
     return this.http.post(CONSTANTS.API_URL + "marche/delete",body)
   }
   getMarche(){
-    return this.http.get(CONSTANTS.API_URL+ "marche/list")
+    return this.http.get(CONSTANTS.API_URL+ "marche/listall")
   }
   getMarcheById(id:number){
     let params = new HttpParams().set("id", id.toString())
