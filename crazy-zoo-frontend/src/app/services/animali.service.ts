@@ -12,14 +12,13 @@ export class AnimaliService {
     return this.http.post(CONSTANTS.API_URL + "animali/create",body)
   }
   updateAnimale(body:{}){
-    return this.http.post(CONSTANTS.API_URL + "animali/update",body) //id
-                                                                    //nome
+    return this.http.post(CONSTANTS.API_URL + "animali/update",body)                                                              
   }
   deleteAnimale(body:{}){
     return this.http.post(CONSTANTS.API_URL + "animali/delete",body)
   }
   getAnimale(){
-    return this.http.get(CONSTANTS.API_URL+ "animali/list")
+    return this.http.get(CONSTANTS.API_URL+ "animali/listall")
   }
 }
 

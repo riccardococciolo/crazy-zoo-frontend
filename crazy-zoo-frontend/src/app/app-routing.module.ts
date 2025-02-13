@@ -20,7 +20,7 @@ import { CreateTipologiaComponent } from './componenti/admin/create-tipologia/cr
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  
+
   // Prodotti
   { path: 'prodotti', component: ProdottiComponent },
   { path: 'prodotti/:id', component: DettaglioProdottoComponent },
@@ -51,6 +51,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,11 @@
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+img {
+  object-fit: cover;
+  height: 100px;
+  padding: 10px;
+}
