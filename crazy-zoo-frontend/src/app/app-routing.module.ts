@@ -40,7 +40,7 @@ const routes: Routes = [
 
   // Admin - Prodotti
   { path: 'admin/prodotto', component: ProdottoComponent },
-  { path: 'admin/prodotto/update', component: UpdateProdottoComponent },
+  { path: 'admin/prodotto/update/:id', component: UpdateProdottoComponent },
   { path: 'admin/prodotto/create', component: CreateProdottoComponent },
 
   // Admin - Tipologie
