@@ -1,1 +1,106 @@
-<p>update-prodotto works!</p>
+<div class="container">
+    <h1 class="text-center">Modifica Prodotto</h1>
+    <div class="row row-cols-2 justify-content-center mt-5">
+        <div class="col ">
+            <form [formGroup]="updateProdotto" (ngSubmit)="onSubmit()">
+                <div class="form-container">
+                    <mat-form-field class="form-column flex-fill ">
+                        <mat-label>Titolo</mat-label>
+                        <input matInput type="text" name="titolo" formControlName="titolo">
+                        <mat-error *ngIf="updateProdotto.get('titolo')?.hasError('required')">
+                            Il titolo è obbligatorio
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-column flex-fill ">
+                        <mat-label>Animale</mat-label>
+                        <mat-select name="animale" formControlName="animale">
+                            <mat-option *ngFor="let animale of animali"
+                                [value]="animale.id">{{animale.nome}}</mat-option>
+
+                        </mat-select>
+
+                        <mat-error *ngIf="updateProdotto.get('animale')?.hasError('required')">
+                            L'animale è obbligatorio
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-container">
+                    <mat-form-field class="form-column flex-fill">
+                        <mat-label>Marca</mat-label>
+                        <mat-select name="marca" formControlName="marca">
+                            <mat-option *ngFor="let marca of marche" [value]="marca.id">{{marca.nome}}</mat-option>
+
+                        </mat-select>
+                        <mat-error *ngIf="updateProdotto.get('marca')?.hasError('required')">
+                            La marca è obbligatoria
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-column flex-fill">
+                        <mat-label>Tipologia</mat-label>
+                        <mat-select name="tipologia" formControlName="tipologia">
+                            <mat-option *ngFor="let tipologia of tipologie"
+                            [value]="tipologia.id">{{tipologia.nome}}</mat-option>
+
+                        </mat-select>
+                        <mat-error *ngIf="updateProdotto.get('tipologia')?.hasError('required')">
+                            La tipologia è obbligatoria
+                        </mat-error>
+
+                    </mat-form-field>
+
+                </div>
+                <div class="form-container">
+                    <mat-form-field floatLabel="always" class="form-column flex-fill">
+                        <mat-label>Prezzo</mat-label>
+                        <input matInput type="number" class="example-right-align" placeholder="0" name="prezzo"
+                            formControlName="prezzo" />
+                        <span matTextPrefix>€&nbsp;</span>
+                        <mat-error *ngIf="updateProdotto.get('prezzo')?.hasError('required')">
+                            Il prezzo è obbligatorio
+                        </mat-error>
+
+                    </mat-form-field>
+                    <mat-form-field class="form-column flex-fill">
+                        <mat-label>Quantità</mat-label>
+                        <input matInput type="number" name="quantità" formControlName="quantità">
+                        <mat-error *ngIf="updateProdotto.get('quantità')?.hasError('required')">
+                            La quantità è obbligatoria
+                        </mat-error>
+                        <mat-error *ngIf="updateProdotto.get('quantità')?.hasError('min')">
+                            La quantità deve essere almeno 1
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-container allign-items-center">
+                    <mat-form-field class="form-column flex-fill">
+                        <mat-label>Descrizione</mat-label>
+                        <input matInput type="text" name="descrizione" formControlName="descrizione">
+                        <mat-error *ngIf="updateProdotto.get('descrizione')?.hasError('required')">
+                            La descrizione è obbligatoria
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="form-column d-flex flex-wrap justify-content-center flex-fill">
+                        <label class="" for="img">Immagini</label>
+                        <input type="file" (change)="onFileSelected($event)" multiple class="form-control" id="img">
+                    </div>
+                </div>
+                <div class="">
+                    <div class="row row-cols-3 g-3">
+                        <div class="col d-flex flex-wrap justify-content-center" *ngFor="let image of imagePreviews; let i = index">
+                            <img  [src]="image" alt="Image Preview">
+                            <button class="btn btn-warning btn-sm w-50" type="button" (click)="removeImage(i)">Elimina</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <p>{{msg}}</p>
+                <div class="text-center py-5">
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]="!updateProdotto.valid">Crea</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
