@@ -13,9 +13,9 @@ import { ProdottoComponent } from './componenti/admin/prodotto/prodotto.componen
 import { ProdottiComponent } from './componenti/prodotti/prodotti.component';
 import { UpdateProdottoComponent } from './componenti/admin/update-prodotto/update-prodotto.component';
 import { CreateProdottoComponent } from './componenti/admin/create-prodotto/create-prodotto.component';
-import { TipologiaComponent } from './componenti/admin/tipologia/tipologia.component';
 import { UpdateTipologiaComponent } from './componenti/admin/update-tipologia/update-tipologia.component';
 import { CreateTipologiaComponent } from './componenti/admin/create-tipologia/create-tipologia.component';
+import { TipologiaComponent } from './componenti/admin/tipologia/tipologia.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -45,7 +45,7 @@ const routes: Routes = [
 
   // Admin - Tipologie
   { path: 'admin/tipologia', component: TipologiaComponent },
-  { path: 'admin/tipologia/update', component: UpdateTipologiaComponent },
+  { path: 'admin/tipologia/update/:id', component: UpdateTipologiaComponent },
   { path: 'admin/tipologia/create', component: CreateTipologiaComponent },
 ];
 

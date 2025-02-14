@@ -19,4 +19,8 @@ export class TipologieService {
   getTipologia() {
     return this.http.get(CONSTANTS.API_URL + 'tipologie/listall');
   }
+
+  getTipologiaById(body : {}) {
+    return this.http.get(CONSTANTS.API_URL + 'tipologie/listbyid');
+  }
 }

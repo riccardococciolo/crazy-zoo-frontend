@@ -1,1 +1,25 @@
-<p>create-tipologia works!</p>
+<div class="container">
+    <h1 class="text-center">Creazione Tipologia</h1>
+    <div class="row row-cols-2 justify-content-center mt-5">
+        <div class="col ">
+            <form [formGroup]="createTipologia" (ngSubmit)="onSubmit()">
+                <div class="form-container">
+                    <mat-form-field class="form-column flex-fill ">
+                        <mat-label>Nome</mat-label>
+                        <input matInput type="text" name="nome" formControlName="nome">
+                        <mat-error *ngIf="createTipologia.get('nome')?.hasError('required')">
+                            Il Nome è obbligatorio
+                        </mat-error>
+                    </mat-form-field>
+                    
+                </div>
+                <p>{{msg}}</p>
+                <div class="text-center py-5">
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]="!createTipologia.valid">Crea</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
