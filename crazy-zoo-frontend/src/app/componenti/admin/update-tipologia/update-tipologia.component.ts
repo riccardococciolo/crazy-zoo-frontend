@@ -12,12 +12,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UpdateTipologiaComponent {
    msg: String = '';
    data: any;
-      updateTipologia: FormGroup = new FormGroup({
-          nome: new FormControl()
-        });
+      
   id: number = 0;
   
-  
+  updateTipologia: FormGroup = new FormGroup({
+          nome: new FormControl()
+        });
+
          constructor(
             
             private servT: TipologieService,
@@ -30,8 +31,12 @@ export class UpdateTipologiaComponent {
         this.route.paramMap.subscribe((params: ParamMap) => {
 
           this.id = +params.get("id")!;
+          console.log(this.id);
+          
           this.servT.getTipologiaById(this.id).subscribe((resp: any) => {
-          this.data = resp.data;
+          this.data = resp.dati;
+          console.log(this.data.nome);
+          
           this.updateTipologia = new FormGroup({
           nome: new FormControl(this.data.nome, [Validators.required]),
 
