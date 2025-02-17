@@ -3,7 +3,7 @@
         <!-- Colonna per immagine del prodotto -->
         <div class="col-md-6">
             <div class="card">
-                <img src="" class="card-img-top" alt="Immagine prodotto">
+                <img [src]="infoProd[0]?.immagine" class="card-img-top" alt="Immagine prodotto">
             </div>
         </div>
 
@@ -11,10 +11,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{infoProd[0].titolo}}</h5>
-                    <p class="card-text"><strong>Prezzo:</strong> €{{infoProd[0].prezzo}}</p>
-                    <p class="card-text"><strong>Marca:</strong> {{infoProd[0].marca.nome}}</p>
-                    <p class="card-text"><strong>Tipologia:</strong> {{infoProd[0].tipologia.nome}}</p>
+                    <h5 class="card-title">{{infoProd[0]?.titolo}}</h5>
+                    <p class="card-text"><strong>Prezzo:</strong> €{{infoProd[0]?.prezzo}}</p>
+                    <p class="card-text"><strong>Marca:</strong> {{infoProd[0]?.marca?.nome}}</p>
+                    <p class="card-text"><strong>Tipologia:</strong> {{infoProd[0]?.tipologia?.nome}}</p>
                     
                     <!-- Aggiungi un bottone per l'acquisto o altre azioni -->
                     <a href="#" class="btn btn-primary">Acquista</a>
@@ -22,5 +22,22 @@
             </div>
         </div>
     </div>
+
+    <!-- Sezione recensioni -->
+    <div class="mt-4">
+        <h4>Recensioni:</h4>
+        <div *ngIf="recensioni && recensioni.length > 0; else noReviews">
+            <div *ngFor="let recensione of recensioni">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Valutazione: {{recensione.valutazione}}/5</h5>
+                        <p class="card-text"><strong>Descrizione:</strong> {{recensione.descrizione}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #noReviews>
+            <p>No reviews available for this product.</p>
+        </ng-template>
+    </div>
 </div>
-xx {{recensioni.id}}

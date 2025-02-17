@@ -38,8 +38,8 @@ export class DettaglioProdottoComponent implements OnInit{
     })
     this.recS.getRecensioniByProdotto(this.id).subscribe((resp:any)=>{
       if(resp.rc){
-        this.recensioni =resp
-        console.log("Recensioni:" +this.recensioni)
+        this.recensioni =resp.dati
+        console.log("Recensioni:", this.recensioni)
       }else{
         alert("Errore recensioni")
       }
