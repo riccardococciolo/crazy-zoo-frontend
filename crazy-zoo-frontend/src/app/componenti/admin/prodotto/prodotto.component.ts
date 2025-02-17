@@ -20,7 +20,7 @@ export class ProdottoComponent {
 
   ngOnInit(): void {
     console.log('ngOnInit');
-    this.serv.getProdotto().subscribe((resp) => {
+    this.serv.getProdotto({}).subscribe((resp) => {
       this.response = resp;
       this.data = this.response.dati;
     });

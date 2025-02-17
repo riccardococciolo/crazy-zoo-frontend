@@ -18,41 +18,36 @@ export class ProdottiService {
   }
 
   getProdotto(
-    id?: number,
-    titolo?: string,
-    prezzo?: number,
-    quantita?: number,
-    nomeAnimale?: string,
-    nomeTipologia?: string,
-    nomeMarca?: string,
-    descrizione?: string
+    filters: any
   ) {
     let params = new HttpParams();
 
-    if (id != null) {
-      params = params.set('id', id.toString());
+    if (filters.id != null) {
+      params = params.set('id', filters.id.toString());
     }
-    if (titolo) {
-      params = params.set('titolo', titolo);
+    if (filters.titolo) {
+      params = params.set('titolo', filters.titolo);
     }
-    if (prezzo != null) {
-      params = params.set('prezzo', prezzo.toString());
+    if (filters.prezzo != null) {
+      params = params.set('prezzo', filters.prezzo.toString());
     }
-    if (quantita != null) {
-      params = params.set('quantita', quantita.toString());
+    if (filters.quantita != null) {
+      params = params.set('quantita', filters.quantita.toString());
     }
-    if (nomeAnimale) {
-      params = params.set('nomeAnimale', nomeAnimale);
+    if (filters.nomeAnimale) {
+      params = params.set('nomeAnimale', filters.nomeAnimale);
     }
-    if (nomeTipologia) {
-      params = params.set('nomeTipologia', nomeTipologia);
+    if (filters.nomeTipologia) {
+      params = params.set('nomeTipologia', filters.nomeTipologia);
     }
-    if (nomeMarca) {
-      params = params.set('nomeMarca', nomeMarca);
+    if (filters.nomeMarca) {
+      params = params.set('nomeMarca', filters.nomeMarca);
     }
-    if (descrizione) {
-      params = params.set('descrizione', descrizione);
+    if (filters.descrizione) {
+      params = params.set('descrizione', filters.descrizione);
     }
+    console.log(params);
+    
     return this.http.get(CONSTANTS.API_URL + 'prodotto/listbyfilter', {
       params,
     });

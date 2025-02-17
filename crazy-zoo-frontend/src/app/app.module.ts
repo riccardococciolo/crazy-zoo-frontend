@@ -45,6 +45,9 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatRadioModule} from '@angular/material/radio';
+import { FilterBarComponent } from './componenti/filter-bar/filter-bar.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OrdineComponent,
     NavbarComponent,
     FooterComponent,
+    FilterBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +91,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSliderModule,
+    MatRadioModule
   ],
   providers: [
     provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule with fetch
