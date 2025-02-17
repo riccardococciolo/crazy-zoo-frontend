@@ -35,7 +35,7 @@ const routes: Routes = [
 
   // Admin - Marche
   { path: 'admin/marca', component: MarcaComponent },
-  { path: 'admin/marca/update', component: UpdateMarcaComponent },
+  { path: 'admin/marca/update/:id', component: UpdateMarcaComponent },
   { path: 'admin/marca/create', component: CreateMarcaComponent },
 
   // Admin - Prodotti

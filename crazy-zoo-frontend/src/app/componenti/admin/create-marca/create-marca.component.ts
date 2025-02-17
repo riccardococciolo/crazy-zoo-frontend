@@ -1,5 +1,6 @@
-import { Component,OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MarcheService } from '../../../services/marche.service';
 
 @Component({
@@ -8,34 +9,31 @@ import { MarcheService } from '../../../services/marche.service';
   templateUrl: './create-marca.component.html',
   styleUrl: './create-marca.component.css'
 })
-export class CreateMarcaComponent  implements OnInit{
-  msg: string = ""
+export class CreateMarcaComponent {
 
-  constructor(private marchS: MarcheService){}
+    msg: String = '';
+    createMarca: FormGroup = new FormGroup({
+        nome: new FormControl('', [Validators.required])
+      });
 
-  
-  ngOnInit():void{
-    this.marcheForm = new FormGroup({
-      nome : new FormControl(null,Validators.required)
-    })
-  }
-  marcheForm!: FormGroup
-  onSubmit(){
-    console.log("Premuto pulsante")
-    this.marchS.createMarche({
-      nome: this.marcheForm.value.nome
-    }).subscribe((resp:any) =>{
-      if(resp.rc){
-        console.log("suc "+ resp)
-        this.marcheForm.reset
-        
-      }else{
-        console.log("fail "+ resp)
-        this.msg = resp.msg
+
+       constructor(
+          
+          private servT: MarcheService,
+          private routing: Router,
+          private route: ActivatedRoute
+        ) {}
+
+    onSubmit(){this.servT.createMarche({nome: this.createMarca.value.nome}).subscribe((resp: any) => {
+      if (resp.rc) {
+        this.routing.navigate(['/admin/marca']).then(() => {
+          window.location.reload();
+        });
+      } else {
+        this.msg = resp.msg;
       }
-    })
+    });
   }
-
   
 
 }

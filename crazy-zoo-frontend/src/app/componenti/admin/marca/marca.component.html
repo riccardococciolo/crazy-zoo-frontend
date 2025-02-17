@@ -1,1 +1,29 @@
-<p>marca works!</p>
+<div class="container">
+    <h1 class="text-center">Marca</h1>
+
+    <div class="text-end my-4">
+        <a class="btn btn-success" routerLink="create">Crea nuova Marca</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let marca of data">
+                <th scope="row">{{marca.id}}</th>
+                <td>
+                    {{marca.nome}}
+                </td>
+                <td>
+                    <button class="btn btn-warning text-light me-4" routerLink="update/{{marca.id}}" href=""><i
+                            class="fa-solid fa-pencil">Update</i></button>
+                    <button class="btn btn-danger btn-delete" type="button" (click)="deleteAction(marca.id)"><i
+                            class="fa-regular fa-trash-can">Elimina</i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

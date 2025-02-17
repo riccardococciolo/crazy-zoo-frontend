@@ -1,1 +1,25 @@
-<p>update-marca works!</p>
+<div class="container">
+    <h1 class="text-center">Modifica Marca</h1>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="">
+            <form [formGroup]="updateMarca" (ngSubmit)="onSubmit()">
+                <div class="form-container">
+                    <mat-form-field class="form-column flex-fill pt-4">
+                        <mat-label>Nome</mat-label>
+                        <input matInput type="text" name="nome" formControlName="nome">
+                        <mat-error *ngIf="updateMarca.get('nome')?.hasError('required')">
+                            Il Nome è obbligatorio
+                        </mat-error>
+                    </mat-form-field>
+                    
+                </div>
+                <p>{{msg}}</p>
+                <div class="text-center py-5">
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]="!updateMarca.valid">Update</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
