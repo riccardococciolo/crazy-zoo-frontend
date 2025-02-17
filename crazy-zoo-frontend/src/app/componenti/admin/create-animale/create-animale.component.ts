@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AnimaliService } from '../../../services/animali.service';
 
 @Component({
   selector: 'app-create-animale',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './create-animale.component.css'
 })
 export class CreateAnimaleComponent {
-
+  
 }
