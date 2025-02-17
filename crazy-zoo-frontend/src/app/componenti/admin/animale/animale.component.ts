@@ -1,32 +1,44 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AnimaliService } from '../../../services/animali.service';
 
 @Component({
   selector: 'app-animale',
   standalone: false,
   templateUrl: './animale.component.html',
-  styleUrl: './animale.component.css'
+  styleUrl: './animale.component.css',
 })
 export class AnimaleComponent {
-  listAnimali: any;
+  data: any;
   response: any;
   msg: string = '';
-  constructor(private animaleSer: AnimaliService) {}
+  constructor(
+    private serv: AnimaliService,
+    private routing: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    console.log("caricamento dati..");
-    this.animaleSer.getAnimale().subscribe((resp: any) => { 
+    this.serv.getAnimale().subscribe((resp) => {
       this.response = resp;
-      this.listAnimali = this.response.dati;
-    });
+      this.data = this.response.dati;
+    }); 
+    console.log(this.data);
   }
 
   deleteAction(id: number) {
-    console.log("Delete premuto " + id);
-    this.animaleSer.deleteAnimale({id: id}).subscribe((response: any) => {
-      if (response.rc) {
-        alert("Animale eliminato con successo!");
+    console.log(id);
+
+    this.serv.deleteAnimale({id:id}).subscribe((resp: any) => {
+      if (resp.rc) {
+        console.log(resp.rc);
+
+        this.routing.navigate(['/admin/animale']).then(() => {
+          window.location.reload();
+        });
+      } else {
+        this.msg = resp.msg;
       }
     });
-}
+  }
 }

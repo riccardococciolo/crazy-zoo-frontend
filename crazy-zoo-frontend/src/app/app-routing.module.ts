@@ -30,7 +30,7 @@ const routes: Routes = [
 
   // Admin - Animali
   { path: 'admin/animale', component: AnimaleComponent },
-  { path: 'admin/animale/update', component: UpdateAnimaleComponent },
+  { path: 'admin/animale/update/:id', component: UpdateAnimaleComponent },
   { path: 'admin/animale/create', component: CreateAnimaleComponent },
 
   // Admin - Marche

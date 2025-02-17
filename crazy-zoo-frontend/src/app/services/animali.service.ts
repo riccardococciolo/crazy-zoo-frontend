@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CONSTANTS } from '../shared/constants';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,11 @@ export class AnimaliService {
   }
   getAnimale(){
     return this.http.get(CONSTANTS.API_URL+ "animali/listall")
+  }
+
+  getAnimaleById(id: number) {
+    let params = new HttpParams().set('id', id.toString());
+    return this.http.get(CONSTANTS.API_URL + 'animali/listbyid', {params});
   }
 }
 
