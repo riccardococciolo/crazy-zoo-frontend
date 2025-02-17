@@ -4,7 +4,7 @@
             <app-filter-bar></app-filter-bar>
         </div>
         <div class="col-9">
-            <app-prodotti-card *ngFor="let prodotto of prodotti" [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
+            <app-prodotti-card *ngFor="let prodotto of prodotti.dati" [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
         </div>
     </div>
 </div>
