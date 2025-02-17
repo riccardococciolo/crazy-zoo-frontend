@@ -48,6 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatRadioModule} from '@angular/material/radio';
 import { FilterBarComponent } from './componenti/filter-bar/filter-bar.component';
+import { ProdottiCardComponent } from './componenti/prodotti-card/prodotti-card.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { FilterBarComponent } from './componenti/filter-bar/filter-bar.component
     NavbarComponent,
     FooterComponent,
     FilterBarComponent,
+    ProdottiCardComponent,
   ],
   imports: [
     BrowserModule,
