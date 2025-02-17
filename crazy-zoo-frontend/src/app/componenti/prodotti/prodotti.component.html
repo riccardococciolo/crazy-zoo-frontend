@@ -3,7 +3,7 @@
         <div class="col-3">
             <app-filter-bar></app-filter-bar>
         </div>
-        <div class="col-9">
+        <div class="col-9 row-cols-4 g-3">
             <app-prodotti-card *ngFor="let prodotto of prodotti.dati" [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
         </div>
     </div>
