@@ -1,15 +1,16 @@
 <div class="card border-0" style="width: 18rem;">
-    <div class="shadow rounded-3"><img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="card-img-top" alt="..."></div>
-   
+    <a [routerLink]="['/prodotti', cardData.prodotto.id]">
+    <div class="shadow rounded-3"><img [src]="imageUrl || 'https://img.freepik.com/foto-gratuito/superficie-e-strutture-astratte-del-muro-di-pietra-concreto-bianco_74190-8189.jpg'" class="card-img-top" alt="Immagine prodotto"></div>
+</a>
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
+      <h5 class="card-title">{{cardData.prodotto.titolo}}</h5>
       <div class="d-flex justify-content-around">
         
         <div>
             <span matTextPrefix>€&nbsp;</span>
-            <span>30</span>
+            <span>{{cardData.prodotto.prezzo}}</span>
         </div>
-        <button class="btn btn-primary">dettaglio</button>
+        <button class="btn btn-warning text-dark fw-bold" (click)="addCart()">add to cart</button>
       </div>
     
       
