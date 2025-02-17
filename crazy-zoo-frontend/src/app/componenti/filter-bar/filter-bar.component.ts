@@ -29,9 +29,7 @@ export class FilterBarComponent {
     console.log(this.minPrice);
     
     this.filtersForm = this.fb.group({
-      titolo: [''],
-      /* minPrice : [this.minPrice],
-      maxPrice : [this.maxPrice], */
+      titolo: [],
       nomeMarca: [],
       nomeTipologia: [],
       nomeAnimale: []
@@ -55,9 +53,13 @@ export class FilterBarComponent {
 
   applyFilters(): void {
     // Recupera i valori dal form
-    console.log(this.filtersForm.value);
     
     let filters = this.filtersForm.value;
+
+    filters.minPrice = this.minPrice;
+    filters.maxPrice = this.maxPrice;
+
+    console.log(this.filtersForm.value);
     
     // Rimuovi eventuali campi vuoti per non inviare parametri inutili
     Object.keys(filters).forEach(key => {

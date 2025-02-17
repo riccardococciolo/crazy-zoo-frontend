@@ -25,27 +25,27 @@
 
       <div class="border-bottom p-2 border-light-subtle border-2 shadow-none w-100 ps-5">
         <label id="example-radio-group-label">Marca</label>
-        <mat-radio-group formControlName="nomeMarca" aria-labelledby="example-radio-group-label" class="d-flex flex-column">
+        <mat-radio-group formControlName="nomeMarca" aria-labelledby="example-radio-group-label" class="d-flex flex-column custom-radio">
           <mat-radio-button *ngFor="let marca of marche" class="example-radio-button" [value]="marca.nome">{{marca.nome}}</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <div class="border-bottom p-2 border-light-subtle border-2 shadow-none w-100 ps-5">
         <label id="example-radio-group-label">Animale</label>
-        <mat-radio-group formControlName="nomeAnimale" aria-labelledby="example-radio-group-label" class="d-flex flex-column">
+        <mat-radio-group formControlName="nomeAnimale" aria-labelledby="example-radio-group-label" class="d-flex flex-column custom-radio">
           <mat-radio-button *ngFor="let animale of animali" class="example-radio-button" [value]="animale.nome">{{animale.nome}}</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <div class=" p-2 w-100 ps-5">
         <label id="example-radio-group-label">Tipologia</label>
-        <mat-radio-group formControlName="nomeTipologia" aria-labelledby="example-radio-group-label" class="d-flex flex-column">
+        <mat-radio-group formControlName="nomeTipologia" aria-labelledby="example-radio-group-label" class="d-flex flex-column custom-radio">
           <mat-radio-button *ngFor="let tipologia of tipologie" class="example-radio-button" [value]="tipologia.nome">{{tipologia.nome}}</mat-radio-button>
         </mat-radio-group>
       </div>
     </form>
   </mat-card-content>
   <mat-card-actions class="d-flex justify-content-center pb-4">
-    <button mat-raised-button class="text-dark" (click)="applyFilters()">Applica Filtri</button>
+    <button mat-raised-button class="text-dark bg-color" (click)="applyFilters()">Applica Filtri</button>
   </mat-card-actions>
 </mat-card>

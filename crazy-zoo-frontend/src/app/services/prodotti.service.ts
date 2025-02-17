@@ -7,11 +7,11 @@ import { CONSTANTS } from '../shared/constants';
 })
 export class ProdottiService {
   constructor(private http: HttpClient) {}
-  createProdotto(body: {}) {
-    return this.http.post(CONSTANTS.API_URL + 'prodotto/create', body);
+  createProdotto(formData: FormData) {
+    return this.http.post(CONSTANTS.API_URL + 'prodotto/create', formData);
   }
-  updateProdotto(body: {}) {
-    return this.http.post(CONSTANTS.API_URL + 'prodotto/update', body);
+  updateProdotto(formData: FormData) {
+    return this.http.post(CONSTANTS.API_URL + 'prodotto/update', formData);
   }
   deleteProdotto(formData: FormData) {
     return this.http.post(CONSTANTS.API_URL + 'prodotto/delete', formData);
@@ -28,8 +28,11 @@ export class ProdottiService {
     if (filters.titolo) {
       params = params.set('titolo', filters.titolo);
     }
-    if (filters.prezzo != null) {
-      params = params.set('prezzo', filters.prezzo.toString());
+    if (filters.minPrice != null) {
+      params = params.set('prezzoMin', filters.minPrice.toString());
+    }
+    if (filters.maxPrice != null) {
+      params = params.set('prezzoMax', filters.maxPrice.toString());
     }
     if (filters.quantita != null) {
       params = params.set('quantita', filters.quantita.toString());

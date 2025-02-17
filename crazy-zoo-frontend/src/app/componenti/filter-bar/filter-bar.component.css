@@ -1,3 +1,4 @@
+ 
  .mdc-slider {
     max-width: 200px;
     width: 100%;
@@ -7,4 +8,28 @@
 
   .example-result-card .example-value-label {
     font-weight: 600;
+  }
+
+  .bg-color {
+    background-color: #fea !important;
+  }
+
+  
+  .mat-mdc-radio-button {
+    --mat-radio-checked-ripple-color: #fea !important;
+    --mdc-radio-selected-icon-color: #fea !important;
+    --mdc-radio-selected-hover-icon-color: #fea !important;
+    --mdc-radio-selected-pressed-icon-color: #fea !important;
+    --mdc-radio-selected-focus-icon-color: #fea !important;
+  }
+  .mat-mdc-slider {
+    --mdc-slider-label-container-color: #fea !important;
+    --mdc-slider-handle-color: #fea !important;
+    --mdc-slider-focus-handle-color: #fea !important;
+    --mdc-slider-active-track-color: #fea !important;
+    --mdc-slider-with-tick-marks-active-container-color: #fea !important;
+    --mat-mdc-slider-hover-ripple-color: #fea !important;
+    --mat-mdc-slider-focus-ripple-color: #fea !important;
+    --mat-mdc-slider-ripple-color: #fea !important;
+    --mat-mdc-slider-active-ripple-color: rgba(254, 238, 170, 0.3) !important;
   }

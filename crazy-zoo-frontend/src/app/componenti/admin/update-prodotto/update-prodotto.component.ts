@@ -46,11 +46,14 @@ export class UpdateProdottoComponent {
       this.route.paramMap.subscribe((params: ParamMap) => {
        
         this.id = +params.get("id")!;
+
+        console.log(this.id);
+        
     
-        this.servP.getProdotto(this.id).subscribe((resp) => {
+        this.servP.getProdotto({id: this.id}).subscribe((resp) => {
           this.response = resp;
           this.data = this.response.dati;
-          console.log(this.data[0].animale.id);
+          console.log(this.data[0]);
           this.caricaDati();
           this.updateProdotto = new FormGroup({
             titolo: new FormControl(this.data[0].titolo, [Validators.required]),
@@ -143,12 +146,12 @@ export class UpdateProdottoComponent {
         formData.append('immagini', file);
       });
   
-      console.log(formData);
+      console.log("dati req" + this.updateProdotto.get('tipologia')?.value);
   
       this.servP.updateProdotto(formData).subscribe((resp: any) => {
         if (resp.rc) {
           this.routing.navigate(['/admin/prodotto']).then(() => {
-            window.location.reload();
+            /* window.location.reload(); */
           });
         } else {
           this.msg = resp.msg;
