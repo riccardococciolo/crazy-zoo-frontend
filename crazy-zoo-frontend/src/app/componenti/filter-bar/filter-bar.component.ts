@@ -67,7 +67,17 @@ export class FilterBarComponent {
         delete filters[key];
       }
     });
-    
+
+    this.filtersForm.reset({
+      titolo: '',
+      nomeMarca: '',
+      nomeAnimale: '',
+      nomeTipologia: ''
+    });
+
+    // Resetta i valori dello slider
+    this.minPrice = 0;
+    this.maxPrice = 100;
     // Naviga alla pagina dei prodotti passando i filtri come query parameters
     this.router.navigate(['/prodotti'], { queryParams: filters });
   }

@@ -1,0 +1,9 @@
+img {
+    object-fit: cover;
+    height: 200px;
+    max-width: 300px;
+}
+
+.bg-color {
+    background-color: #fea !important;
+  }
