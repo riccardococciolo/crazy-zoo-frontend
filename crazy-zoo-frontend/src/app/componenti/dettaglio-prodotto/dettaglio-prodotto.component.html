@@ -1,1 +1,25 @@
-<p>dettaglio-prodotto works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Colonna per immagine del prodotto -->
+        <div class="col-md-6">
+            <div class="card">
+                <img src="url-immagine-del-prodotto.jpg" class="card-img-top" alt="Immagine prodotto">
+            </div>
+        </div>
+
+        <!-- Colonna per le informazioni del prodotto -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{infoProd[0].titolo}}</h5>
+                    <p class="card-text"><strong>Prezzo:</strong> €{{infoProd[0].prezzo}}</p>
+                    <p class="card-text"><strong>Marca:</strong> {{infoProd[0].marca.nome}}</p>
+                    <p class="card-text"><strong>Tipologia:</strong> {{infoProd[0].tipologia.nome}}</p>
+                    
+                    <!-- Aggiungi un bottone per l'acquisto o altre azioni -->
+                    <a href="#" class="btn btn-primary">Acquista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
