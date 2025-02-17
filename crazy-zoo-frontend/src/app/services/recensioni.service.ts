@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CONSTANTS } from '../shared/constants';
 
@@ -9,6 +9,8 @@ export class RecensioniService {
 
   constructor(private http:HttpClient) { }
   getRecensioniByProdotto(id:any){
-    return this.http.get(CONSTANTS.API_URL + "recensioni/listbyprodotto",id)
+    let params = new HttpParams().set("id", id.toString())
+    console.log(CONSTANTS.API_URL + "recensioni/listbyprodotto" + {params})
+    return this.http.get(CONSTANTS.API_URL + "recensioni/listbyprodotto",{params})
   }
 }

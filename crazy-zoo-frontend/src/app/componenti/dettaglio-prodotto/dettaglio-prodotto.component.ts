@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdottiService } from '../../services/prodotti.service';
+import { RecensioniService } from '../../services/recensioni.service';
 
 @Component({
   selector: 'app-dettaglio-prodotto',
@@ -10,18 +11,21 @@ import { ProdottiService } from '../../services/prodotti.service';
 })
 export class DettaglioProdottoComponent implements OnInit{
   
-  constructor(private prodS: ProdottiService, private router:Router,private route:ActivatedRoute){
+  constructor(private prodS: ProdottiService, private router:Router,private route:ActivatedRoute
+    ,private recS:RecensioniService)
+  {
 
   }
   id:any
  infoProd:any
+ recensioni:any
   ngOnInit(): void {
-    this.loadProduct()
+    this.loadProductandRec()
 
 
   }
 
-  loadProduct(){
+  loadProductandRec(){
     this.id= Number(this.route.snapshot.paramMap.get("id"))
     
     this.prodS.getProdotto({id : this.id}).subscribe((resp:any)=>{
@@ -32,16 +36,18 @@ export class DettaglioProdottoComponent implements OnInit{
       alert("Errore")
     }
     })
+    this.recS.getRecensioniByProdotto(this.id).subscribe((resp:any)=>{
+      if(resp.rc){
+        this.recensioni =resp
+        console.log("Recensioni:" +this.recensioni)
+      }else{
+        alert("Errore recensioni")
+      }
+    })
 
 
     //immagini
-    const base64Data = this.infoProd.immagini.data;
-    const contentType = 'image/jpeg'; 
-    const blob = this.base64ToBlob(base64Data, contentType);
-    console.log(blob)
-    const file = new File([blob], "nomefile.ext", { type: blob.type });
-    console.log(file)
-    const imageUrl = URL.createObjectURL(blob);
+    
   }
   base64ToBlob(base64: string, contentType: string): Blob {
     const byteCharacters = atob(base64);
