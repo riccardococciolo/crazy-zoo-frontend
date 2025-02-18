@@ -49,6 +49,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatRadioModule} from '@angular/material/radio';
 import { FilterBarComponent } from './componenti/filter-bar/filter-bar.component';
 import { ProdottiCardComponent } from './componenti/prodotti-card/prodotti-card.component';
+import { LoginComponent } from './componenti/login/login.component';
+import { RegisterComponent } from './componenti/register/register.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { ProdottiCardComponent } from './componenti/prodotti-card/prodotti-card.
     FooterComponent,
     FilterBarComponent,
     ProdottiCardComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

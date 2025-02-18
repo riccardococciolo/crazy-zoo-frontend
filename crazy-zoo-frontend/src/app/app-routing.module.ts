@@ -16,37 +16,50 @@ import { CreateProdottoComponent } from './componenti/admin/create-prodotto/crea
 import { UpdateTipologiaComponent } from './componenti/admin/update-tipologia/update-tipologia.component';
 import { CreateTipologiaComponent } from './componenti/admin/create-tipologia/create-tipologia.component';
 import { TipologiaComponent } from './componenti/admin/tipologia/tipologia.component';
+import { LoginComponent } from './componenti/login/login.component';
+import { RegisterComponent } from './componenti/register/register.component';
+import { AdminGuard } from './auth/admin.guard';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+
+  // Login e Registrazione
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
   // Prodotti
   { path: 'prodotti', component: ProdottiComponent },
   { path: 'prodotti/:id', component: DettaglioProdottoComponent },
 
   // Utente
-  { path: 'utente', component: DettaglioUtenteComponent },
+  { path: 'utente', component: DettaglioUtenteComponent, canActivate: [AuthGuard] },
 
-  // Admin - Animali
-  { path: 'admin/animale', component: AnimaleComponent },
-  { path: 'admin/animale/update/:id', component: UpdateAnimaleComponent },
-  { path: 'admin/animale/create', component: CreateAnimaleComponent },
 
-  // Admin - Marche
-  { path: 'admin/marca', component: MarcaComponent },
-  { path: 'admin/marca/update/:id', component: UpdateMarcaComponent },
-  { path: 'admin/marca/create', component: CreateMarcaComponent },
+    // Admin - Sezione Protetta
+    {
+      path: 'admin',
+      canActivate: [AdminGuard], 
+      children: [
+        { path: 'animale', component: AnimaleComponent },
+        { path: 'animale/update/:id', component: UpdateAnimaleComponent },
+        { path: 'animale/create', component: CreateAnimaleComponent },
+  
+        { path: 'marca', component: MarcaComponent },
+        { path: 'marca/update/:id', component: UpdateMarcaComponent },
+        { path: 'marca/create', component: CreateMarcaComponent },
+  
+        { path: 'prodotto', component: ProdottoComponent },
+        { path: 'prodotto/update/:id', component: UpdateProdottoComponent },
+        { path: 'prodotto/create', component: CreateProdottoComponent },
+  
+        { path: 'tipologia', component: TipologiaComponent },
+        { path: 'tipologia/update/:id', component: UpdateTipologiaComponent },
+        { path: 'tipologia/create', component: CreateTipologiaComponent }
+      ]
+    }
 
-  // Admin - Prodotti
-  { path: 'admin/prodotto', component: ProdottoComponent },
-  { path: 'admin/prodotto/update/:id', component: UpdateProdottoComponent },
-  { path: 'admin/prodotto/create', component: CreateProdottoComponent },
-
-  // Admin - Tipologie
-  { path: 'admin/tipologia', component: TipologiaComponent },
-  { path: 'admin/tipologia/update/:id', component: UpdateTipologiaComponent },
-  { path: 'admin/tipologia/create', component: CreateTipologiaComponent },
 ];
 
 @NgModule({
