@@ -19,6 +19,7 @@ export class DettaglioProdottoComponent implements OnInit{
   id:any
  infoProd:any
  recensioni:any
+ images: string[] = []
   ngOnInit(): void {
     this.loadProductandRec()
 
@@ -32,6 +33,16 @@ export class DettaglioProdottoComponent implements OnInit{
       if(resp.rc){
       this.infoProd =resp.dati
       console.log(this.infoProd)
+      this.infoProd[0].immagini.forEach((immagine: { data: any }) => {
+        const base64Data = immagine.data;
+        const contentType = 'image/jpeg'; 
+        const blob = this.base64ToBlob(base64Data, contentType);
+        console.log(blob)
+        const file = new File([blob], "nomefile.ext", { type: blob.type });
+        console.log(file)
+        const imageUrl = URL.createObjectURL(blob);
+        this.images.push(imageUrl);
+      });
     }else{
       alert("Errore")
     }

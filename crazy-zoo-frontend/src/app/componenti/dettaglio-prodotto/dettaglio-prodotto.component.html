@@ -1,31 +1,69 @@
 <div class="container mt-5">
     <div class="row">
         <!-- Colonna per immagine del prodotto -->
-        <div class="col-md-6">
-            <div class="card">
-                <img [src]="infoProd[0]?.immagine" class="card-img-top" alt="Immagine prodotto">
-            </div>
+        <div class="col-md-4">
+            <div id="carouselExampleIndicators" class="carousel slide my-shadow rounded-4">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner  my-shadow rounded-4">
+                  <div *ngFor="let image of images" class="carousel-item active w-100">
+                    <img [src]="image" class="d-block w-100 my-shadow rounded-4" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
         </div>
 
         <!-- Colonna per le informazioni del prodotto -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{infoProd[0]?.titolo}}</h5>
-                    <p class="card-text"><strong>Prezzo:</strong> €{{infoProd[0]?.prezzo}}</p>
-                    <p class="card-text"><strong>Marca:</strong> {{infoProd[0]?.marca?.nome}}</p>
-                    <p class="card-text"><strong>Tipologia:</strong> {{infoProd[0]?.tipologia?.nome}}</p>
+        <div class="col-md-4 d-flex align-items-between">
+            <div class="card w-100 border-0">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h3 class="card-title">{{infoProd[0]?.titolo}}</h3>
+                    <div class="d-flex flex-column align-items-center gap-3 fs-6">
+                        <div class="row row-cols-3 w-100 pb-3">
+                            <div class="d-flex justify-content-center">
+                                <p class="card-text col d-flex flex-wrap gap-2 border-end"><strong class="w-100">Prezzo</strong> €{{infoProd[0]?.prezzo}}</p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p class="card-text col d-flex flex-wrap gap-2 border-end"><strong class="w-100">Marca</strong> {{infoProd[0]?.marca?.nome}}</p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p class="card-text col d-flex flex-wrap gap-2"><strong class="w-100">Tipologia</strong> {{infoProd[0]?.tipologia?.nome}}</p>
+                            </div>
+                        </div>
                     
                     <!-- Aggiungi un bottone per l'acquisto o altre azioni -->
-                    <a href="#" class="btn btn-primary">Acquista</a>
+                    <a href="#" class="btn my-shadow rounded-4 bg-color w-50 text-center fw-bold">Aggiungi al carrello</a>
+                    </div>
+                    
                 </div>
             </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card w-100 border-0">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <h4>Descrizione</h4>
+                    <p>{{infoProd[0]?.descrizione}}</p>
+                </div>
+                
+            </div>
+            
         </div>
     </div>
 
     <!-- Sezione recensioni -->
-    <div class="mt-4">
-        <h4>Recensioni:</h4>
+    <div class="mt-4 py-5">
+        <h4 class="pb-4">Recensioni</h4>
         <div *ngIf="recensioni && recensioni.length > 0; else noReviews">
             <div *ngFor="let recensione of recensioni">
                 <div class="card mt-3">
