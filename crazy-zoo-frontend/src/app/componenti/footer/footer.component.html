@@ -1,1 +1,38 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="section1">
+    <a href="/Home Crazy Zoo">CRAZY ZOO</a>
+  </div>
+    <div class="footer-content row">
+      <div class="col-4 d-flex flex-column justify-content-center">
+        <span class="py-3">ANIMALI</span>
+        <ul class="list p-0 m-0">
+          <li class="list py-1" *ngFor=" let animale of animali.dati">
+            {{animale.nome}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-4 d-flex flex-column justify-content-center">
+        <span class="py-3">MARCHE</span>
+        <ul class="list p-0 m-0">
+          <li class="list py-1" *ngFor=" let marca of marche.dati">
+            {{marca.nome}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-4 d-flex flex-column justify-content-center">
+        <span class="py-3">TIPOLOGIE</span>
+        <ul class="list p-0 m-0">
+          <li class="list py-1" *ngFor=" let tipologia of tipologie.dati">
+            {{tipologia.nome}}
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+    <div class="section2">
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms-of-service">Termini di Servizio</a>
+    </div>
+  </footer>
+  
+  
