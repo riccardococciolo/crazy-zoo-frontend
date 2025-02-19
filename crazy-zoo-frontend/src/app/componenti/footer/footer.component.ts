@@ -22,14 +22,14 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     // Recupera gli animali e i prodotti quando il componente viene inizializzato
-    this.animaleService.getAnimale().subscribe(data => {
-      this.animali = data; // Popola l'array degli animali
+    this.animaleService.getAnimale().subscribe((resp: any) => {
+      this.animali = resp.dati; // Popola l'array degli animali
     });
-    this.marcaService.getMarche().subscribe(data => {
-      this.marche = data; 
+    this.marcaService.getMarche().subscribe((resp: any) => {
+      this.marche = resp.dati; 
     });
-    this.tipologiaService.getTipologia().subscribe(data => {
-      this.tipologie = data; 
+    this.tipologiaService.getTipologia().subscribe((resp: any) => {
+      this.tipologie = resp.dati; 
     });
   }
 }
