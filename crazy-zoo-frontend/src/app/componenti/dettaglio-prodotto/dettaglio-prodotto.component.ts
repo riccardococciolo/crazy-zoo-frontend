@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdottiService } from '../../services/prodotti.service';
 import { RecensioniService } from '../../services/recensioni.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-dettaglio-prodotto',
@@ -12,7 +13,7 @@ import { RecensioniService } from '../../services/recensioni.service';
 export class DettaglioProdottoComponent implements OnInit{
   
   constructor(private prodS: ProdottiService, private router:Router,private route:ActivatedRoute
-    ,private recS:RecensioniService)
+    ,private recS:RecensioniService, private ut:AuthService)
   {
 
   }
@@ -20,6 +21,10 @@ export class DettaglioProdottoComponent implements OnInit{
  infoProd:any
  recensioni:any
  images: string[] = []
+ selectedRating: number = 0;
+  hoverRating: number = 0;
+  reviewText: string = '';
+  errorMessage: string = '';
   ngOnInit(): void {
     this.loadProductandRec()
 
@@ -68,6 +73,41 @@ export class DettaglioProdottoComponent implements OnInit{
     }
     const byteArray = new Uint8Array(byteNumbers);
     return new Blob([byteArray], { type: contentType });
+  }
+
+  setRating(rating: number) {
+    this.selectedRating = rating;
+  }
+
+  submitReview() {
+    console.log("submitReview() chiamato");
+    if(!this.selectedRating || !this.reviewText) {
+      this.errorMessage = 'Seleziona un voto e scrivi una recensione!';
+      return;
+    }
+    
+    // Invia i dati al backend
+    const reviewData = {
+      valutazione: this.selectedRating,
+      descrizione: this.reviewText,
+      prodottoID: this.infoProd[0].id,
+      utenteID: this.ut.getUserData().id,
+    };
+
+    console.log(reviewData)
+
+    this.recS.createRecensioni(reviewData).subscribe((resp: any) => {
+      if (resp.rc) {   
+          window.location.reload();
+      } else {
+        this.errorMessage = resp.msg;
+      }});
+
+    console.log('Recensione inviata:', reviewData);
+    // Resetta il form
+    this.selectedRating = 0;
+    this.reviewText = '';
+    this.errorMessage = '';
   }
 
 

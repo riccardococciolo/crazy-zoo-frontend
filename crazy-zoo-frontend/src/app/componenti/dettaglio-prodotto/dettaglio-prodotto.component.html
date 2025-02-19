@@ -8,7 +8,7 @@
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                <div class="carousel-inner  my-shadow rounded-4">
+                <div class="carousel-inner rounded-4">
                   <div *ngFor="let image of images" class="carousel-item active w-100">
                     <img [src]="image" class="d-block w-100 my-shadow rounded-4" alt="...">
                   </div>
@@ -61,21 +61,74 @@
         </div>
     </div>
 
-    <!-- Sezione recensioni -->
-    <div class="mt-4 py-5">
-        <h4 class="pb-4">Recensioni</h4>
-        <div *ngIf="recensioni && recensioni.length > 0; else noReviews">
-            <div *ngFor="let recensione of recensioni">
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Valutazione: {{recensione.valutazione}}/5</h5>
-                        <p class="card-text"><strong>Descrizione:</strong> {{recensione.descrizione}}</p>
-                    </div>
-                </div>
+
+    <div class="row py-5">
+<div class="container mt-5 col-4">
+        <div class="card p-4">
+          <h3 class="mb-4">Lascia una recensione</h3>
+      
+          <!-- Stelle -->
+          <div class="mb-3">
+            <div class="rating-stars">
+              <mat-icon *ngFor="let star of [1,2,3,4,5]; let i = index"
+                        (click)="setRating(star)"
+                        (mouseover)="hoverRating = star"
+                        (mouseleave)="hoverRating = 0"
+                        class="star-icon">
+                {{ (hoverRating || selectedRating) >= star ? 'star' : 'star_border' }}
+              </mat-icon>
             </div>
+            <input type="hidden" name="rating" [(ngModel)]="selectedRating" required>
+          </div>
+      
+          <!-- Descrizione -->
+          <mat-form-field class="w-100 mb-3">
+            <textarea matInput
+                      rows="4"
+                      placeholder="Scrivi la tua recensione..."
+                      [(ngModel)]="reviewText"
+                      name="reviewText"
+                      required
+                      matTextareaAutosize
+                      matAutosizeMinRows="4"
+                      matAutosizeMaxRows="8"></textarea>
+            <mat-error *ngIf="!reviewText">La descrizione è obbligatoria</mat-error>
+          </mat-form-field>
+      
+          <!-- Pulsante Invia -->
+          <button mat-raised-button 
+                  color="primary"
+                  (click)="submitReview()"
+                  [disabled]="!selectedRating || !reviewText">
+            <mat-icon>send</mat-icon>
+            Invia Recensione
+          </button>
+      
+          <!-- Messaggio Errore -->
+          <mat-error *ngIf="errorMessage" class="mt-2">
+            {{ errorMessage }}
+          </mat-error>
         </div>
-        <ng-template #noReviews>
-            <p>No reviews available for this product.</p>
-        </ng-template>
+      </div>
+      <div class="mt-4 py-5 col-8">
+        <h4 class="pb-4">Recensioni</h4>
+        <div *ngIf="recensioni && recensioni.length > 0" class="reviews-container">
+          <div *ngFor="let recensione of recensioni">
+            <mat-card class="bg-white rounded-0 border border-light-subtle border-2 shadow-none mt-3">
+                <mat-card-title class="text-center p-3">
+                 
+                  <div class="rating-stars">
+                    <mat-icon *ngFor="let star of [1,2,3,4,5]">
+                      {{ recensione.valutazione >= star ? 'star' : 'star_border' }}
+                    </mat-icon>
+                  </div>
+                </mat-card-title>
+                <mat-card-content>
+                  <p class="d-flex flex-column gap-4"><strong class="">{{recensione.utente.nome}}</strong> {{ recensione.descrizione }}</p>
+                </mat-card-content>
+              </mat-card>
     </div>
+    </div>
+    
+    
 </div>

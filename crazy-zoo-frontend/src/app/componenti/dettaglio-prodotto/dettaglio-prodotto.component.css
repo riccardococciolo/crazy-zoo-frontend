@@ -5,3 +5,115 @@
 .bg-color {
     background-color: #fea;
 }
+.review-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Sistema di valutazione a stelle */
+  .rating-stars {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0;
+  }
+  
+  .star-icon {
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #e0e0e0; /* Colore stelle non selezionate */
+  }
+  
+  .star-icon:hover {
+    transform: scale(1.2);
+    color: #ffd740; /* Colore hover */
+  }
+  
+  .star-icon[aria-selected="true"],
+  .star-icon.mat-icon[style*="color: rgb(255, 215, 64)"] {
+    color: #ffd740 !important; /* Colore stelle selezionate */
+  }
+  
+  /* Form field personalizzato */
+  .mat-form-field {
+    width: 100%;
+    margin: 1.5rem 0;
+  }
+  
+  .mat-input-element {
+    min-height: 100px;
+    padding: 12px !important;
+    line-height: 1.6;
+  }
+  
+  .mat-form-field-underline {
+    background-color: #e0e0e0 !important;
+  }
+  
+  .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: #757575;
+  }
+  
+  /* Pulsante di invio */
+  button[mat-raised-button] {
+    margin-top: 1rem;
+    padding: 12px 32px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+  
+  button[mat-raised-button] mat-icon {
+    margin-right: 8px;
+    transform: translateY(-1px);
+  }
+  
+  /* Messaggi di errore */
+  mat-error {
+    font-size: 0.9em;
+    margin-top: 8px;
+    display: block;
+  }
+  
+  .mat-error {
+    color: #d32f2f !important;
+  }
+  
+  /* Animazioni */
+  @keyframes starBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  
+  .star-icon.animate {
+    animation: starBounce 0.4s ease-in-out;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .review-container {
+      margin: 1rem;
+    }
+  
+    .rating-stars {
+      gap: 6px;
+    }
+  
+    .star-icon {
+      font-size: 1.8rem;
+    }
+  
+    button[mat-raised-button] {
+      width: 100%;
+      padding: 14px 24px;
+    }
+  }
+
+  .reviews-container {
+    max-height: 400px; 
+    overflow-y: auto;  
+    padding-right: 10px; 
+  }

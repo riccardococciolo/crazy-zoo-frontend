@@ -10,7 +10,11 @@ export class RecensioniService {
   constructor(private http:HttpClient) { }
   getRecensioniByProdotto(id:number){
     let params = new HttpParams().set("id", id.toString())
-    console.log(CONSTANTS.API_URL + "recensioni/listbyprodotto" + {params})
+    console.log(CONSTANTS.API_URL + "recensioni/listbyprodotto" , {params})
     return this.http.get(CONSTANTS.API_URL + "recensioni/listbyprodotto",{params})
+  }
+
+  createRecensioni(body: {}) {
+    return this.http.post(CONSTANTS.API_URL + 'recensioni/create', body);
   }
 }
