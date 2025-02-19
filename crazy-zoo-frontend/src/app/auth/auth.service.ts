@@ -29,7 +29,9 @@ export class AuthService {
           localStorage.setItem('user_data', JSON.stringify(response.dati));
           localStorage.setItem('user_role', response.dati.role);
           console.log('✅ Login effettuato con successo! Ruolo:', response.dati.role);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home']).then(() => {
+            window.location.reload();
+        });
         } else {
           // ❌ Credenziali errate, mostriamo un errore e non salviamo nulla
           console.error('❌ Errore: Credenziali non valide!');
@@ -48,7 +50,9 @@ export class AuthService {
     this.localStorage.removeToken();
     localStorage.removeItem('user_role');
     console.log('🚪 Logout effettuato!');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload();
+  });
   }
 
   /** 🔹 Controlla se l'utente è autenticato */
