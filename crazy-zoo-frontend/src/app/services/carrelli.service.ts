@@ -19,4 +19,9 @@ export class CarrelliService {
       return this.http.get(CONSTANTS.API_URL+'carrelli/listbyid', {params});
     }
 
+    rimuoviProdotto(id_carrello: number, id_prodotti: number) {
+      const body = { id_carrello, id_prodotti };
+      return this.http.post(CONSTANTS.API_URL+'prodcarr/deletepbyid', body);
+    }
+
 }

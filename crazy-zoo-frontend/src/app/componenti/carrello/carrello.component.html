@@ -1,5 +1,28 @@
-<div *ngFor="let prodotto of listProdotti">
-    {{prodotto.titolo}}
-    {{prodotto.prezzo}}
-    {{prodotto.quantita}}
-</div>
+<div class="cart-container">
+    <h2>Carrello</h2>
+  
+    <div *ngIf="listProdotti.length > 0; else carrelloVuoto">
+        <div class="product-card" *ngFor="let prodotto of listProdotti; let i = index" @fadeOut>
+        <div class="product-image">
+          <img [src]="prodotto.imgURL" [alt]="prodotto.titolo || 'Immagine del prodotto'">
+        </div>
+        <div class="product-info">
+          <h3>{{ prodotto.titolo }}</h3>
+          <p>{{ prodotto.prezzo | currency:'EUR' }}</p>
+          <button class="remove-btn" (click)="rimuoviDalCarrello(prodotto.id)">🗑️ Rimuovi</button>
+        </div>
+      </div>
+  
+      <!-- Totale e Checkout -->
+      <div class="cart-footer">
+        <h3>Totale: {{ totale | currency:'EUR' }}</h3>
+        <button class="checkout-btn" (click)="completaOrdine()" [disabled]="listProdotti.length === 0">✅ Completa Ordine</button>
+      </div>
+    </div>
+  
+    <!-- Messaggio se il carrello è vuoto -->
+    <ng-template #carrelloVuoto>
+      <p class="empty-cart">Il tuo carrello è vuoto 🛒</p>
+    </ng-template>
+  </div>
+  

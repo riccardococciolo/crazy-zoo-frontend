@@ -20,6 +20,8 @@ import { LoginComponent } from './componenti/login/login.component';
 import { RegisterComponent } from './componenti/register/register.component';
 import { AdminGuard } from './auth/admin.guard';
 import { AuthGuard } from './auth/auth.guard';
+import { OrdineComponent } from './componenti/ordine/ordine.component';
+import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,6 +37,8 @@ const routes: Routes = [
 
   // Utente
   { path: 'utente', component: DettaglioUtenteComponent, canActivate: [AuthGuard] },
+
+  { path: 'ordine-succes', component: OrdineSuccesComponent, canActivate: [AuthGuard]},
 
 
     // Admin - Sezione Protetta
