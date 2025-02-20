@@ -10,7 +10,7 @@
             <span matTextPrefix>€&nbsp;</span>
             <span>{{cardData.prodotto.prezzo}}</span>
         </div>
-        <button class="btn bg-color text-dark fw-bold rounded-4" (click)="addCart()">add to cart</button>
+        <button class="btn bg-color text-dark fw-bold rounded-4" (click)="addCart()" [disabled]="isLogged === false">add to cart</button>
       </div>
     
       

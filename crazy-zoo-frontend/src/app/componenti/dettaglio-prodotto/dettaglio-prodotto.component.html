@@ -43,7 +43,7 @@
                         </div>
                     
                     <!-- Aggiungi un bottone per l'acquisto o altre azioni -->
-                    <a href="#" class="btn my-shadow rounded-4 bg-color w-50 text-center fw-bold">Aggiungi al carrello</a>
+                  <button class="btn my-shadow rounded-4 bg-color w-50 text-center fw-bold" (click)="addCart()" [disabled]="isLogged === false">Aggiungi al carrello</button>
                     </div>
                     
                 </div>
