@@ -1,1 +1,41 @@
-<p>home works!</p>
+<!-- Hero Section (Popup) -->
+<div class="hero-overlay" #heroOverlay>
+    <div class="hero-content">
+        <h1>Benvenuto su Crazy-Zoo!</h1>
+        <p>Dove il futuro del tuo pet diventa possibile</p>
+        <button #closeHero (click)="closeHeroPopup()">Scopri di più</button>
+    </div>
+</div>
+
+<!-- Contenuto della Home -->
+<div class="home-content" #homeContent>
+    <!-- Categorie Animali -->
+    <section class="categories">
+        <div class="category-card-one category-card">
+            <img src="" alt="Cane">
+            <h3>Cani</h3>
+            <p>Scopri tutto sui nostri amici a quattro zampe!</p>
+        </div>
+        <div class="category-card-two category-card">
+            <img src="" alt="Gatto">
+            <h3>Gatti</h3>
+            <p>Il mondo affascinante dei felini domestici.</p>
+        </div>
+    </section>
+
+    <!-- Sezione Extra con 4 card -->
+    <section class="extra-cards">
+        <div class="card">Prodotti in offerta</div>
+        <div class="card">Prodotti Speciali</div>
+        <div class="card">Cosa dicono di noi</div>
+        <div class="card">Domande Frequenti</div>
+    </section>
+
+    <!-- Sezione Chi Siamo -->
+    <article class="about">
+        <div class="about-content">
+            <h2>Chi Siamo</h2>
+            <p>Crazy-Zoo è un E-Commerce che offre esperienze incredibili per gli amanti degli animali e i loro pets!</p>
+        </div>
+    </article>
+</div>
