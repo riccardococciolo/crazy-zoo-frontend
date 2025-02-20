@@ -1,0 +1,134 @@
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Hero Section (Popup) */
+.hero-overlay {
+    background-image: url('/assets/img/biancaTigre.jpg') center/cover no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+}
+
+.hero-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.hero-content button {
+    background: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Classe per nascondere il popup */
+.hidden {
+    display: none !important;
+}
+
+/* Home Page Content */
+.home-content {
+    display: none; /* Viene mostrata solo dopo la chiusura del popup */
+    position: relative;
+    overflow: scroll;
+}
+
+/* Mostra la home dopo la chiusura del popup */
+.show {
+    display: block;
+}
+
+/* Categorie (Cani e Gatti) */
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+    background: url('../../assets/img/colibri.jpeg');
+    background-position:  center;
+    background-size: cover;
+}
+
+.category-card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.category-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Sezione Extra (4 Card) */
+.extra-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+    background: white;
+}
+
+.category-card-one{
+    background-image: url("../../assets/img/fameCane.png");
+}
+
+.category-card-two{
+    background-image:url("../../assets/img/gattoHipster.png");
+}
+.card {
+    background: #ff6600;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+/* Sezione "Chi Siamo" con effetto finto 3D */
+.about {
+    background: url('../../assets/img/spighe.jpg');
+    background-position:  center;
+    background-size: cover;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+}
