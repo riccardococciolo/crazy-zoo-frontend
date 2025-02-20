@@ -4,6 +4,7 @@ import { AuthService } from '../../auth/auth.service';
 import { response } from 'express';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { OrdiniService } from '../../services/ordini.service';
 
 
 
@@ -24,7 +25,7 @@ import { Router } from '@angular/router';
 export class CarrelloComponent implements OnInit {
 
 
-  constructor(private carrelloS: CarrelliService, private authS: AuthService, private router: Router) {}
+  constructor(private carrelloS: CarrelliService, private authS: AuthService, private router: Router, private ordiniS: OrdiniService) {}
 
   listProdotti: any[] = [];
   id: any;
@@ -32,6 +33,7 @@ export class CarrelloComponent implements OnInit {
   listImage: string[] = [];
   totale: number = 0;
   carrelloID: any;
+ 
 
   ngOnInit(): void {
     this.id = this.authS.getUserData().id;
@@ -97,14 +99,24 @@ export class CarrelloComponent implements OnInit {
 
   completaOrdine() {
 
-    this.router.navigate(['/ordine-succes']).then(() => {
-      window.location.reload();
-  });
+    let utenteID = this.id;
+
+    //    this.router.navigate(['/ordine-succes']).then(() => {
+    //      window.location.reload();
+
+    this.ordiniS.createOrdine({utenteID}).subscribe((resp: any) => {
+      console.log("ordine creato con successo")
+    })
     
+
+
+
   }
+    
+}
       
 
 
   
 
-}
+
