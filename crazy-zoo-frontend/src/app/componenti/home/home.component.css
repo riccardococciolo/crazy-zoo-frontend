@@ -1,134 +1,155 @@
-/* Reset base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Hero Section (Popup) */
-.hero-overlay {
-    background-image: url('/assets/img/biancaTigre.jpg') center/cover no-repeat;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 10;
-}
-
-.hero-content {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 40px;
-    border-radius: 10px;
-}
-
-.hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-.hero-content button {
-    background: #ff6600;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-/* Classe per nascondere il popup */
-.hidden {
-    display: none !important;
-}
-
-/* Home Page Content */
-.home-content {
-    display: none; /* Viene mostrata solo dopo la chiusura del popup */
-    position: relative;
-    overflow: scroll;
-}
-
-/* Mostra la home dopo la chiusura del popup */
-.show {
-    display: block;
-}
-
-/* Categorie (Cani e Gatti) */
-.categories {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 50px;
-    background: url('../../assets/img/colibri.jpeg');
-    background-position:  center;
+.hero {
+    background-image: url('../../../assets/img/cane\ con\ palla.avif');
+    height: 90vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
-.category-card {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
+h1 {
+    font-weight: 1000;
+    font-size: 100px;
+    font-family: 'Chaloops' !important;
+}
+
+.text-hero {
+    font-family: 'Chaloops' !important;
+    color: rgb(255, 242, 191);
+} 
+
+@font-face {
+    font-family: 'Chaloops';
+    src: url('../../assets/fonts/Chaloops-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  
+  .cat {
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../../assets/img/gatto-home.avif') no-repeat center center/cover;
+    max-width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom ;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .my-text {
+    font-family: 'Chaloops' !important;
+    color: rgb(255, 242, 191);
+    font-size: 70px;
+    font-weight: bold;
+  }
+
+  .my-text-2 {
+    font-family: 'Chaloops' !important;
+    color: rgb(255, 242, 191);
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .text-color {
+    font-family: 'Chaloops' !important;
+    color: rgb(255, 242, 191);
+  }
+
+  .my-p {
+    padding: 150px 0;
+  }
+
+  .dog {
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../../assets/img/cane-home.avif') no-repeat center center/cover;
+    max-width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .bird {
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../../assets/img/uccello-home.avif') no-repeat center center/cover;
+    max-width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .fish {
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../../assets/img/pesce-home.avif') no-repeat center center/cover;
+    max-width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .zoom {
     transition: transform 0.3s ease;
-}
+  }
+  
+  .zoom:hover {
+    transform: scale(1.05); 
+  }
 
-.category-card img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain
-}
+  .my-gap {
+    gap: 100px;
+    padding-top: 200px !important;
+  }
 
-.category-card:hover {
-    transform: translateY(-10px);
-}
+  .customer {
+    background-image: url('../../assets/img/doggo-leopardiano.jpeg');
+    aspect-ratio: 1;
+    background-size: contain;
+  }
 
-/* Sezione Extra (4 Card) */
-.extra-cards {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 50px;
-    background: white;
-}
+  
+  .green {
+    background-color: rgb(133, 124, 72);
+    aspect-ratio: 1;
+  }
 
-.category-card-one{
-    background-image: url("../../assets/img/fameCane.png");
-}
-
-.category-card-two{
-    background-image:url("../../assets/img/gattoHipster.png");
-}
-.card {
-    background: #ff6600;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-}
-
-/* Sezione "Chi Siamo" con effetto finto 3D */
-.about {
-    background: url('../../assets/img/spighe.jpg');
-    background-position:  center;
+  .johny {
+    background-image: url('../../assets/img/doggo-con-osso.jpeg');
+    aspect-ratio: 1;
     background-size: cover;
-    min-height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+  }
 
-.about-content {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 40px;
-    border-radius: 10px;
-}
+  .purple {
+    background-color: rgb(87, 85, 125);
+    aspect-ratio: 1;
+  }
+
+  .paco {
+    background-image: url('../../assets/img/doggo-fotogenico.jpeg');
+    aspect-ratio: 1;
+    background-size: contain;
+  }
+
+  .orange {
+    background-color: rgb(79, 108, 254);
+    aspect-ratio: 1;
+  }
+
+  .mika {
+    background-image: url('../../assets/img/cani-faccia-ebete.jpeg');
+    aspect-ratio: 1;
+    background-size: contain;
+  }
+
+  .red {
+    background-color: rgb(248, 141, 88);
+    aspect-ratio: 1;
+  }

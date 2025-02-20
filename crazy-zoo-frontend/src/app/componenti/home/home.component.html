@@ -1,41 +1,51 @@
-<!-- Hero Section (Popup) -->
-<div class="hero-overlay" #heroOverlay>
-    <div class="hero-content">
-        <h1>Benvenuto su Crazy-Zoo!</h1>
-        <p>Dove il futuro del tuo pet diventa possibile</p>
-        <button #closeHero (click)="closeHeroPopup()">Scopri di più</button>
+<div class="container">
+    <div class="hero">
+        <div class="text-hero d-flex flex-column gap-4 align-items-center justify-content-center h-100">
+            <div class="fs-1">benvenuto su</div>
+            <h1>CRAZY ZOO!</h1>
+            <p class="fs-2 pt-4">Dove il futuro del tuo pet diventa possibile</p>
+        </div>
     </div>
-</div>
-
-<!-- Contenuto della Home -->
-<div class="home-content" #homeContent>
-    <!-- Categorie Animali -->
-    <section class="categories">
-        <div class="category-card-one category-card">
-            <img src="" alt="Cane">
-            <h3>Cani</h3>
-            <p>Scopri tutto sui nostri amici a quattro zampe!</p>
+    <div class="my-p row my-gap justify-content-around">
+        <div class="col-6 dog d-flex align-items-center zoom">
+            <span class="ps-5 pt-5 my-text">CANE</span>
         </div>
-        <div class="category-card-two category-card">
-            <img src="" alt="Gatto">
-            <h3>Gatti</h3>
-            <p>Il mondo affascinante dei felini domestici.</p>
+        <div class="col-4 cat d-flex align-items-center zoom">
+            <span class="ps-5 pt-5 my-text">GATTO</span>
         </div>
-    </section>
-
-    <!-- Sezione Extra con 4 card -->
-    <section class="extra-cards">
-        <div class="card">Prodotti in offerta</div>
-        <div class="card">Prodotti Speciali</div>
-        <div class="card">Cosa dicono di noi</div>
-        <div class="card">Domande Frequenti</div>
-    </section>
-
-    <!-- Sezione Chi Siamo -->
-    <article class="about">
-        <div class="about-content">
-            <h2>Chi Siamo</h2>
-            <p>Crazy-Zoo è un E-Commerce che offre esperienze incredibili per gli amanti degli animali e i loro pets!</p>
+        <div class="col-4 bird d-flex align-items-center zoom">
+            <span class="ps-5 pt-5 my-text">UCCELLO</span>
         </div>
-    </article>
+        <div class="col-6 fish d-flex align-items-center zoom">
+            <span class="ps-5 pt-5 my-text">PESCE</span>
+        </div>
+    </div>
+    <div class="my-p row row-cols-4">
+        <div class="col customer"></div>
+        <div class="col my-text-2 green p-5 d-flex flex-wrap justify-content-start align-items-center">
+            <span class="w-100">I NOSTRI</span> <span class="w-100">CLIENTI</span><span>FELICI</span>  
+        </div>
+        <div class="col johny"></div>
+        <div class="col purple p-5">
+            <span class="w-100 my-text-2">JOHNY</span>
+            <p class="text-color">"Bau! Ho provato i prodotti e, onestamente, sono da leccarsi i baffi! Snack e giochi di qualità: ogni giorno una festa!"</p>
+            
+            <div class="text-color"><span class="d-block fw-bold">2 anni</span><span class="fw-bold">Golden Retriever</span></div>
+        </div>
+        <div class="col orange p-5">
+            <span class="w-100 my-text-2">PACO</span>
+            <p class="text-color">"Sono un vero intenditore di ossa e crocchette. I prodotti qui sono eccezionali, e il servizio? Un vero piacere per un cucciolo esigente!"</p>
+            
+            <div class="text-color"><span class="d-block fw-bold">6 anni</span><span class="fw-bold">Boykin Spaniel</span></div>
+        </div>
+        <div class="col paco"></div>
+        <div class="col red p-5">
+            <span class="w-100 my-text-2">JOHNY</span>
+            <p class="text-color">"Bau, Rex, hai provato quei nuovi snack? Sono così buoni che mi fanno scodinzolare tutto il giorno!"</p>
+            
+            <div class="text-color"><span class="d-block fw-bold">4 anni Cockapoo</span><span class="fw-bold">6 anni Labrador</span></div>
+        </div>
+        <div class="col mika"></div>
+    </div>
+
 </div>
