@@ -34,9 +34,8 @@ export class DettaglioProdottoComponent implements OnInit{
   loadProductandRec(){
     this.id= Number(this.route.snapshot.paramMap.get("id"))
     
-    this.prodS.getProdotto({id : this.id}).subscribe((resp:any)=>{
-      if(resp.rc){
-      this.infoProd =resp.dati
+    this.prodS.getProdotto({id : this.id}, 0, 1).subscribe((resp:any)=>{
+      this.infoProd =resp.content
       console.log(this.infoProd)
       this.infoProd[0].immagini.forEach((immagine: { data: any }) => {
         const base64Data = immagine.data;
@@ -48,9 +47,6 @@ export class DettaglioProdottoComponent implements OnInit{
         const imageUrl = URL.createObjectURL(blob);
         this.images.push(imageUrl);
       });
-    }else{
-      alert("Errore")
-    }
     })
     this.recS.getRecensioniByProdotto(this.id).subscribe((resp:any)=>{
       if(resp.rc){

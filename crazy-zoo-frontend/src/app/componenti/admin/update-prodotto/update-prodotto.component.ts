@@ -50,9 +50,9 @@ export class UpdateProdottoComponent {
         console.log(this.id);
         
     
-        this.servP.getProdotto({id: this.id}).subscribe((resp) => {
+        this.servP.getProdotto({id: this.id}, 0, 1).subscribe((resp) => {
           this.response = resp;
-          this.data = this.response.dati;
+          this.data = this.response.content;
           console.log(this.data[0]);
           this.caricaDati();
           this.updateProdotto = new FormGroup({

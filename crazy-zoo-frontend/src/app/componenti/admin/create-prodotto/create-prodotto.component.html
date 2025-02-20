@@ -85,8 +85,11 @@
                     </div>
                 </div>
                 <div class="">
-                    <div class="row-cols-3 g-3">
-                        <img *ngFor="let image of imagePreviews" [src]="image" class="col" alt="Image Preview">
+                    <div class="row row-cols-3 g-3">
+                        <div class="col d-flex flex-wrap justify-content-center" *ngFor="let image of imagePreviews; let i = index">
+                            <img class="w-100"  [src]="image" alt="Image Preview">
+                            <button class="btn btn-warning btn-sm w-50" type="button" (click)="removeImage(i)">Elimina</button>
+                        </div>
                     </div>
 
                 </div>

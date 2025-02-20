@@ -18,7 +18,7 @@ export class ProdottiService {
   }
 
   getProdotto(
-    filters: any
+    filters: any, pageIndex: number, pageSize: number
   ) {
     let params = new HttpParams();
 
@@ -50,6 +50,9 @@ export class ProdottiService {
       params = params.set('descrizione', filters.descrizione);
     }
     console.log(params);
+
+    params = params.set('page', pageIndex.toString());
+    params = params.set('size', pageSize.toString());
     
     return this.http.get(CONSTANTS.API_URL + 'prodotto/listbyfilter', {
       params,

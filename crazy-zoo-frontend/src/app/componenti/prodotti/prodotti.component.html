@@ -1,15 +1,18 @@
 <div class="container-fluid ps-0">
-    <div class="row">
+    <div class="row d-flex align-content-stretch">
         <div class="col-3 border-light-subtle border-top border-2">
             <app-filter-bar></app-filter-bar>
         </div>
-        <div class="col-9 border-light-subtle border-top border-2">
+        <div class="col-9 align-self-stretch border-light-subtle border-top border-2 d-flex h-100 flex-column align-items-between">
             <div class="container row row-cols-3">
-                <div class="col pt-4" *ngFor="let prodotto of prodotti.dati">
-                <app-prodotti-card  [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
+                <div class="col pt-4" *ngFor="let prodotto of prodotti.content">
+                    <app-prodotti-card [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
+                </div>
             </div>
-            </div>
-            
+            <mat-paginator class="d-flex justify-content-center" [length]="totalElements" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                [pageSizeOptions]="[12]" (page)="onPageChange($event)">
+            </mat-paginator>
+
         </div>
     </div>
 </div>

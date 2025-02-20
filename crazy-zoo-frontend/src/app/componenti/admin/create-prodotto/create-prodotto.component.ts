@@ -5,7 +5,6 @@ import { TipologieService } from '../../../services/tipologie.service';
 import { AnimaliService } from '../../../services/animali.service';
 import { ProdottiService } from '../../../services/prodotti.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { log } from 'console';
 
 @Component({
   selector: 'app-create-prodotto',
@@ -68,6 +67,13 @@ export class CreateProdottoComponent {
         };
         reader.readAsDataURL(file);
       }
+    }
+  }
+
+  removeImage(index: number): void {
+    if (index > -1) {
+      this.selectedFiles.splice(index, 1);
+      this.imagePreviews.splice(index, 1);
     }
   }
 

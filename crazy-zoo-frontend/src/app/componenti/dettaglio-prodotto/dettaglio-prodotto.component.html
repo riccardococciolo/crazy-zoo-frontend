@@ -10,7 +10,7 @@
                 </div>
                 <div class="carousel-inner rounded-4">
                   <div *ngFor="let image of images" class="carousel-item active w-100">
-                    <img [src]="image" class="d-block w-100 my-shadow rounded-4" alt="...">
+                    <img [src]="image" class="d-block w-100 rounded-4" alt="...">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -52,8 +52,8 @@
         <div class="col-md-4">
             <div class="card w-100 border-0">
                 <div class="card-body d-flex flex-column align-items-center">
-                    <h4>Descrizione</h4>
-                    <p>{{infoProd[0]?.descrizione}}</p>
+                    <h4 >Descrizione</h4>
+                    <p class="lh-lg text-center pt-4">{{infoProd[0]?.descrizione}}</p>
                 </div>
                 
             </div>

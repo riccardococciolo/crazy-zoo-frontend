@@ -87,7 +87,7 @@
                 <div class="">
                     <div class="row row-cols-3 g-3">
                         <div class="col d-flex flex-wrap justify-content-center" *ngFor="let image of imagePreviews; let i = index">
-                            <img  [src]="image" alt="Image Preview">
+                            <img class="w-100"  [src]="image" alt="Image Preview">
                             <button class="btn btn-warning btn-sm w-50" type="button" (click)="removeImage(i)">Elimina</button>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                 <p>{{msg}}</p>
                 <div class="text-center py-5">
                     <button mat-raised-button color="primary" type="submit"
-                        [disabled]="!updateProdotto.valid">Crea</button>
+                        [disabled]="!updateProdotto.valid">Aggiorna</button>
                 </div>
 
             </form>

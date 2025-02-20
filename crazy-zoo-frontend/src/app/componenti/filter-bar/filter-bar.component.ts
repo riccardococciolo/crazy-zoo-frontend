@@ -20,7 +20,7 @@ export class FilterBarComponent {
   tipologie: any;
 
   minPrice= 0;
-  maxPrice = 500;
+  maxPrice = 100;
   
   
 
