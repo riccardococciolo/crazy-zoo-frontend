@@ -51,6 +51,7 @@ import { FilterBarComponent } from './componenti/filter-bar/filter-bar.component
 import { ProdottiCardComponent } from './componenti/prodotti-card/prodotti-card.component';
 import { LoginComponent } from './componenti/login/login.component';
 import { RegisterComponent } from './componenti/register/register.component';
+import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { RegisterComponent } from './componenti/register/register.component';
     ProdottiCardComponent,
     LoginComponent,
     RegisterComponent,
+    OrdineSuccesComponent,
   ],
   imports: [
     BrowserModule,
