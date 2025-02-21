@@ -5,6 +5,8 @@ import { response } from 'express';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 import { OrdiniService } from '../../services/ordini.service';
+import { Subscription } from 'rxjs';
+import { ProdottoCarrelloService } from '../../services/prodotto-carrello.service';
 
 
 
@@ -25,7 +27,7 @@ import { OrdiniService } from '../../services/ordini.service';
 export class CarrelloComponent implements OnInit {
 
 
-  constructor(private carrelloS: CarrelliService, private authS: AuthService, private router: Router, private ordiniS: OrdiniService) {}
+  constructor(private carrelloS: CarrelliService, private authS: AuthService, private router: Router, private ordiniS: OrdiniService, private prodCarS: ProdottoCarrelloService) {}
 
   listProdotti: any[] = [];
   id: any;
@@ -33,18 +35,26 @@ export class CarrelloComponent implements OnInit {
   listImage: string[] = [];
   totale: number = 0;
   carrelloID: any;
- 
+  private carrelloSub: Subscription | null = null; 
+
 
   ngOnInit(): void {
     this.id = this.authS.getUserData().id;
     this.carrelloID = this.authS.getUserData().carrelloID;
-    console.log(this.carrelloID)
+    this.caricaCarrello();
 
+    // 🔥 Ascolta gli aggiornamenti del carrello
+    this.carrelloSub = this.prodCarS.carrelloAggiornato$.subscribe(() => {
+      this.caricaCarrello();
+    })
+  }
+
+  caricaCarrello() {
     this.carrelloS.getCarrello(this.id).subscribe((resp: any) => {
       if (resp.rc) {
         this.listProdotti = resp.dati.map((prodotto: any) => {
           if (prodotto.immagini && prodotto.immagini.length > 0) {
-            const img = prodotto.immagini[0]; 
+            const img = prodotto.immagini[0];
             const base64Data = img.data;
             const contentType = img.tipoFile;
             const blob = this.base64ToBlob(base64Data, contentType);
@@ -59,15 +69,29 @@ export class CarrelloComponent implements OnInit {
     });
   }
 
-    base64ToBlob(base64: string, contentType: string): Blob {
-      const byteCharacters = atob(base64);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      return new Blob([byteArray], { type: contentType });
+  base64ToBlob(base64: string, contentType: string): Blob {
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: contentType });
+  }
+
+  calcolaTotale() {
+    this.totale = this.listProdotti.reduce((acc: number, prodotto: { prezzo?: number }) => acc + (prodotto.prezzo || 0), 0);
+  }
+
+  ngOnDestroy(): void {
+    if (this.carrelloSub) { // ✅ Controlla che carrelloSub non sia null
+      this.carrelloSub.unsubscribe();
+    }
+  }
+ 
+
+
+
 
 
     rimuoviDalCarrello(prodottoId: number) {
@@ -92,28 +116,46 @@ export class CarrelloComponent implements OnInit {
     
 
 
-  // 🔥 Metodo per calcolare il totale del carrello
-  calcolaTotale() {
-    this.totale = this.listProdotti.reduce((acc: number, prodotto: { prezzo?: number }) => acc + (prodotto.prezzo || 0), 0);
-  }
 
-  completaOrdine() {
-
-    let utenteID = this.id;
-
-    //    this.router.navigate(['/ordine-succes']).then(() => {
-    //      window.location.reload();
-
-    this.ordiniS.createOrdine({utenteID}).subscribe((resp: any) => {
-      console.log("ordine creato con successo")
-    })
+    completaOrdine() {
+      let utenteID = this.id;
+  
+      this.ordiniS.createOrdine({ utenteID }).subscribe((resp: any) => {
+        if (resp.rc) {
+          console.log("Ordine creato con successo!");
+  
+          // 🔥 Svuota il carrello dopo la creazione dell'ordine
+          this.svuotaCarrello();
+        }
+      }, error => {
+        console.error("Errore durante la creazione dell'ordine:", error);
+      });
+    }
+  
+    svuotaCarrello() {
+      
+      this.carrelloS.svuotaCarrello({carrelloID : this.carrelloID}).subscribe((resp: any) => {
+        if (resp.rc) {
+          console.log("Carrello svuotato con successo");
+  
+          // 🔥 Aggiorna l'interfaccia utente
+          this.listProdotti = [];
+          this.totale = 0;
+  
+          // 🔥 Notifica che il carrello è stato aggiornato
+          this.prodCarS.aggiornaCarrello();
+        }
+      }, error => {
+        console.error("Errore nello svuotamento del carrello:", error);
+      });
+    }
     
 
 
 
   }
     
-}
+
       
 
 

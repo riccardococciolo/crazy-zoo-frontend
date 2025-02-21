@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProdottiService } from '../../services/prodotti.service';
 import { RecensioniService } from '../../services/recensioni.service';
 import { AuthService } from '../../auth/auth.service';
+import { ProdottoCarrelloService } from '../../services/prodotto-carrello.service';
 
 @Component({
   selector: 'app-dettaglio-prodotto',
@@ -13,7 +14,7 @@ import { AuthService } from '../../auth/auth.service';
 export class DettaglioProdottoComponent implements OnInit{
   
   constructor(private prodS: ProdottiService, private router:Router,private route:ActivatedRoute
-    ,private recS:RecensioniService, private ut:AuthService)
+    ,private recS:RecensioniService, private ut:AuthService, private prodCar : ProdottoCarrelloService)
   {
 
   }
@@ -25,7 +26,15 @@ export class DettaglioProdottoComponent implements OnInit{
   hoverRating: number = 0;
   reviewText: string = '';
   errorMessage: string = '';
+  id_carrello: any;
+  isLogged: boolean = false;
+
+
   ngOnInit(): void {
+    if (this.ut.isAuthenticated()) {
+      this.id_carrello = this.ut.getUserData().carrelloID;
+      this.isLogged = true;
+    }
     this.loadProductandRec()
 
 
@@ -104,6 +113,17 @@ export class DettaglioProdottoComponent implements OnInit{
     this.selectedRating = 0;
     this.reviewText = '';
     this.errorMessage = '';
+  }
+
+  addCart() {
+    let id_prodotti = this.id
+    console.log(id_prodotti)
+
+    this.prodCar.addProdottoToCarrello({ id_prodotti, id_carrello: this.id_carrello }).subscribe((resp: any) => {
+      if (resp.rc) {
+        console.log("Prodotto con id: " + this.id+ " aggiunto con successo");
+      }
+    });
   }
 
 

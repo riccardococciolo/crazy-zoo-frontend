@@ -24,4 +24,9 @@ export class CarrelliService {
       return this.http.post(CONSTANTS.API_URL+'prodcarr/deletepbyid', body);
     }
 
+     
+  svuotaCarrello(body: {}) {
+    return this.http.post(CONSTANTS.API_URL + 'prodcarr/deletepincarrello', body);
+  }
+
 }
