@@ -4,7 +4,7 @@
     <form class="d-flex align-items-center flex-wrap flex-column justify-content-center" [formGroup]="filtersForm">
       <mat-form-field appearance="outline" class="search-bar" >
         <mat-icon matPrefix>search</mat-icon>
-        <input matInput placeholder="Cerca..." (keyup)="''">
+        <input matInput formControlName="titolo" placeholder="Cerca..." (keyup)="''">
       </mat-form-field>
       <div
         class="d-flex flex-column justify-content-center align-items-center rounded-0 border-top border-bottom p-2 border-light-subtle border-2 shadow-none w-100">
