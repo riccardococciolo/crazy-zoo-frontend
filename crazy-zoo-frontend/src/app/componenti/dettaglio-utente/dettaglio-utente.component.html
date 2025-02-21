@@ -1,9 +1,41 @@
-<h2>👤 Profilo Utente</h2>
-<p><strong>Nome:</strong> {{ user.nome }}</p>
-<p><strong>Cognome:</strong> {{ user.cognome }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Ruolo:</strong> {{ user.role }}</p>
-<p><strong>Cellualre:</strong> {{ user.cellulare }}</p>
-<p><strong>Id:</strong> {{ user.id }}</p>
-<p><strong>Username:</strong> {{ user.username }}</p>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Profilo Utente - Admin Panel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Il codice della navbar esiste già -->
 
+  <div class="container-fluid">
+    <!-- Sidebar (visibile solo se Admin) -->
+    <nav class="sidebar" *ngIf="isAdmin">
+      <h3 class="sidebar-title">⚙️ Admin Panel</h3>
+      <ul class="nav flex-column">
+        <li class="nav-item" *ngFor="let section of sections">
+          <a class="nav-link" href="#">
+            <i class="{{ section.icon }}"></i> {{ section.name }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Contenuto principale: Profilo Utente centrato -->
+    <main class="content">
+      <div class="profile-container">
+        <h1 class="profile-title">👤 Profilo Utente</h1>
+        <div class="profile-details">
+          <p><strong>Nome:</strong> {{ user.nome }}</p>
+          <p><strong>Cognome:</strong> {{ user.cognome }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Ruolo:</strong> {{ user.role }}</p>
+          <p><strong>Cellulare:</strong> {{ user.cellulare }}</p>
+          <p><strong>ID:</strong> {{ user.id }}</p>
+          <p><strong>Username:</strong> {{ user.username }}</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

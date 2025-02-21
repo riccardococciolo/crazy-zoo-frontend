@@ -10,11 +10,19 @@ import { AuthService } from '../../auth/auth.service';
 export class DettaglioUtenteComponent {
 
   user: any = null;
+  isAdmin: boolean = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.user = this.authService.getUserData();
+    this.isAdmin = this.authService.isAdmin();
   }
 
+  sections = [
+    { name: 'Prodotti', icon: "🛍️" },
+    { name: 'Marche', icon: '🏷️' },
+    { name: 'Animali', icon: '🐾' },
+    { name: 'Tipologie', icon: '🗂️' }
+  ];
 }

@@ -1,0 +1,128 @@
+/* Assumendo che la navbar esistente abbia un'altezza di 60px */
+
+/* Container principale: parte sotto la navbar */
+.container-fluid {
+    margin-top: 60px; /* lascia spazio per la navbar */
+    height: calc(100vh - 60px);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Sidebar - Design moderno */
+  .sidebar {
+    position: fixed;
+    top: 60px; /* parte subito sotto la navbar */
+    left: 0;
+    width: 260px;
+    background: linear-gradient(135deg, #ffecf5, #f8c8dc);
+    color: #5a3e36;
+    padding: 25px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    border-right: 2px solid rgba(248, 200, 220, 0.5);
+    box-sizing: border-box;
+  }
+  
+  .sidebar-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .nav-link {
+    display: block;
+    color: #5a3e36;
+    font-size: 18px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-link i {
+    font-size: 22px;
+    margin-right: 8px;
+  }
+  
+  .nav-link:hover {
+    background-color: rgba(248, 200, 220, 0.5);
+    text-decoration: none;
+  }
+  
+  /* Area di Contenuto */
+  .content {
+    margin-left: 260px; /* lascia spazio per la sidebar */
+    position: relative;
+    background: #fdf6e3;
+    height: calc(100vh - 60px);
+    overflow: auto;
+  }
+  
+  /* Profilo Utente centrato */
+  .profile-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-container:hover {
+    transform: translate(-50%, -50%) translateY(-5px);
+  }
+  
+  .profile-title {
+    font-size: 26px;
+    color: #ff69b4;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .profile-details p {
+    font-size: 18px;
+    margin: 12px 0;
+    color: #555;
+    transition: color 0.3s ease;
+  }
+  
+  .profile-details p:hover {
+    color: #ff69b4;
+  }
+  
+  .profile-details strong {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 220px;
+      padding: 15px;
+    }
+    
+    .content {
+      margin-left: 220px;
+    }
+    
+    .profile-container {
+      max-width: 500px;
+      padding: 25px;
+    }
+    
+    .profile-title {
+      font-size: 22px;
+    }
+  }
+  
