@@ -89,23 +89,40 @@
       </form>
     </mat-step>
   
-    <!-- 🔹 STEP 4: Password -->
-    <mat-step>
-      <form [formGroup]="registerForm">
-        <ng-template matStepLabel>Password</ng-template>
-  
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" required>
-          <mat-error *ngIf="isFieldInvalid('password')">Minimo 8 caratteri, almeno una lettera e un numero</mat-error>
-        </mat-form-field>
-  
-        <div>
-          <button mat-button matStepperPrevious>Indietro</button>
-          <button mat-button (click)="register()" [disabled]="!registerForm.valid">Registrati</button>
-        </div>
-      </form>
-    </mat-step>
+<!-- 🔹 STEP 4: Password -->
+<mat-step>
+  <form [formGroup]="registerForm">
+    <ng-template matStepLabel>Password</ng-template>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required>
+      <mat-error *ngIf="isFieldInvalid('password')">
+        Minimo 8 caratteri, almeno una lettera e un numero
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Conferma Password</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" required>
+      <mat-error *ngIf="isFieldInvalid('confirmPassword')">
+        Il campo non può essere vuoto
+      </mat-error>
+    </mat-form-field>
+
+    <div class="text-danger" *ngIf="isPasswordMismatch()">
+      ❌ Le password non coincidono
+    </div>
+
+    <div>
+      <button mat-button matStepperPrevious>Indietro</button>
+      <button mat-button (click)="register()" [disabled]="registerForm.invalid || isPasswordMismatch()">
+        Registrati
+      </button>
+    </div>
+  </form>
+</mat-step>
+
   
   </mat-stepper>
   

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -26,8 +26,9 @@ export class RegisterComponent {
       civico: ['', [Validators.required, Validators.pattern(/^\d{1,5}$/)]],
       cap: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
       citta: ['', [Validators.required, Validators.pattern(/^[A-Za-zÀ-ÿ\s]{2,50}$/)]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/)]]
-    });
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/)]],
+      confirmPassword: ['', Validators.required]
+    }, { validators: this.passwordsMatchValidator }); // 👈 Aggiunto validatore personalizzato
   }
 
   /** 🔹 Metodo per registrare un nuovo utente */
@@ -50,5 +51,19 @@ isFieldInvalid(field: string): boolean {
 isStepValid(fields: string[]): boolean {
   return fields.every(field => this.registerForm.get(field)?.valid);
 }
+
+  /** 🔹 Validatore per verificare che password e conferma siano uguali */
+  passwordsMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { passwordsMismatch: true };
+  }
+
+/** 🔹 Metodo per controllare se le password non coincidono (mostra errore solo se il secondo campo è toccato) */
+isPasswordMismatch(): boolean {
+  const confirmPasswordControl = this.registerForm.get('confirmPassword');
+  return !!(this.registerForm.hasError('passwordsMismatch') && confirmPasswordControl?.touched);
+}
+
 
 }
