@@ -117,3 +117,32 @@
     overflow-y: auto;  
     padding-right: 10px; 
   }
+
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity-selector .quantity {
+    width: 40px;
+    height: 40px;
+    border: 2px solid black;
+    background-color: white;
+    pointer-events: none;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-left {
+    border: 2px solid black;
+    border-radius: 50% 0 0 50% !important;
+    background-color: #fea;
+  }
+
+  .button-right {
+    border: 2px solid black;
+    border-radius: 0 50% 50% 0 !important;
+    background-color: #fea;
+  }

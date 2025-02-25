@@ -7,16 +7,16 @@
         </div>
     </div>
     <div class="my-p row my-gap justify-content-around border-bottom border-3 border-light-subtle">
-        <div class="col-7 dog d-flex align-items-center zoom my-shadow">
+        <div [routerLink]="['/prodotti']" [queryParams]="{nomeAnimale: 'cane'}" class="col-7 dog d-flex align-items-center zoom my-shadow">
             <span class="ps-5 pt-5 my-text">CANE</span>
         </div>
-        <div class="col-4 cat d-flex align-items-center zoom my-shadow">
+        <div [routerLink]="['/prodotti']" [queryParams]="{nomeAnimale: 'gatto'}" class="col-4 cat d-flex align-items-center zoom my-shadow">
             <span class="ps-5 pt-5 my-text">GATTO</span>
         </div>
-        <div class="col-4 bird d-flex align-items-center zoom my-shadow">
+        <div [routerLink]="['/prodotti']" [queryParams]="{nomeAnimale: 'uccello'}" class="col-4 bird d-flex align-items-center zoom my-shadow">
             <span class="ps-5 pt-5 my-text">UCCELLO</span>
         </div>
-        <div class="col-7 fish d-flex align-items-center zoom my-shadow">
+        <div [routerLink]="['/prodotti']" [queryParams]="{nomeAnimale: 'pesce'}" class="col-7 fish d-flex align-items-center zoom my-shadow">
             <span class="ps-5 pt-5 my-text">PESCE</span>
         </div>
     </div>

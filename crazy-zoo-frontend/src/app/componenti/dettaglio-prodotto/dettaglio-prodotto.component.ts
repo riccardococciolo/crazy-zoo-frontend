@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdottiService } from '../../services/prodotti.service';
 import { RecensioniService } from '../../services/recensioni.service';
 import { AuthService } from '../../auth/auth.service';
 import { ProdottoCarrelloService } from '../../services/prodotto-carrello.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-dettaglio-prodotto',
@@ -12,6 +13,23 @@ import { ProdottoCarrelloService } from '../../services/prodotto-carrello.servic
   styleUrl: './dettaglio-prodotto.component.css'
 })
 export class DettaglioProdottoComponent implements OnInit{
+
+  quantity: number = 1;  // Quantità corrente (default 1)
+  @Output() quantityChange: EventEmitter<number> = new EventEmitter<number>();
+
+  increment(): void {
+    if (this.quantity < this.infoProd[0].quantita) { // Assicurati che la quantità non superi la quantità disponibile
+    this.quantity++;
+    this.quantityChange.emit(this.quantity);
+    }
+  }
+
+  decrement(): void {
+    if (this.quantity > 1) { // Assicurati che la quantità non vada sotto 1
+      this.quantity--;
+      this.quantityChange.emit(this.quantity);
+    }
+  }
   
   constructor(private prodS: ProdottiService, private router:Router,private route:ActivatedRoute
     ,private recS:RecensioniService, private ut:AuthService, private prodCar : ProdottoCarrelloService)
@@ -43,8 +61,9 @@ export class DettaglioProdottoComponent implements OnInit{
   loadProductandRec(){
     this.id= Number(this.route.snapshot.paramMap.get("id"))
     
-    this.prodS.getProdotto({id : this.id}, 0, 1).subscribe((resp:any)=>{
-      this.infoProd =resp.content
+    this.prodS.getProdottoAll({id : this.id}).subscribe((resp:any)=>{
+      console.log(resp)
+      this.infoProd = resp;
       console.log(this.infoProd)
       this.infoProd[0].immagini.forEach((immagine: { data: any }) => {
         const base64Data = immagine.data;
@@ -115,16 +134,27 @@ export class DettaglioProdottoComponent implements OnInit{
     this.errorMessage = '';
   }
 
-  addCart() {
+  async addCart() {
     let id_prodotti = this.id
     console.log(id_prodotti)
 
-    this.prodCar.addProdottoToCarrello({ id_prodotti, id_carrello: this.id_carrello }).subscribe((resp: any) => {
-      if (resp.rc) {
-        console.log("Prodotto con id: " + this.id+ " aggiunto con successo");
+    
+      for (let i = 0; i < this.quantity; i++) {
+        try {
+          const resp: any = await lastValueFrom(
+            this.prodCar.addProdottoToCarrello({ id_prodotti, id_carrello: this.id_carrello })
+          );
+          if (resp.rc) {
+            console.log(`Prodotto con id: ${id_prodotti} aggiunto con successo, iterazione: ${i + 1}`);
+          } else {
+            console.error(`Errore alla chiamata ${i + 1}: ${resp.msg}`);
+          }
+        } catch (error) {
+          console.error(`Errore alla chiamata ${i + 1}:`, error);
+        }
       }
-    });
-  }
+    
+}
 
 
     
