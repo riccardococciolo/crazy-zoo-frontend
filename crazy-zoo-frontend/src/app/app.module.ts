@@ -42,6 +42,7 @@ import {
   MatDialogContent,
   MatDialogModule,
 } from '@angular/material/dialog';
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -111,6 +112,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     ReactiveFormsModule,
     MatSliderModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
     MatStepperModule,
   ],
   providers: [

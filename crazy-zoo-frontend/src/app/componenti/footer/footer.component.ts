@@ -14,6 +14,9 @@ export class FooterComponent implements OnInit {
   animali: any;
   marche: any;
   tipologie: any;
+  get midPoint(): number {
+    return Math.ceil(this.marche.length / 2);
+  }
   constructor(
     private animaleService: AnimaliService,
     private marcaService: MarcheService,

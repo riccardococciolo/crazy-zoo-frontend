@@ -20,9 +20,9 @@ export class ProdottoComponent {
 
   ngOnInit(): void {
     console.log('ngOnInit');
-    this.serv.getProdotto({}, 0, 100).subscribe((resp) => {
+    this.serv.getProdottoAll({}).subscribe((resp) => {
       this.response = resp;
-      this.data = this.response.content;
+      this.data = this.response;
     });
   }
 
