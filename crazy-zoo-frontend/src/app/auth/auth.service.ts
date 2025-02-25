@@ -71,8 +71,18 @@ export class AuthService {
   }
 
     /** 🔹 REGISTRAZIONE - Effettua la registrazione e reindirizza al login */
-    register(nome: string, cognome: string, username: string, email: string, cellulare: string, password: string): void {
-      const requestBody = { nome, cognome, username, email, cellulare, password };
+    register(nome: string, 
+             cognome: string, 
+             username: string, 
+             email: string, 
+             cellulare: string,
+             via: string,
+             civico: string,
+             cap: string,
+             citta: string, 
+             password: string): void {
+
+      const requestBody = { nome, cognome, username, email, cellulare, via, civico, cap, citta, password };
       
       this.http.post<any>(CONSTANTS.API_URL + 'auth/register', requestBody).subscribe({
         next: (response) => {

@@ -1,57 +1,92 @@
 <div class="container">
-  <h1 class="text-center">Registrazione</h1>
-  <div class="row justify-content-center mt-5">
+    <h1 class="text-center">Registrazione</h1>
+    <div class="row justify-content-center mt-5">
       <div class="col-md-6">
-          <form class="d-flex flex-wrap gap-5 justify-content-center align-items-center"(ngSubmit)="register()">
-              <div class="form-container pb-2 d-flex justify-content-center">
-                  <mat-form-field class="form-column flex-fill w-50">
-                      <mat-label>Nome</mat-label>
-                      <input matInput type="text" [(ngModel)]="nome" name="nome" required>
-                  </mat-form-field>
-              </div>
-              <div class="form-container pb-2 d-flex justify-content-center">
-                  <mat-form-field class="form-column flex-fill w-50">
-                      <mat-label>Cognome</mat-label>
-                      <input matInput type="text" [(ngModel)]="cognome" name="cognome" required>
-                  </mat-form-field>
-              </div>
-              <div class="form-container pb-2 d-flex justify-content-center">
-                  <mat-form-field class="form-column flex-fill w-50">
-                      <mat-label>Username</mat-label>
-                      <input matInput type="text" [(ngModel)]="username" name="username" required>
-                  </mat-form-field>
-              </div>
-              <div class="form-container pb-2 d-flex justify-content-center">
-                  <mat-form-field class="form-column flex-fill w-50">
-                      <mat-label>Email</mat-label>
-                      <input matInput type="email" [(ngModel)]="email" name="email" required>
-                  </mat-form-field>
-              </div>
-              <div class="form-container pb-2 d-flex justify-content-center">
-                  <mat-form-field class="form-column flex-fill w-50">
-                      <mat-label>Cellulare</mat-label>
-                      <input matInput type="text" [(ngModel)]="cellulare" name="cellulare" required>
-                  </mat-form-field>
-              </div>
-              <div class="form-container pb-2 d-flex justify-content-center">
-                  <mat-form-field class="form-column flex-fill w-50">
-                      <mat-label>Password</mat-label>
-                      <input matInput type="password" [(ngModel)]="password" name="password" required>
-                  </mat-form-field>
-              </div>
-              
-              <div *ngIf="errorMessage" class="error-message text-danger text-center">
-                  {{ errorMessage }}
-              </div>
-              
-              <div class="text-center py-1 w-100">
-                  <button mat-raised-button color="primary" type="submit">Registrati</button>
-              </div>
-          </form>
+        <form class="d-flex flex-wrap gap-5 justify-content-center align-items-center" (ngSubmit)="register()">
           
-          <p class="text-center">Hai già un account? 
-              <a routerLink="/login" class="text-primary">Accedi</a>
-          </p>
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Nome</mat-label>
+              <input matInput type="text" [(ngModel)]="nome" name="nome" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.nome">{{ errors.nome }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Cognome</mat-label>
+              <input matInput type="text" [(ngModel)]="cognome" name="cognome" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.cognome">{{ errors.cognome }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Username</mat-label>
+              <input matInput type="text" [(ngModel)]="username" name="username" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.username">{{ errors.username }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" [(ngModel)]="email" name="email" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.email">{{ errors.email }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Cellulare</mat-label>
+              <input matInput type="text" [(ngModel)]="cellulare" name="cellulare" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.cellulare">{{ errors.cellulare }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Via</mat-label>
+              <input matInput type="text" [(ngModel)]="via" name="via" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.via">{{ errors.via }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Civico</mat-label>
+              <input matInput type="text" [(ngModel)]="civico" name="civico" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.civico">{{ errors.civico }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>CAP</mat-label>
+              <input matInput type="text" [(ngModel)]="cap" name="cap" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.cap">{{ errors.cap }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Città</mat-label>
+              <input matInput type="text" [(ngModel)]="citta" name="citta" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.citta">{{ errors.citta }}</div>
+          </div>
+  
+          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
+            <mat-form-field class="w-75">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" [(ngModel)]="password" name="password" required>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="errors.password">{{ errors.password }}</div>
+          </div>
+  
+          <button mat-raised-button color="primary" type="submit">Registrati</button>
+        </form>
       </div>
+    </div>
   </div>
-</div>
+  
