@@ -53,6 +53,16 @@ import { LoginComponent } from './componenti/login/login.component';
 import { RegisterComponent } from './componenti/register/register.component';
 import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.component';
 
+
+
+
+
+
+
+import {Component, inject} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
+import {MatStepperModule} from '@angular/material/stepper';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +110,8 @@ import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.
     FormsModule,
     ReactiveFormsModule,
     MatSliderModule,
-    MatRadioModule
+    MatRadioModule,
+    MatStepperModule,
   ],
   providers: [
     provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule with fetch

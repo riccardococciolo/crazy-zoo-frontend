@@ -1,92 +1,111 @@
-<div class="container">
-    <h1 class="text-center">Registrazione</h1>
-    <div class="row justify-content-center mt-5">
-      <div class="col-md-6">
-        <form class="d-flex flex-wrap gap-5 justify-content-center align-items-center" (ngSubmit)="register()">
-          
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Nome</mat-label>
-              <input matInput type="text" [(ngModel)]="nome" name="nome" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.nome">{{ errors.nome }}</div>
-          </div>
+<mat-stepper linear #stepper>
+
+    <!-- 🔹 STEP 1: Informazioni personali -->
+    <mat-step>
+      <form [formGroup]="registerForm">
+        <ng-template matStepLabel>Informazioni personali</ng-template>
+        
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" required>
+          <mat-error *ngIf="isFieldInvalid('nome')">Nome non valido</mat-error>
+        </mat-form-field>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Cognome</mat-label>
-              <input matInput type="text" [(ngModel)]="cognome" name="cognome" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.cognome">{{ errors.cognome }}</div>
-          </div>
+        <mat-form-field>
+          <mat-label>Cognome</mat-label>
+          <input matInput formControlName="cognome" required>
+          <mat-error *ngIf="isFieldInvalid('cognome')">Cognome non valido</mat-error>
+        </mat-form-field>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Username</mat-label>
-              <input matInput type="text" [(ngModel)]="username" name="username" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.username">{{ errors.username }}</div>
-          </div>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" required>
+          <mat-error *ngIf="isFieldInvalid('username')">Username non valido</mat-error>
+        </mat-form-field>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Email</mat-label>
-              <input matInput type="email" [(ngModel)]="email" name="email" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.email">{{ errors.email }}</div>
-          </div>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required>
+          <mat-error *ngIf="isFieldInvalid('email')">Email non valida</mat-error>
+        </mat-form-field>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Cellulare</mat-label>
-              <input matInput type="text" [(ngModel)]="cellulare" name="cellulare" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.cellulare">{{ errors.cellulare }}</div>
-          </div>
+        <div>
+          <button mat-button matStepperNext [disabled]="!isStepValid(['nome', 'cognome', 'username', 'email'])">Avanti</button>
+        </div>
+      </form>
+    </mat-step>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Via</mat-label>
-              <input matInput type="text" [(ngModel)]="via" name="via" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.via">{{ errors.via }}</div>
-          </div>
+    <!-- 🔹 STEP 2: Contatti -->
+    <mat-step>
+      <form [formGroup]="registerForm">
+        <ng-template matStepLabel>Contatti</ng-template>
+        
+        <mat-form-field>
+          <mat-label>Cellulare</mat-label>
+          <input matInput formControlName="cellulare" required>
+          <mat-error *ngIf="isFieldInvalid('cellulare')">Numero non valido</mat-error>
+        </mat-form-field>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Civico</mat-label>
-              <input matInput type="text" [(ngModel)]="civico" name="civico" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.civico">{{ errors.civico }}</div>
-          </div>
+        <div>
+          <button mat-button matStepperPrevious>Indietro</button>
+          <button mat-button matStepperNext [disabled]="!isStepValid(['cellulare'])">Avanti</button>
+        </div>
+      </form>
+    </mat-step>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>CAP</mat-label>
-              <input matInput type="text" [(ngModel)]="cap" name="cap" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.cap">{{ errors.cap }}</div>
-          </div>
+    <!-- 🔹 STEP 3: Indirizzo -->
+    <mat-step>
+      <form [formGroup]="registerForm">
+        <ng-template matStepLabel>Indirizzo</ng-template>
+        
+        <mat-form-field>
+          <mat-label>Via</mat-label>
+          <input matInput formControlName="via" required>
+          <mat-error *ngIf="isFieldInvalid('via')">Via non valida</mat-error>
+        </mat-form-field>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Città</mat-label>
-              <input matInput type="text" [(ngModel)]="citta" name="citta" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.citta">{{ errors.citta }}</div>
-          </div>
+        <mat-form-field>
+          <mat-label>Civico</mat-label>
+          <input matInput formControlName="civico" required>
+          <mat-error *ngIf="isFieldInvalid('civico')">Civico non valido</mat-error>
+        </mat-form-field>
   
-          <div class="form-container pb-2 d-flex flex-column align-items-center w-100">
-            <mat-form-field class="w-75">
-              <mat-label>Password</mat-label>
-              <input matInput type="password" [(ngModel)]="password" name="password" required>
-            </mat-form-field>
-            <div class="text-danger" *ngIf="errors.password">{{ errors.password }}</div>
-          </div>
+        <mat-form-field>
+          <mat-label>CAP</mat-label>
+          <input matInput formControlName="cap" required>
+          <mat-error *ngIf="isFieldInvalid('cap')">CAP non valido</mat-error>
+        </mat-form-field>
   
-          <button mat-raised-button color="primary" type="submit">Registrati</button>
-        </form>
-      </div>
-    </div>
-  </div>
+        <mat-form-field>
+          <mat-label>Città</mat-label>
+          <input matInput formControlName="citta" required>
+          <mat-error *ngIf="isFieldInvalid('citta')">Città non valida</mat-error>
+        </mat-form-field>
+  
+        <div>
+          <button mat-button matStepperPrevious>Indietro</button>
+          <button mat-button matStepperNext [disabled]="!isStepValid(['via', 'civico', 'cap', 'citta'])">Avanti</button>
+        </div>
+      </form>
+    </mat-step>
+  
+    <!-- 🔹 STEP 4: Password -->
+    <mat-step>
+      <form [formGroup]="registerForm">
+        <ng-template matStepLabel>Password</ng-template>
+  
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" required>
+          <mat-error *ngIf="isFieldInvalid('password')">Minimo 8 caratteri, almeno una lettera e un numero</mat-error>
+        </mat-form-field>
+  
+        <div>
+          <button mat-button matStepperPrevious>Indietro</button>
+          <button mat-button (click)="register()" [disabled]="!registerForm.valid">Registrati</button>
+        </div>
+      </form>
+    </mat-step>
+  
+  </mat-stepper>
   
