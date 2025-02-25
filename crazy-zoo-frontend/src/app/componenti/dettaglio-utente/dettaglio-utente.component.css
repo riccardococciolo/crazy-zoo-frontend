@@ -1,128 +1,146 @@
-/* Assumendo che la navbar esistente abbia un'altezza di 60px */
-
-/* Container principale: parte sotto la navbar */
-.container-fluid {
-    margin-top: 60px; /* lascia spazio per la navbar */
-    height: calc(100vh - 60px);
-    position: relative;
-    overflow: hidden;
+.container {
+    display: flex;
+    gap: 20px;
   }
   
-  /* Sidebar - Design moderno */
+  /* Sidebar */
   .sidebar {
-    position: fixed;
-    top: 60px; /* parte subito sotto la navbar */
-    left: 0;
-    width: 260px;
-    background: linear-gradient(135deg, #ffecf5, #f8c8dc);
-    color: #5a3e36;
-    padding: 25px;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-    border-right: 2px solid rgba(248, 200, 220, 0.5);
-    box-sizing: border-box;
-  }
-  
-  .sidebar-title {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  .nav-link {
-    display: block;
-    color: #5a3e36;
-    font-size: 18px;
-    padding: 10px 14px;
-    margin-bottom: 10px;
+    width: 20%;
+    background: #f4f4f4;
+    padding: 15px;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
   }
   
-  .nav-link i {
-    font-size: 22px;
-    margin-right: 8px;
-  }
-  
-  .nav-link:hover {
-    background-color: rgba(248, 200, 220, 0.5);
-    text-decoration: none;
-  }
-  
-  /* Area di Contenuto */
-  .content {
-    margin-left: 260px; /* lascia spazio per la sidebar */
-    position: relative;
-    background: #fdf6e3;
-    height: calc(100vh - 60px);
-    overflow: auto;
-  }
-  
-  /* Profilo Utente centrato */
-  .profile-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  /* Dettagli Utente */
+  .user-details {
+    flex: 1;
     background: #fff;
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 90%;
-    text-align: center;
-    transition: transform 0.3s ease;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .profile-container:hover {
-    transform: translate(-50%, -50%) translateY(-5px);
+  /* Storico Ordini */
+  .order-history {
+    width: 40%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .profile-title {
-    font-size: 26px;
-    color: #ff69b4;
+  /* Card dell'ordine */
+  .ordine-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
     margin-bottom: 20px;
-    font-weight: bold;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .profile-details p {
+  /* Header dell'ordine */
+  .ordine-header {
     font-size: 18px;
-    margin: 12px 0;
-    color: #555;
-    transition: color 0.3s ease;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
   
-  .profile-details p:hover {
-    color: #ff69b4;
+  /* Corpo dell'ordine (Prodotti) */
+  .ordine-body {
+    margin-bottom: 15px;
   }
   
-  .profile-details strong {
-    color: #333;
+  /* Contenitore dei prodotti */
+  .product-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Card del prodotto */
+  .product-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Immagine del prodotto */
+  .product-image img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  /* Informazioni del prodotto */
+  .product-info h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .product-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  /* Footer dell'ordine con totale evidenziato */
+  .ordine-footer {
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 10px;
+    border-top: 2px solid #ddd;
+    margin-top: 15px;
+  }
+  
+  .totale-evidenziato {
+    color: #ff5722;
+    font-size: 20px;
     font-weight: bold;
   }
   
-  /* Responsive */
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 220px;
-      padding: 15px;
-    }
-    
-    .content {
-      margin-left: 220px;
-    }
-    
-    .profile-container {
-      max-width: 500px;
-      padding: 25px;
-    }
-    
-    .profile-title {
-      font-size: 22px;
-    }
+  /* Card Dettagli Utente */
+.user-card {
+    max-width: 400px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .user-card-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .user-card-body p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .user-card-body strong {
+    color: #444;
+  }
+  
+  /* Stile per ruolo */
+  .admin-role {
+    color: #ff5722;
+    font-weight: bold;
+  }
+  
+  .user-role {
+    color: #007bff;
+    font-weight: bold;
   }
   

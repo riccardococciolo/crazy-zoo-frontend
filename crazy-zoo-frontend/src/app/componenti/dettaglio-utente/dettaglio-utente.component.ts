@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
+import { OrdiniService } from '../../services/ordini.service';
+import { UtentiService } from '../../services/utenti.service';
 
 @Component({
   selector: 'app-dettaglio-utente',
@@ -11,18 +13,71 @@ export class DettaglioUtenteComponent {
 
   user: any = null;
   isAdmin: boolean = false;
+  ordini: any[] = []; // Array per memorizzare gli ordini dell'utente
+  rc : any;
+  dataUser: any;
 
-  constructor(private authService: AuthService) {}
+
+  constructor(private authService: AuthService, private ordineService: OrdiniService, private utenteS: UtentiService) {}
 
   ngOnInit(): void {
     this.user = this.authService.getUserData();
     this.isAdmin = this.authService.isAdmin();
+
+
+    if (this.user?.id) {
+      this.loadOrdini(this.user.id);
+      this.loadUser(this.user.id)
+    }
   }
 
-  sections = [
-    { name: 'Prodotti', icon: "🛍️" },
-    { name: 'Marche', icon: '🏷️' },
-    { name: 'Animali', icon: '🐾' },
-    { name: 'Tipologie', icon: '🗂️' }
-  ];
+  loadOrdini(userId: number): void {
+    this.ordineService.listByUtente(userId).subscribe(
+      (data: any) => {
+        console.log("Debug ordine", data);
+  
+        if (data.dati && Array.isArray(data.dati)) {
+          this.ordini = data.dati.map((ordine: any) => {
+            ordine.prodotti = ordine.prodotti.map((prodotto: any) => {
+              if (prodotto.immagini && prodotto.immagini.length > 0) {
+                const img = prodotto.immagini[0];
+                const base64Data = img.data;
+                const contentType = img.tipoFile;
+                const blob = this.base64ToBlob(base64Data, contentType);
+                prodotto.imgURL = URL.createObjectURL(blob);
+              } else {
+                prodotto.imgURL = 'assets/default-image.jpg';
+              }
+              return prodotto;
+            });
+            return ordine;
+          });
+        } else {
+          console.error("Formato della risposta inatteso:", data);
+        }
+  
+        this.rc = data.rc;
+      },
+      (error) => {
+        console.error('Errore nel recupero degli ordini:', error);
+      }
+    );
+  }
+
+  base64ToBlob(base64: string, contentType: string): Blob {
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: contentType });
+  }
+
+  loadUser(id: number) {
+    this.utenteS.getUtenteById(id).subscribe((resp: any) => {
+      this.dataUser=resp.dati
+    })
+  }
+
 }
