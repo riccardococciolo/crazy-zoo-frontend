@@ -41,9 +41,26 @@
                                 <p class="card-text col d-flex flex-wrap gap-2"><strong class="w-100">Tipologia</strong> {{infoProd[0]?.tipologia?.nome}}</p>
                             </div>
                         </div>
+                      <div class="w-100 pt-4 d-flex justify-content-between align-items-center">
+                        <div class="quantity-selector d-flex justify-content-center align-items-center">
+                          <!-- Bottone per decrementare -->
+                          <button mat-mini-fab class="button-left d-flex justify-content-center align-items-center" (click)="decrement()" aria-label="Diminuisci Quantità">
+                            <mat-icon>remove</mat-icon>
+                          </button>
+                        
+                          <!-- Visualizzazione della quantità corrente -->
+                          <div class="quantity">{{quantity}}</div>
+                        
+                          <!-- Bottone per incrementare -->
+                          <button mat-mini-fab class="button-right" (click)="increment()" aria-label="Aumenta Quantità">
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        </div>
+                        <button class="btn my-shadow rounded-4 bg-color w-50 text-center fw-bold" (click)="addCart()" [disabled]="isLogged === false">Aggiungi al carrello</button>
+                      </div>
                     
                     <!-- Aggiungi un bottone per l'acquisto o altre azioni -->
-                  <button class="btn my-shadow rounded-4 bg-color w-50 text-center fw-bold" (click)="addCart()" [disabled]="isLogged === false">Aggiungi al carrello</button>
+                  
                     </div>
                     
                 </div>

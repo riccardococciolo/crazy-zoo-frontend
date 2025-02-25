@@ -42,6 +42,7 @@ import {
   MatDialogContent,
   MatDialogModule,
 } from '@angular/material/dialog';
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -100,7 +101,8 @@ import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.
     FormsModule,
     ReactiveFormsModule,
     MatSliderModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule with fetch

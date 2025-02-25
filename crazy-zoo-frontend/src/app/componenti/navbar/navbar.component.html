@@ -28,13 +28,18 @@
             </button>
           </li>
           <li class=" d-flex align-items-center" *ngIf="isLogged">
-            <button class="me-3 border-0 bg-white d-flex align-items-center" (click)="logout()">
+            <button [routerLink]="'/utente'" class="me-3 border-0 bg-white d-flex align-items-center">
               <mat-icon class="fs-3">person</mat-icon>
             </button>
           </li>
           <li class=" d-flex align-items-center" *ngIf="isLogged">
             <button class="btn btn-outline-danger border-3 d-flex align-items-center justify-content-center" (click)="logout()">
-              <mat-icon class="fs-4">logout</mat-icon>
+              <mat-icon class="fs-4 logout">logout</mat-icon>
+            </button>
+          </li>
+          <li class=" d-flex align-items-center" *ngIf="!isLogged">
+            <button [routerLink]="'/login'" class="btn btn-outline-success border-3 justify-content-start d-flex align-items-center">
+              <mat-icon class="fs-4 login">login</mat-icon>
             </button>
           </li>
         </ul>
@@ -92,9 +97,8 @@
 
 <!-- Offcanvas Bootstrap per il carrello -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
-  <div class="offcanvas-header">
-    <h5 id="cartOffcanvasLabel">Il tuo carrello</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <div class="offcanvas-header py-0 pt-2 justify-content-end">
+    <button type="button" class="border-0 bg-white d-flex justify-content-center align-items-center" data-bs-dismiss="offcanvas" aria-label="Close"><mat-icon class="x">close</mat-icon></button>
   </div>
   <div class="offcanvas-body">
     <!-- Qui carichiamo il CarrelloComponent -->

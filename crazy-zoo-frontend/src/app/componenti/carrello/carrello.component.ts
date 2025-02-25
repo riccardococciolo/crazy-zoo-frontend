@@ -5,8 +5,9 @@ import { response } from 'express';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 import { OrdiniService } from '../../services/ordini.service';
-import { Subscription } from 'rxjs';
+import { lastValueFrom, Subscription } from 'rxjs';
 import { ProdottoCarrelloService } from '../../services/prodotto-carrello.service';
+import { get } from 'node:http';
 
 
 
@@ -16,13 +17,13 @@ import { ProdottoCarrelloService } from '../../services/prodotto-carrello.servic
   standalone: false,
   templateUrl: './carrello.component.html',
   styleUrl: './carrello.component.css',
-  animations: [
+  /* animations: [
     trigger('fadeOut', [
       transition(':leave', [
         animate('0.3s', style({ opacity: 0, transform: 'scale(0.9)' }))
       ])
     ])
-  ]
+  ] */
 })
 export class CarrelloComponent implements OnInit {
 
@@ -35,6 +36,8 @@ export class CarrelloComponent implements OnInit {
   listImage: string[] = [];
   totale: number = 0;
   carrelloID: any;
+  loaderQ: boolean = false;
+  loaderP: boolean = false;
   private carrelloSub: Subscription | null = null; 
 
 
@@ -50,6 +53,7 @@ export class CarrelloComponent implements OnInit {
   }
 
   caricaCarrello() {
+    this.loaderP = true;
     this.carrelloS.getCarrello(this.id).subscribe((resp: any) => {
       if (resp.rc) {
         this.listProdotti = resp.dati.map((prodotto: any) => {
@@ -63,10 +67,30 @@ export class CarrelloComponent implements OnInit {
             prodotto.imgURL = 'assets/default-image.jpg';
           }
           return prodotto;
-        });
+         
+        }); 
+        this.loaderP = false;
+        this.getProdottiRaggruppati()
         this.calcolaTotale();
       }
     });
+  }
+
+  getProdottiRaggruppati(): any[] {
+    const mappaProdotti = new Map();
+  
+    for (const prodotto of this.listProdotti) {
+      if (mappaProdotti.has(prodotto.id)) {
+        mappaProdotti.get(prodotto.id).quantita++;
+      } else {
+        mappaProdotti.set(prodotto.id, {
+          ...prodotto,
+          quantita: 1
+        });
+      }
+    }
+    
+    return Array.from(mappaProdotti.values());
   }
 
   base64ToBlob(base64: string, contentType: string): Blob {
@@ -95,6 +119,7 @@ export class CarrelloComponent implements OnInit {
 
 
     rimuoviDalCarrello(prodottoId: number) {
+      this.loaderP = true;
       this.carrelloS.rimuoviProdotto(this.carrelloID, prodottoId).subscribe((resp: any) => {
         if (resp.rc) {
           console.log("Prodotto rimosso con successo");
@@ -105,13 +130,58 @@ export class CarrelloComponent implements OnInit {
           if (index !== -1) {
             this.listProdotti.splice(index, 1); // 🔥 Rimuove SOLO il primo prodotto trovato
           }
-    
-          // 🔥 Ricalcola il totale dopo la rimozione
+          this.loaderP = false;
+          this.caricaCarrello();
           this.calcolaTotale();
         }
       }, error => {
         console.error("Errore nella rimozione del prodotto:", error);
       });
+
+    }
+
+    async rimuoviProdottoDalCarrello(prodottoId: number, prodotto: number) {
+      console.log(prodotto);
+
+      this.loaderP = true;
+      
+      console.log(this.getProdottiRaggruppati()[prodotto]);
+      
+      for (let index = 0; index < this.getProdottiRaggruppati()[prodotto].quantita; index++) {
+        try {
+          const resp: any = await lastValueFrom(
+        this.carrelloS.rimuoviProdotto(this.carrelloID, prodottoId)
+      );
+        if (resp.rc) {
+          console.log("Prodotto rimosso con successo");
+
+        }
+    } catch (error) {
+      console.error(`Errore alla chiamata ${+ 1}:`, error);
+    };
+        
+      }
+      this.loaderP = false;
+      this.caricaCarrello();
+      this.calcolaTotale();
+      
+    }
+
+    aggiungiAlCarrello(prodotto: number): void {
+      console.log(prodotto);
+      this.loaderP = true;
+      
+      this.prodCarS.addProdottoToCarrello({id_carrello: this.carrelloID, id_prodotti: prodotto}).subscribe((resp: any) => {
+        if (resp.rc) {
+          console.log("Prodotto aggiunto con successo");
+          
+         /*  this.loaderP = false; */
+          this.calcolaTotale();
+        }
+      }, error => {
+        console.error("Errore nella aggiunta del prodotto:", error);
+      });
+      
     }
     
 
