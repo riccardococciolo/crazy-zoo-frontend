@@ -22,6 +22,8 @@ import { AdminGuard } from './auth/admin.guard';
 import { AuthGuard } from './auth/auth.guard';
 import { OrdineComponent } from './componenti/ordine/ordine.component';
 import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.component';
+import { ErrorComponent } from './componenti/error/error.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -62,7 +64,10 @@ const routes: Routes = [
         { path: 'tipologia/update/:id', component: UpdateTipologiaComponent },
         { path: 'tipologia/create', component: CreateTipologiaComponent }
       ]
-    }
+    },
+    
+  { path: '404', component: ErrorComponent },
+  { path: '**', redirectTo: '404' }
 
 ];
 
