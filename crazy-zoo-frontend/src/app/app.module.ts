@@ -63,6 +63,7 @@ import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.
 import {Component, inject} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ErrorComponent } from './componenti/error/error.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     LoginComponent,
     RegisterComponent,
     OrdineSuccesComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
