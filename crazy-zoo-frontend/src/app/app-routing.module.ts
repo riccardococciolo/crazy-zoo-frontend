@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
 
+
   // Login e Registrazione
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
         { path: 'animale', component: AnimaleComponent },
         { path: 'animale/update/:id', component: UpdateAnimaleComponent },
         { path: 'animale/create', component: CreateAnimaleComponent },
+        {path:"ordine", component: OrdineComponent},
   
         { path: 'marca', component: MarcaComponent },
         { path: 'marca/update/:id', component: UpdateMarcaComponent },

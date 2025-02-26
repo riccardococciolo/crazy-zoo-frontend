@@ -64,6 +64,7 @@ import {Component, inject} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +93,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     ProdottiCardComponent,
     LoginComponent,
     RegisterComponent,
-    OrdineSuccesComponent,
+    OrdineSuccesComponent
   ],
   imports: [
     BrowserModule,
