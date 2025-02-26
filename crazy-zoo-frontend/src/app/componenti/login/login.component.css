@@ -1,0 +1,48 @@
+.sfondo{
+    background-image: url("../../assets/img/spighe.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(1vh);
+    z-index: -1;
+}
+
+h1{
+    color: rgb(0, 0, 0);
+    font-size: 5vh;
+    font-weight: bold;
+    text-align: center;
+}
+
+.border-cust {
+    border: 2px solid black; /* Bordo nero non troppo spesso */
+    background: rgba(255, 255, 255, 0.151); /* Bianco trasparente */
+    backdrop-filter: blur(2vh); /* Sfocatura dell'immagine di sfondo */
+    padding: 20px;
+    border-radius: 10px; /* Angoli leggermente arrotondati */
+    width: 300px; /* Larghezza del form */
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.315); /* Ombreggiatura per effetto di profondità */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.effect-button:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Bianco trasparente */
+    color: black; /* Testo nero */
+    border: 2px solid black; /* Bordo nero non troppo spesso */
+    transition: background-color 0.3s, color 0.3s; /* Transizione colore e sfondo */
+
+}
+/*
+.border-cust:hover {
+    
+    transform: scale(1.05); // Effetto hover: leggero ingrandimento 
+}*/
