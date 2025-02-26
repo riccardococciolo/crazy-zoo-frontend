@@ -94,7 +94,6 @@ import { ErrorComponent } from './componenti/error/error.component';
     LoginComponent,
     RegisterComponent,
     OrdineSuccesComponent,
-    ErrorComponent,
   ],
   imports: [
     BrowserModule,

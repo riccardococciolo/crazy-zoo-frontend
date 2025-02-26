@@ -1,1 +1,36 @@
-<p>ordine works!</p>
+<div class="container">
+    <h1 class="text-center">Ordini</h1>
+    <div class="text-end my-4">
+        <a class="btn btn-success" (click)="exportCSV()">Esporta CSV</a>
+    </div>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cognome</th>
+                <th scope="col">Email</th>
+                <th scope="col">totale</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ordini of listOrdini">
+                <th scope="row">{{ordini.id}}</th>
+                <td>
+                    {{ordini.utente.nome}}
+                </td>
+                <td>
+                    {{ordini.utente.cognome}}
+                </td>
+                <td>
+                    {{ordini.utente.email}}
+                </td>
+                <td>
+                    {{ordini.totale}}
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
