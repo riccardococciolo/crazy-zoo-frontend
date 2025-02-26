@@ -56,8 +56,110 @@
     font-size: 1rem;
   }
 
+  @keyframes blink {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  /* Quando si passa il mouse sull'ul, tutti i li al suo interno animano */
+  
+
+  /* Imposta la variabile CSS per ciascun elemento */
+
+.list-item:nth-child(1):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(2):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(3):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(4):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(5):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(6):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(7):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(8):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(9):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(10):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(11):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(12):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(13):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(14):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(15):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(16):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(17):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(18):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
+.list-item:nth-child(19):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+.list-item:nth-child(20):hover { 
+  animation: blink 1s infinite;
+  cursor: pointer; 
+}
+
   .list:hover {
     color: white;
+    cursor: pointer;
   }
 
   .title {

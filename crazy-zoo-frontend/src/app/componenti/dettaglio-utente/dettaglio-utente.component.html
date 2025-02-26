@@ -1,30 +1,58 @@
-<div class="container-fluid">
-    <!-- Sidebar (visibile solo se Admin) -->
-    <nav class="sidebar" *ngIf="isAdmin">
-      <h3 class="sidebar-title">⚙️ Admin Panel</h3>
-      <ul class="nav flex-column">
-        <li class="nav-item" *ngFor="let section of sections">
-          <a class="nav-link" href="#">
-            <i class="{{ section.icon }}"></i> {{ section.name }}
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- Contenuto principale: Profilo Utente centrato -->
-    <main class="content">
-      <div class="profile-container">
-        <h1 class="profile-title">👤 Profilo Utente</h1>
-        <div class="profile-details">
-          <p><strong>Nome:</strong> {{ user.nome }}</p>
-          <p><strong>Cognome:</strong> {{ user.cognome }}</p>
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <p><strong>Ruolo:</strong> {{ user.role }}</p>
-          <p><strong>Cellulare:</strong> {{ user.cellulare }}</p>
-          <p><strong>ID:</strong> {{ user.id }}</p>
-          <p><strong>Username:</strong> {{ user.username }}</p>
-        </div>
-      </div>
-    </main>
+<div class="container">
+  <!-- Sidebar (visibile solo agli admin) -->
+  <div *ngIf="isAdmin" class="sidebar">
+    <h3>Menù Admin</h3>
+    <ul>
+      <li><a routerLink="admin/animale">Animali</a></li>
+      <li><a href="#">Marche</a></li>
+      <li><a href="#">Tipologie</a></li>
+    </ul>
   </div>
 
+  <!-- Card Dettagli Utente -->
+  <div class="user-card">
+    <div class="user-card-header">
+      <h2>Dettagli Utente</h2>
+    </div>
+    <div class="user-card-body">
+      <p><strong>Nome:</strong> {{ dataUser.nome }}</p>
+      <p><strong>Cognome:</strong> {{ dataUser.cognome }}</p>
+      <p><strong>Username:</strong> {{ dataUser.username }}</p>
+      <p><strong>Email:</strong> {{ dataUser.email }}</p>
+      <p><strong>Indirizzo:</strong> {{ dataUser.indirizzo.via }} {{ dataUser.indirizzo.civico }} {{ dataUser.indirizzo.cap }} {{ dataUser.indirizzo.citta }}</p>
+      <p><strong>Ruolo:</strong> <span [ngClass]="{ 'admin-role': isAdmin, 'user-role': !isAdmin }">{{ isAdmin ? 'Admin' : 'Utente' }}</span></p>
+    </div>
+  </div>
+
+  <!-- Storico Ordini -->
+  <div class="order-history">
+    <h2>Storico Ordini</h2>
+    <div *ngIf="ordini.length === 0">Nessun ordine trovato.</div>
+    
+    <div *ngFor="let ordine of ordini" class="ordine-card">
+      <div class="ordine-header">
+        <h4>Ordine #{{ ordine.id }}</h4>
+      </div>
+
+      <div class="ordine-body">
+        <h5>Prodotti:</h5>
+        <div class="product-container">
+          <div class="product-card" *ngFor="let prodotto of ordine.prodotti; let i = index" @fadeOut>
+            <div class="product-image">
+              <img [src]="prodotto.imgURL" [alt]="prodotto.titolo || 'Immagine del prodotto'">
+            </div>
+            <div class="product-info">
+              <h3>{{ prodotto.titolo }}</h3>
+              <p>{{ prodotto.prezzo | currency:'EUR' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer della card con il totale evidenziato -->
+      <div class="ordine-footer">
+        <p><strong>Totale: </strong> <span class="totale-evidenziato">{{ ordine.totale | currency:'EUR' }}</span></p>
+      </div>
+    </div>
+  </div>
+</div>

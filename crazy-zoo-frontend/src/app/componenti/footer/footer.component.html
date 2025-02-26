@@ -5,24 +5,24 @@
     <div class="footer-content row align-items-start pb-5">
       <div class="col-4 d-flex flex-column justify-content-center">
         <span class="py-3 title">ANIMALI</span>
-        <ul class="list p-0 m-0">
-          <li [routerLink]="['/prodotti']" [queryParams]="{nomeAnimale: animale.nome}"  class="list py-1" *ngFor=" let animale of animali">
+        <ul class="list p-0 m-0 ">
+          <li [routerLink]="['/prodotti']" [queryParams]="{nomeAnimale: animale.nome}"  class="list py-1 list-item " *ngFor=" let animale of animali">
             {{animale.nome}}
           </li>
         </ul>
       </div>
       <div class="col-4 d-flex flex-column justify-content-center">
         <span class="py-3 title">MARCHE</span>
-        <ul class="list row justify-content-center p-0 m-0">
-          <li [routerLink]="['/prodotti']" [queryParams]="{nomeMarca: marca.nome}"  class="list col-5 py-1 px-0" *ngFor=" let marca of marche">
+        <ul class="list row justify-content-center p-0 m-0 ">
+          <li [routerLink]="['/prodotti']" [queryParams]="{nomeMarca: marca.nome}"  class="list col-5 py-1 px-0 list-item" *ngFor=" let marca of marche">
             {{marca.nome}}
           </li>
         </ul>
       </div>
       <div class="col-4 d-flex flex-column justify-content-center">
         <span class="py-3 title">TIPOLOGIE</span>
-        <ul class="list row justify-content-center p-0 m-0">
-          <li [routerLink]="['/prodotti']" [queryParams]="{nomeTipologia: tipologia.nome}"  class="list col-5 py-1 px-0" *ngFor=" let tipologia of tipologie">
+        <ul class="list row justify-content-center p-0 m-0 ">
+          <li [routerLink]="['/prodotti']" [queryParams]="{nomeTipologia: tipologia.nome}"  class="list col-5 py-1 px-0 list-item" *ngFor=" let tipologia of tipologie">
             {{tipologia.nome}}
           </li>
         </ul>
