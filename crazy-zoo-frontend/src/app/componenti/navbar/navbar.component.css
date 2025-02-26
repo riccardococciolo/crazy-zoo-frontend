@@ -49,7 +49,7 @@ a {
 
 
 
-a:hover::after {
+.category-link:hover::after {
     content: '';
     display: block;
     position: absolute;

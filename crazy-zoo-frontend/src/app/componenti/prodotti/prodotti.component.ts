@@ -15,6 +15,7 @@ export class ProdottiComponent {
   pageSize: number = 12;
   pageIndex: number = 0;
   filters: any;
+  loading: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -29,17 +30,20 @@ export class ProdottiComponent {
   }
 
   loadProdotti(): void {
+    this.loading = true;
     this.servP.getProdotto(this.filters, this.pageIndex, this.pageSize).subscribe({
       next: data => {
         this.prodotti = data;
         console.log(this.prodotti);
         this.totalElements = this.prodotti.totalElements
-        
+        this.loading = false;
       },
       error: err => {
         console.error("Errore nel caricamento dei prodotti", err);
+        this.loading = false;
       }
     });
+    
   }
 
   onPageChange(event: PageEvent): void {

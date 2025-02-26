@@ -7,3 +7,32 @@ img {
 .bg-color {
     background-color: #fea !important;
   }
+
+  .soldout-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Overlay nero semi-trasparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    z-index: 10;
+    border-radius: 15px;
+  }
+
+  .soldout {
+    display: inline-block;
+    transform: rotate(57deg) scale(1.8);
+    font-size: 3rem;
+    font-family: 'Chaloops' !important;
+    color: rgb(255, 242, 191);
+    font-weight: 700;
+    line-height: 55px;
+    background-color: rgba(156, 7, 7, 0.8);
+    border-radius: 15px;
+    padding: 0 20px;
+  }

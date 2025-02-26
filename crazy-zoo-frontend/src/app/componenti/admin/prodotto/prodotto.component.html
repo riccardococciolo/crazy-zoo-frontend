@@ -4,7 +4,7 @@
     <div class="text-end my-4">
         <a class="btn btn-success" routerLink="create">Crea nuovo prodotto</a>
     </div>
-    <table class="table table-striped">
+    <table *ngIf="!loader" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -51,4 +51,7 @@
             </tr>
         </tbody>
     </table>
+    <div *ngIf="loader" class="py-5 w-100 d-flex justify-content-center align-items-center my-5">
+        <mat-spinner class="d-flex justify-content-center align-items-center"></mat-spinner>
+    </div>
 </div>

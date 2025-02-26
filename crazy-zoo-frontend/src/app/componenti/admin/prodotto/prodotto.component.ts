@@ -12,6 +12,7 @@ export class ProdottoComponent {
   data: any;
   response: any;
   msg: string = '';
+  loader: boolean = false;
   constructor(
     private serv: ProdottiService,
     private routing: Router,
@@ -20,9 +21,11 @@ export class ProdottoComponent {
 
   ngOnInit(): void {
     console.log('ngOnInit');
+    this.loader = true;
     this.serv.getProdottoAll({}).subscribe((resp) => {
       this.response = resp;
       this.data = this.response;
+      this.loader = false;
     });
   }
 

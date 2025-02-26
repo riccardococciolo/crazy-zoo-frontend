@@ -3,11 +3,14 @@
         <div class="col-3 border-light-subtle border-top border-2">
             <app-filter-bar></app-filter-bar>
         </div>
-        <div class="col-9 align-self-stretch border-light-subtle border-top border-2 d-flex h-100 flex-column align-items-between">
-            <div class="container row row-cols-3">
+        <div class="col-9 border-light-subtle border-top border-2 d-flex h-100 flex-column align-items-between">
+            <div *ngIf="!loading" class="container row row-cols-3">
                 <div class="col pt-4" *ngFor="let prodotto of prodotti.content">
                     <app-prodotti-card [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
                 </div>
+            </div>
+            <div *ngIf="loading" class="py-5">
+                <mat-spinner class="w-100 d-flex justify-content-center align-items-center"></mat-spinner>
             </div>
             <mat-paginator class="d-flex justify-content-center" [length]="totalElements" [pageSize]="pageSize" [pageIndex]="pageIndex"
                 [pageSizeOptions]="[12]" (page)="onPageChange($event)">

@@ -75,10 +75,20 @@ export class FilterBarComponent {
       nomeTipologia: ''
     });
 
+    
+
     // Resetta i valori dello slider
     this.minPrice = 0;
     this.maxPrice = 100;
     // Naviga alla pagina dei prodotti passando i filtri come query parameters
     this.router.navigate(['/prodotti'], { queryParams: filters });
+  }
+
+  deseleziona(controlName: string, value: any): void {
+    const currentValue = this.filtersForm.get(controlName)?.value;
+    if (currentValue === value) {
+      // Se l'utente clicca nuovamente sull'opzione già selezionata, resettala
+      this.filtersForm.get(controlName)?.setValue(null);
+    }
   }
 }

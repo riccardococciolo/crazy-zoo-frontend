@@ -19,6 +19,7 @@ export class ProdottiCardComponent implements OnInit{
 
   id_carrello: any;
   isLogged: boolean = false;
+  soldOut: boolean = false;
 
   @Input() cardData!: { prodotto: any };
   imageUrl: string = '';
@@ -34,6 +35,11 @@ export class ProdottiCardComponent implements OnInit{
       const contentType = this.cardData.prodotto.immagini[0].tipoFile || 'image/jpeg';
       const blob = this.base64ToBlob(base64Data, contentType);
       this.imageUrl = URL.createObjectURL(blob);
+    }
+
+    if (this.cardData.prodotto.quantita == 0) {
+      this.soldOut = true;
+      console.log("Prodotto esaurito" + this.cardData.prodotto.id);
     }
   }
 

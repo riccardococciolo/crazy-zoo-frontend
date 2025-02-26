@@ -45,17 +45,24 @@ export class CarrelloComponent implements OnInit {
     this.id = this.authS.getUserData().id;
     this.carrelloID = this.authS.getUserData().carrelloID;
     this.caricaCarrello();
-
+    console.log(this.loaderP);
+    
+    
     // 🔥 Ascolta gli aggiornamenti del carrello
     this.carrelloSub = this.prodCarS.carrelloAggiornato$.subscribe(() => {
       this.caricaCarrello();
+      this.calcolaTotale();
+      console.log(this.loaderP);
+     
     })
   }
 
   caricaCarrello() {
-    this.loaderP = true;
     this.carrelloS.getCarrello(this.id).subscribe((resp: any) => {
+      this.loaderP = true;
       if (resp.rc) {
+        this.loaderP = false;
+        console.log(this.loaderP);
         this.listProdotti = resp.dati.map((prodotto: any) => {
           if (prodotto.immagini && prodotto.immagini.length > 0) {
             const img = prodotto.immagini[0];
@@ -63,14 +70,18 @@ export class CarrelloComponent implements OnInit {
             const contentType = img.tipoFile;
             const blob = this.base64ToBlob(base64Data, contentType);
             prodotto.imgURL = URL.createObjectURL(blob);
+            this.getProdottiRaggruppati();
+            console.log(this.getProdottiRaggruppati());
+            
+            
           } else {
             prodotto.imgURL = 'assets/default-image.jpg';
+            this.loaderP = false;
           }
-          return prodotto;
          
+            
+            return prodotto;
         }); 
-        this.loaderP = false;
-        this.getProdottiRaggruppati()
         this.calcolaTotale();
       }
     });
@@ -78,6 +89,7 @@ export class CarrelloComponent implements OnInit {
 
   getProdottiRaggruppati(): any[] {
     const mappaProdotti = new Map();
+    console.log(mappaProdotti);
   
     for (const prodotto of this.listProdotti) {
       if (mappaProdotti.has(prodotto.id)) {
@@ -130,9 +142,7 @@ export class CarrelloComponent implements OnInit {
           if (index !== -1) {
             this.listProdotti.splice(index, 1); // 🔥 Rimuove SOLO il primo prodotto trovato
           }
-          this.loaderP = false;
           this.caricaCarrello();
-          this.calcolaTotale();
         }
       }, error => {
         console.error("Errore nella rimozione del prodotto:", error);
@@ -161,45 +171,60 @@ export class CarrelloComponent implements OnInit {
     };
         
       }
-      this.loaderP = false;
       this.caricaCarrello();
+      this.loaderP = true;
       this.calcolaTotale();
       
     }
 
-    aggiungiAlCarrello(prodotto: number): void {
-      console.log(prodotto);
+    aggiungiAlCarrello(prodotto: number, index : number): void {
+      console.log(index);
       this.loaderP = true;
+
+      const prodottoEsistente = this.listProdotti.find(p => p.id === prodotto);
+
+      console.log(prodottoEsistente);
+      
+      console.log(this.getProdottiRaggruppati()[index]);
+      
+      if(this.getProdottiRaggruppati()[index].quantita < prodottoEsistente.quantita) {
       
       this.prodCarS.addProdottoToCarrello({id_carrello: this.carrelloID, id_prodotti: prodotto}).subscribe((resp: any) => {
         if (resp.rc) {
           console.log("Prodotto aggiunto con successo");
           
-         /*  this.loaderP = false; */
+         
           this.calcolaTotale();
+          this.caricaCarrello();
         }
       }, error => {
         console.error("Errore nella aggiunta del prodotto:", error);
       });
-      
     }
+      
+  }
     
 
 
 
     completaOrdine() {
       let utenteID = this.id;
+
+      this.loaderP = true;
   
       this.ordiniS.createOrdine({ utenteID }).subscribe((resp: any) => {
         if (resp.rc) {
           console.log("Ordine creato con successo!");
-  
+          this.loaderP = false;
           // 🔥 Svuota il carrello dopo la creazione dell'ordine
           this.svuotaCarrello();
+          this.caricaCarrello();
+          
         }
       }, error => {
         console.error("Errore durante la creazione dell'ordine:", error);
-      });
+      }); 
+      
     }
   
     svuotaCarrello() {
@@ -207,13 +232,10 @@ export class CarrelloComponent implements OnInit {
       this.carrelloS.svuotaCarrello({carrelloID : this.carrelloID}).subscribe((resp: any) => {
         if (resp.rc) {
           console.log("Carrello svuotato con successo");
-  
+          this.loaderP = false;
           // 🔥 Aggiorna l'interfaccia utente
           this.listProdotti = [];
           this.totale = 0;
-  
-          // 🔥 Notifica che il carrello è stato aggiornato
-          this.prodCarS.aggiornaCarrello();
         }
       }, error => {
         console.error("Errore nello svuotamento del carrello:", error);

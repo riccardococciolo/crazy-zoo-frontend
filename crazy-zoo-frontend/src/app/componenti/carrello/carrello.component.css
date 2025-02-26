@@ -18,6 +18,12 @@
     width: 30px;
   }
 
+  .cart-icon {
+    height: auto !important;
+    width: auto !important;
+    font-size: 7rem !important;
+  }
+
   .example-button-container {
     display: flex;
     justify-content: center;
