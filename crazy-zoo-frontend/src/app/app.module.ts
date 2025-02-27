@@ -64,6 +64,8 @@ import {Component, inject} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ErrorComponent } from './componenti/error/error.component';
+import { PrivacyComponent } from './componenti/privacy/privacy.component';
+import { TerminiComponent } from './componenti/termini/termini.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { ErrorComponent } from './componenti/error/error.component';
     RegisterComponent,
     OrdineSuccesComponent,
     ErrorComponent,
+    PrivacyComponent,
+    TerminiComponent,
   ],
   imports: [
     BrowserModule,
