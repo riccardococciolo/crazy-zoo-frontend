@@ -19,23 +19,56 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+
+  .fa-brands {
+    border: 2px solid#faf8f800;
+    display: inline-block; 
+    position: sticky;
+    margin-right: 2vh;     
+    padding: 1vh;          
+    font-size: 3vh; /* Aumenta la dimensione dell'icona */
+    border-radius: 50%; /* Facoltativo: rende il bordo rotondo */
+    z-index: 1;
+  }
+
+  .fa-instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    -webkit-background-clip: text; /* Applica il gradiente solo al testo */
+    -webkit-text-fill-color: transparent; /* Rende il testo trasparente per mostrare il gradiente */
+    font-size: 3vh; /* Aumenta la dimensione se necessario */
+    border-bottom: #171717;
+  }
   
-  .footer p {
+  @keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); } /* Ingrandisce leggermente senza spostare */
+  }
+  
+
+  .fa-twitter{
+    color: rgb(1, 134, 250);
+  }
+  
+  .fa-brands:hover{
+    border: 2px solid #fea; /* Contorno più visibile */
+    cursor: pointer ;
+    animation: bounce 0.5s ease infinite;
+  }
+  
+  
+  
+  p {
     margin: 0;
+    text-align: center;
     font-size: 14px;
+    white-space: nowrap;
   }
   
   .footer-links {
     margin-top: 10px;
   }
   
-  .footer-links a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-  }
-  
-  .footer-links a:hover {
+  p:hover {
     text-decoration: underline;
   }
 
@@ -61,6 +94,12 @@
     50%  { opacity: 0.5; }
     100% { opacity: 1; }
   }
+
+  .effetto-bas:hover{
+    animation: blink 1s infinite;
+    cursor: pointer;
+  }
+ 
 
   /* Quando si passa il mouse sull'ul, tutti i li al suo interno animano */
   

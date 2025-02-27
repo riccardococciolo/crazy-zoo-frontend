@@ -8,6 +8,7 @@ import { OrdiniService } from '../../services/ordini.service';
 import { lastValueFrom, Subscription } from 'rxjs';
 import { ProdottoCarrelloService } from '../../services/prodotto-carrello.service';
 import { get } from 'node:http';
+import { MailService } from '../../services/mail.service';
 
 
 
@@ -28,7 +29,7 @@ import { get } from 'node:http';
 export class CarrelloComponent implements OnInit {
 
 
-  constructor(private carrelloS: CarrelliService, private authS: AuthService, private router: Router, private ordiniS: OrdiniService, private prodCarS: ProdottoCarrelloService) {}
+  constructor(private mailS : MailService, private carrelloS: CarrelliService, private authS: AuthService, private router: Router, private ordiniS: OrdiniService, private prodCarS: ProdottoCarrelloService) {}
 
   listProdotti: any[] = [];
   id: any;
@@ -215,6 +216,7 @@ export class CarrelloComponent implements OnInit {
       this.ordiniS.createOrdine({ utenteID }).subscribe((resp: any) => {
         if (resp.rc) {
           console.log("Ordine creato con successo!");
+          this.inviaEmail(resp.dati.id)
           this.loaderP = false;
           // 🔥 Svuota il carrello dopo la creazione dell'ordine
           this.svuotaCarrello();
@@ -240,6 +242,17 @@ export class CarrelloComponent implements OnInit {
       }, error => {
         console.error("Errore nello svuotamento del carrello:", error);
       });
+    }
+
+    inviaEmail(id : number){
+      this.mailS.sendEmailWithAttach(id).subscribe((resp:any)=>{
+        if(resp.rc){
+          console.log("Email inviata con successo")
+        }
+      })
+      
+      
+
     }
     
 
