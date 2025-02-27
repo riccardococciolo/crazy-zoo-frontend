@@ -13,6 +13,8 @@ export class ProdottoComponent {
   response: any;
   msg: string = '';
   loader: boolean = false;
+  alertMessage: string | null = null;
+
   constructor(
     private serv: ProdottiService,
     private routing: Router,
@@ -21,6 +23,12 @@ export class ProdottoComponent {
 
   ngOnInit(): void {
     console.log('ngOnInit');
+    const navigation = this.routing.getCurrentNavigation();
+    if (navigation?.extras?.state && navigation.extras.state['alertMessage']) {
+      this.alertMessage = navigation.extras.state['alertMessage'];
+      
+      console.log(this.alertMessage);
+    }
     this.loader = true;
     this.serv.getProdottoAll({}).subscribe((resp) => {
       this.response = resp;

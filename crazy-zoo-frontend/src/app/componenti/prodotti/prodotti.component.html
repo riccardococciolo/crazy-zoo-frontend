@@ -9,8 +9,8 @@
                     <app-prodotti-card [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
                 </div>
             </div>
-            <div *ngIf="loading" class="py-5">
-                <mat-spinner class="w-100 d-flex justify-content-center align-items-center"></mat-spinner>
+            <div *ngIf="loading" class="py-5 w-100 d-flex justify-content-center align-items-center">
+                <mat-spinner class=""></mat-spinner>
             </div>
             <mat-paginator class="d-flex justify-content-center" [length]="totalElements" [pageSize]="pageSize" [pageIndex]="pageIndex"
                 [pageSizeOptions]="[12]" (page)="onPageChange($event)">

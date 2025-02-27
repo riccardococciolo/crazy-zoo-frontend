@@ -23,6 +23,7 @@
   /* Storico Ordini */
   .order-history {
     width: 40%;
+    height: 80vh;
     background: #fff;
     padding: 15px;
     border-radius: 10px;
@@ -98,9 +99,23 @@
     border-top: 2px solid #ddd;
     margin-top: 15px;
   }
+
+  .link {
+    list-style-type: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    display: inline-block;
+    background-color: #fea;
+    border-radius: 20px;
+  }
+
+  .link a {
+    text-decoration: none;
+    color: black;
+  }
   
   .totale-evidenziato {
-    color: #ff5722;
+    color: #ff0000;
     font-size: 20px;
     font-weight: bold;
   }
@@ -135,7 +150,7 @@
   
   /* Stile per ruolo */
   .admin-role {
-    color: #ff5722;
+    color: #ff0000;
     font-weight: bold;
   }
   

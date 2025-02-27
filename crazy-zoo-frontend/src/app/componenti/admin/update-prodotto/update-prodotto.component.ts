@@ -150,8 +150,8 @@ export class UpdateProdottoComponent {
   
       this.servP.updateProdotto(formData).subscribe((resp: any) => {
         if (resp.rc) {
-          this.routing.navigate(['/admin/prodotto']).then(() => {
-            /* window.location.reload(); */
+          this.routing.navigate(['/admin/prodotto'], { 
+            state: { alertMessage: 'Prodotto creato con successo!' } 
           });
         } else {
           this.msg = resp.msg;

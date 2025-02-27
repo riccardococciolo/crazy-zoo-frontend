@@ -16,6 +16,8 @@ export class DettaglioUtenteComponent {
   ordini: any[] = []; // Array per memorizzare gli ordini dell'utente
   rc : any;
   dataUser: any;
+  loaderU: boolean = false;
+  loaderO: boolean = false;
 
 
   constructor(private authService: AuthService, private ordineService: OrdiniService, private utenteS: UtentiService) {}
@@ -32,7 +34,9 @@ export class DettaglioUtenteComponent {
   }
 
   loadOrdini(userId: number): void {
+    this.loaderO = true,
     this.ordineService.listByUtente(userId).subscribe(
+      
       (data: any) => {
         console.log("Debug ordine", data);
   
@@ -50,6 +54,7 @@ export class DettaglioUtenteComponent {
               }
               return prodotto;
             });
+            ordine.prodotti = this.getProdottiRaggruppati(ordine.prodotti);
             return ordine;
           });
         } else {
@@ -57,11 +62,28 @@ export class DettaglioUtenteComponent {
         }
   
         this.rc = data.rc;
+        this.loaderO = false;
       },
       (error) => {
         console.error('Errore nel recupero degli ordini:', error);
       }
     );
+  }
+
+  getProdottiRaggruppati(prodotti: any[]): any[] {
+    const mappaProdotti = new Map();
+    
+    for (const prodotto of prodotti) {
+      if (mappaProdotti.has(prodotto.id)) {
+        // Incrementa la quantità per il prodotto esistente
+        mappaProdotti.get(prodotto.id).quantita++;
+      } else {
+        // Clona il prodotto e inizializza la quantità a 1
+        mappaProdotti.set(prodotto.id, { ...prodotto, quantita: 1 });
+      }
+    }
+    
+    return Array.from(mappaProdotti.values());
   }
 
   base64ToBlob(base64: string, contentType: string): Blob {
@@ -75,8 +97,10 @@ export class DettaglioUtenteComponent {
   }
 
   loadUser(id: number) {
+    this.loaderU = true;
     this.utenteS.getUtenteById(id).subscribe((resp: any) => {
       this.dataUser=resp.dati
+      this.loaderU = false;
     })
   }
 

@@ -1,37 +1,51 @@
-<div class="container">
+<div class="container d-flex justify-content-between">
   <!-- Sidebar (visibile solo agli admin) -->
-  <div *ngIf="isAdmin" class="sidebar">
-    <h3>Menù Admin</h3>
-    <ul>
-      <li><a routerLink="admin/animale">Animali</a></li>
-      <li><a href="#">Marche</a></li>
-      <li><a href="#">Tipologie</a></li>
+  <div *ngIf="isAdmin" class="sidebar ms-1 my-4 my-shadow bg-white">
+    <h2 class="pt-2">Menù Admin</h2>
+    <ul class="d-flex flex-column w-100 p-0 gap-3 pt-3">
+      <li class="link"><a routerLink="/admin/animale">Animali</a></li>
+      <li class="link"><a routerLink="/admin/marca">Marche</a></li>
+      <li class="link"><a routerLink="/admin/tipologia">Tipologie</a></li>
+      <li class="link"><a routerLink="/admin/prodotto">Prodotto</a></li>
+      <li class="link"><a routerLink="/admin/ordine">Ordine</a></li>
     </ul>
   </div>
 
   <!-- Card Dettagli Utente -->
-  <div class="user-card">
+  <div class="user-card my-4 my-shadow">
     <div class="user-card-header">
       <h2>Dettagli Utente</h2>
     </div>
-    <div class="user-card-body">
-      <p><strong>Nome:</strong> {{ dataUser.nome }}</p>
-      <p><strong>Cognome:</strong> {{ dataUser.cognome }}</p>
-      <p><strong>Username:</strong> {{ dataUser.username }}</p>
-      <p><strong>Email:</strong> {{ dataUser.email }}</p>
-      <p><strong>Indirizzo:</strong> {{ dataUser.indirizzo.via }} {{ dataUser.indirizzo.civico }} {{ dataUser.indirizzo.cap }} {{ dataUser.indirizzo.citta }}</p>
-      <p><strong>Ruolo:</strong> <span [ngClass]="{ 'admin-role': isAdmin, 'user-role': !isAdmin }">{{ isAdmin ? 'Admin' : 'Utente' }}</span></p>
+    <div *ngIf="loaderU" class="py-5 d-flex justify-content-center align-items-center w-100">
+      <mat-spinner class=""></mat-spinner>
+    </div>
+    <div *ngIf="!loaderU" class="user-card-body row">
+      <strong class="col-4 pt-3">Nome:</strong>
+      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.nome }}</p>
+      <strong class="col-4 pt-3">Cognome:</strong>
+      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.cognome }}</p>
+      <strong class="col-4 pt-3">Username:</strong>
+      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.username }}</p>
+      <strong class="col-4 pt-3">Email:</strong>
+      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.email }}</p>
+      <strong class="col-4 pt-3">Indirizzo:</strong>
+      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.indirizzo.via }} {{ dataUser.indirizzo.civico }} {{ dataUser.indirizzo.cap }} {{ dataUser.indirizzo.citta }}</p>
+      <strong class="col-4 pt-3">Ruolo:</strong>
+      <p class="d-flex m-0 col-8 pt-3 "> <span [ngClass]="{ 'admin-role': isAdmin, 'user-role': !isAdmin }">{{ isAdmin ? 'Admin' : 'Utente' }}</span></p>
     </div>
   </div>
 
   <!-- Storico Ordini -->
-  <div class="order-history">
-    <h2>Storico Ordini</h2>
-    <div *ngIf="ordini.length === 0">Nessun ordine trovato.</div>
+  <div class="order-history overflow-auto my-4 my-shadow">
+    <h2 class="py-2">Storico Ordini</h2>
+    <div *ngIf="loaderO" class="py-5 d-flex justify-content-center align-items-center w-100">
+      <mat-spinner class=""></mat-spinner>
+    </div>
+    <div *ngIf="ordini.length === 0 && !loaderO">Nessun ordine trovato.</div>
     
-    <div *ngFor="let ordine of ordini" class="ordine-card">
+    <div *ngFor="let ordine of ordini, index as i" class="ordine-card">
       <div class="ordine-header">
-        <h4>Ordine #{{ ordine.id }}</h4>
+        <h4>Ordine #{{ i + 1 }}</h4>
       </div>
 
       <div class="ordine-body">
@@ -41,9 +55,13 @@
             <div class="product-image">
               <img [src]="prodotto.imgURL" [alt]="prodotto.titolo || 'Immagine del prodotto'">
             </div>
-            <div class="product-info">
-              <h3>{{ prodotto.titolo }}</h3>
-              <p>{{ prodotto.prezzo | currency:'EUR' }}</p>
+            <div class="product-info w-100 ps-3">
+              <h3 class="pb-2">{{ prodotto.titolo }}</h3>
+              <div class="w-100 d-flex justify-content-between align-items-center gap-2">
+                <p>{{ prodotto.prezzo | currency:'EUR' }}</p>
+                <span class="pe-3">Quantità: {{prodotto.quantita}}</span>
+              </div>
+              
             </div>
           </div>
         </div>

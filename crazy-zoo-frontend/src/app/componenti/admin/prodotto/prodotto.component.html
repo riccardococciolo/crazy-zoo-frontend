@@ -1,3 +1,6 @@
+<div *ngIf="alertMessage" class="w-100 alert alert-success" role="alert">
+    {{ alertMessage }}
+</div>
 <div class="container">
     <h1 class="text-center">Prodotti</h1>
 
@@ -42,9 +45,9 @@
                 <td class="">
                     <div class="d-flex gap-3 align-items-center h-100">
                         <button class="btn btn-warning text-light me-4"  routerLink="update/{{prodotto.id}}" href=""><i
-                            class="fa-solid fa-pencil">Update</i></button>
+                            class="fa-solid fa-pencil"></i></button>
                     <button class="btn btn-danger btn-delete" type="button" (click)="deleteAction(prodotto.id)"><i
-                            class="fa-regular fa-trash-can">Elimina</i></button>
+                            class="fa-regular fa-trash-can"></i></button>
                     </div>
                     
                 </td>
