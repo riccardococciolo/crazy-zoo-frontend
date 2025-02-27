@@ -1,8 +1,8 @@
-<mat-stepper linear #stepper>
+<mat-stepper class="" linear #stepper>
 
     <!-- 🔹 STEP 1: Informazioni personali -->
-    <mat-step>
-      <form [formGroup]="registerForm">
+    <mat-step class="d-flex w-25 flex-column justify-content-center align-items-center">
+      <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
         <ng-template matStepLabel>Informazioni personali</ng-template>
         
         <mat-form-field>
@@ -37,7 +37,7 @@
   
     <!-- 🔹 STEP 2: Contatti -->
     <mat-step>
-      <form [formGroup]="registerForm">
+      <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
         <ng-template matStepLabel>Contatti</ng-template>
         
         <mat-form-field>
@@ -55,7 +55,7 @@
   
     <!-- 🔹 STEP 3: Indirizzo -->
     <mat-step>
-      <form [formGroup]="registerForm">
+      <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
         <ng-template matStepLabel>Indirizzo</ng-template>
         
         <mat-form-field>
@@ -91,7 +91,7 @@
   
 <!-- 🔹 STEP 4: Password -->
 <mat-step>
-  <form [formGroup]="registerForm">
+  <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
     <ng-template matStepLabel>Password</ng-template>
 
     <mat-form-field>

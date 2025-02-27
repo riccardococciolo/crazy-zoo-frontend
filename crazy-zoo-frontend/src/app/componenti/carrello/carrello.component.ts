@@ -39,6 +39,8 @@ export class CarrelloComponent implements OnInit {
   carrelloID: any;
   loaderQ: boolean = false;
   loaderP: boolean = false;
+  showAlert = false;
+  alertMessage = '';
   private carrelloSub: Subscription | null = null; 
 
 
@@ -221,12 +223,20 @@ export class CarrelloComponent implements OnInit {
           // 🔥 Svuota il carrello dopo la creazione dell'ordine
           this.svuotaCarrello();
           this.caricaCarrello();
+          this.onOrdineAggiunto(resp.dati.id)
           
         }
       }, error => {
         console.error("Errore durante la creazione dell'ordine:", error);
       }); 
       
+    }
+
+    onOrdineAggiunto(nomeProdotto: string) {
+      this.alertMessage = `${nomeProdotto} aggiunto al carrello con successo!`;
+      this.showAlert = true;
+      
+      setTimeout(() => this.showAlert = false, 3000);
     }
   
     svuotaCarrello() {

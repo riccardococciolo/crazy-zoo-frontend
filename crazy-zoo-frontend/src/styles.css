@@ -27,3 +27,7 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #fea;
+}

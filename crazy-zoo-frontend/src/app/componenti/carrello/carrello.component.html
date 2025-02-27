@@ -1,3 +1,7 @@
+<div class="mt-2 d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert" *ngIf="showAlert">
+  {{ alertMessage }} 
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
 <div class="cart-container">
   <h2>{{ listProdotti.length > 0 ? 'Il tuo carrello' : 'Il tuo carrello è vuoto' }}</h2>
   

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProdottoCarrelloService } from '../../services/prodotto-carrello.service';
 import { AuthService } from '../../auth/auth.service';
@@ -21,6 +21,7 @@ export class ProdottiCardComponent implements OnInit{
   isLogged: boolean = false;
   soldOut: boolean = false;
 
+  @Output() prodottoAggiunto = new EventEmitter<string>();
   @Input() cardData!: { prodotto: any };
   imageUrl: string = '';
 
@@ -58,6 +59,7 @@ export class ProdottiCardComponent implements OnInit{
 
     this.prodCar.addProdottoToCarrello({ id_prodotti, id_carrello: this.id_carrello }).subscribe((resp: any) => {
       if (resp.rc) {
+        this.prodottoAggiunto.emit(this.cardData.prodotto.titolo);
         console.log("Prodotto con id: " + this.cardData.prodotto.id + " aggiunto con successo");
       }
     });

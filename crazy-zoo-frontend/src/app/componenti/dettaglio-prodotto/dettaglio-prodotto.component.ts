@@ -46,6 +46,9 @@ export class DettaglioProdottoComponent implements OnInit{
   errorMessage: string = '';
   id_carrello: any;
   isLogged: boolean = false;
+  showAlert = false;
+  alertMessage = '';
+  loaderR: boolean = false;
 
 
   ngOnInit(): void {
@@ -53,9 +56,8 @@ export class DettaglioProdottoComponent implements OnInit{
       this.id_carrello = this.ut.getUserData().carrelloID;
       this.isLogged = true;
     }
-    this.loadProductandRec()
-
-
+    this.loadProductandRec();
+    this.loadRec();
   }
 
   loadProductandRec(){
@@ -76,19 +78,22 @@ export class DettaglioProdottoComponent implements OnInit{
         this.images.push(imageUrl);
       });
     })
+  }
+
+  loadRec() {
+    this.loaderR = true;
     this.recS.getRecensioniByProdotto(this.id).subscribe((resp:any)=>{
       if(resp.rc){
         this.recensioni =resp.dati
+        this.loaderR = false;
         console.log("Recensioni:", this.recensioni)
       }else{
         alert("Errore recensioni")
       }
     })
-
-
-    //immagini
     
   }
+
   base64ToBlob(base64: string, contentType: string): Blob {
     const byteCharacters = atob(base64);
     const byteNumbers = new Array(byteCharacters.length);
@@ -122,11 +127,11 @@ export class DettaglioProdottoComponent implements OnInit{
 
     this.recS.createRecensioni(reviewData).subscribe((resp: any) => {
       if (resp.rc) {   
-          window.location.reload();
+          this.loadRec();
+          
       } else {
         this.errorMessage = resp.msg;
       }});
-
     console.log('Recensione inviata:', reviewData);
     // Resetta il form
     this.selectedRating = 0;
@@ -153,7 +158,16 @@ export class DettaglioProdottoComponent implements OnInit{
           console.error(`Errore alla chiamata ${i + 1}:`, error);
         }
       }
+
+      this.onProdottoAggiunto(this.infoProd[0].titolo);
     
+}
+
+onProdottoAggiunto(nomeProdotto: string) {
+  this.alertMessage = `${nomeProdotto} aggiunto al carrello con successo!`;
+  this.showAlert = true;
+  
+  setTimeout(() => this.showAlert = false, 5000);
 }
 
 

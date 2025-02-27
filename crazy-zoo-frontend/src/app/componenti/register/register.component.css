@@ -1,7 +1,15 @@
 .mat-stepper-horizontal {
     margin-top: 8px;
+    display: flex;
+    justify-content: center;
   }
   
   .mat-mdc-form-field {
-    margin-top: 16px;
+    margin-top: 20px;
+  }
+
+  ::ng-deep .mat-horizontal-stepper-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

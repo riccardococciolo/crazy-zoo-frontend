@@ -16,6 +16,8 @@ export class ProdottiComponent {
   pageIndex: number = 0;
   filters: any;
   loading: boolean = false;
+  showAlert = false;
+  alertMessage = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -27,6 +29,13 @@ export class ProdottiComponent {
       console.log("Filtri applicati:", this.filters);
       this.loadProdotti();
     });
+  }
+
+  onProdottoAggiunto(nomeProdotto: string) {
+    this.alertMessage = `${nomeProdotto} aggiunto al carrello con successo!`;
+    this.showAlert = true;
+    
+    setTimeout(() => this.showAlert = false, 3000);
   }
 
   loadProdotti(): void {
