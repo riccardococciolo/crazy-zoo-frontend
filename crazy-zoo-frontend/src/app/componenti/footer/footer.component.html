@@ -2,37 +2,58 @@
   <div class="section1 py-3 pt-4">
     <a href="/home"><img src="/logo web.png" alt=""></a>
   </div>
-    <div class="footer-content row align-items-start pb-5">
-      <div class="col-4 d-flex flex-column justify-content-center">
-        <span class="py-3 title">ANIMALI</span>
-        <ul class="list p-0 m-0 ">
-          <li [routerLink]="['/prodotti']" [queryParams]="{nomeAnimale: animale.nome}"  class="list py-1 list-item " *ngFor=" let animale of animali">
-            {{animale.nome}}
-          </li>
-        </ul>
-      </div>
-      <div class="col-4 d-flex flex-column justify-content-center">
-        <span class="py-3 title">MARCHE</span>
-        <ul class="list row justify-content-center p-0 m-0 ">
-          <li [routerLink]="['/prodotti']" [queryParams]="{nomeMarca: marca.nome}"  class="list col-5 py-1 px-0 list-item" *ngFor=" let marca of marche">
-            {{marca.nome}}
-          </li>
-        </ul>
-      </div>
-      <div class="col-4 d-flex flex-column justify-content-center">
-        <span class="py-3 title">TIPOLOGIE</span>
-        <ul class="list row justify-content-center p-0 m-0 ">
-          <li [routerLink]="['/prodotti']" [queryParams]="{nomeTipologia: tipologia.nome}"  class="list col-5 py-1 px-0 list-item" *ngFor=" let tipologia of tipologie">
-            {{tipologia.nome}}
-          </li>
-        </ul>
-      </div>
-      
+  <div class="footer-content row align-items-start pb-5">
+    <div class="col-4 d-flex flex-column justify-content-center">
+      <span class="py-3 title">ANIMALI</span>
+      <ul class="list p-0 m-0 ">
+        <li [routerLink]="['/prodotti']" [queryParams]="{nomeAnimale: animale.nome}" class="list py-1 list-item "
+          *ngFor=" let animale of animali">
+          {{animale.nome}}
+        </li>
+      </ul>
     </div>
-    <div class="section2 d-flex justify-content-around">
-      <a>Privacy Policy</a>
-      <a>Termini di Servizio</a>
+    <div class="col-4 d-flex flex-column justify-content-center">
+      <span class="py-3 title">MARCHE</span>
+      <ul class="list row justify-content-center p-0 m-0 ">
+        <li [routerLink]="['/prodotti']" [queryParams]="{nomeMarca: marca.nome}" class="list col-5 py-1 px-0 list-item"
+          *ngFor=" let marca of marche">
+          {{marca.nome}}
+        </li>
+      </ul>
     </div>
-  </footer>
-  
-  
+    <div class="col-4 d-flex flex-column justify-content-center">
+      <span class="py-3 title">TIPOLOGIE</span>
+      <ul class="list row justify-content-center p-0 m-0 ">
+        <li [routerLink]="['/prodotti']" [queryParams]="{nomeTipologia: tipologia.nome}"
+          class="list col-5 py-1 px-0 list-item" *ngFor=" let tipologia of tipologie">
+          {{tipologia.nome}}
+        </li>
+      </ul>
+    </div>
+  </div>
+    <div class="section2  w-100">
+      <div class="row align-items-center">
+        <!-- Prima colonna -->
+        <div class="col-md-4 text-center">
+          <p>&copy; 2025 Crazy-Zoo S.r.l. Tutti i diritti riservati.</p>
+        </div>
+        <!-- Seconda colonna per i loghi dei social -->
+        <div class="col-md-4 text-center">
+          <!-- Inserisci qui il codice per i loghi dei social -->
+          <div class="social-logos">
+            <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/mainecoon_malfurion_stormrage?igsh=eTIxbm1taWdjeTht&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.twitter.com"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+        <!-- Terza colonna -->
+        <div class="col-md-4 text-center">
+          <div style="display: flex; flex-wrap: nowrap; justify-content: center; gap: 20vh;">
+            <p routerLink="privacy" class="effetto-bas">Privacy Policy</p>
+            <p routerLink="termini" class="effetto-bas">Termini di Servizio</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</footer>
