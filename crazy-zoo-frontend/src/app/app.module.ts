@@ -67,6 +67,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { ErrorComponent } from './componenti/error/error.component';
 import { PrivacyComponent } from './componenti/privacy/privacy.component';
 import { TerminiComponent } from './componenti/termini/termini.component';
+import { UtenteComponent } from './componenti/admin/utente/utente.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { TerminiComponent } from './componenti/termini/termini.component';
     ErrorComponent,
     PrivacyComponent,
     TerminiComponent,
+    UtenteComponent,
   ],
   imports: [
     BrowserModule,
