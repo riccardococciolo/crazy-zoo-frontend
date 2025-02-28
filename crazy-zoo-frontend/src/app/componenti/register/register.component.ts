@@ -50,7 +50,7 @@ export class RegisterComponent {
       this.alertMessage = "Credenziali errate"
 
       console.log("isRC errato " + this.alertMessage)
-      setTimeout(() => this.showAlert = false, 7000);
+      setTimeout(() => this.showAlert = false, 5000);
     } else {
       this.showAlert = true
       this.success = true
@@ -66,7 +66,7 @@ export class RegisterComponent {
             .catch(error => {
                 console.error('Errore nella navigazione:', error);
             });
-    }, 7000);
+    }, 3000);
     }}, 3000);
   }
 
