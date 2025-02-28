@@ -60,7 +60,7 @@ const routes: Routes = [
 
 
         {path:"ordine", component: OrdineComponent},
-        {path:"utenti", component: UtenteComponent},
+        {path:"utente", component: UtenteComponent},
   
         { path: 'marca', component: MarcaComponent },
         { path: 'marca/update/:id', component: UpdateMarcaComponent },
