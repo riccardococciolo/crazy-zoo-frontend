@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CarrelliService } from '../../services/carrelli.service';
 import { AuthService } from '../../auth/auth.service';
 import { response } from 'express';
@@ -43,6 +43,8 @@ export class CarrelloComponent implements OnInit {
   alertMessage = '';
   private carrelloSub: Subscription | null = null; 
 
+  @Output() numeroProdotti = new EventEmitter<string>();
+
 
   ngOnInit(): void {
     this.id = this.authS.getUserData().id;
@@ -65,6 +67,7 @@ export class CarrelloComponent implements OnInit {
       this.loaderP = true;
       if (resp.rc) {
         this.loaderP = false;
+        this.numeroProdotti.emit(resp.dati.length);
         console.log(this.loaderP);
         this.listProdotti = resp.dati.map((prodotto: any) => {
           if (prodotto.immagini && prodotto.immagini.length > 0) {

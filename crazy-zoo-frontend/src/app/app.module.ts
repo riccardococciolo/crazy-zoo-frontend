@@ -48,6 +48,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatBadgeModule} from '@angular/material/badge';
 import { FilterBarComponent } from './componenti/filter-bar/filter-bar.component';
 import { ProdottiCardComponent } from './componenti/prodotti-card/prodotti-card.component';
 import { LoginComponent } from './componenti/login/login.component';
@@ -122,6 +123,7 @@ import { UtenteComponent } from './componenti/admin/utente/utente.component';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatStepperModule,
+    MatBadgeModule
   ],
   providers: [
     provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule with fetch
