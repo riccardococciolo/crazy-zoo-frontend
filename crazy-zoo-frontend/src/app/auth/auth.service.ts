@@ -15,31 +15,20 @@ import { CarrelliService } from '../services/carrelli.service';
 export class AuthService {
 
   constructor(private http: HttpClient, private router: Router, private localStorage: LocalStorageService, private CarS: CarrelliService) {}
-  isRC : boolean = false;
+  isRcLog : boolean = false;
+  isRcReg : boolean = false;
   /** 🔹 LOGIN - Effettua il login e gestisce la risposta con subscribe */
   login(username: string, password: string): void {
     this.http.post<any>(CONSTANTS.API_URL + 'auth/login', { username, password }).subscribe({
       next: (response) => {
-        console.log('📩 Risposta dal server:', response);
-
         if (response.rc) {
-          this.isRC =true;
-          console.log("token: ", response.dati.token)
-          // ✅ Credenziali corrette, salviamo il token e reindirizziamo
+          this.isRcLog =true;
           this.localStorage.setToken(response.dati.token);
           localStorage.setItem('user_data', JSON.stringify(response.dati));
           localStorage.setItem('user_role', response.dati.role);
-          console.log('✅ Login effettuato con successo! Ruolo:', response.dati.role);
-          this.router.navigate(['/home']).then(() => {
-            window.location.reload();
-        });
         } else {
           
         }
-      },
-      error: (err) => {
-        console.error('❌ Errore durante il login:', err);
-        alert('Errore di connessione al server!');
       }
     });
   }
@@ -80,32 +69,20 @@ export class AuthService {
              cap: string,
              citta: string, 
              password: string): void {
-
       const requestBody = { nome, cognome, username, email, cellulare, via, civico, cap, citta, password };
       
       this.http.post<any>(CONSTANTS.API_URL + 'auth/register', requestBody).subscribe({
         next: (response) => {
-          console.log('📩 Risposta dal server:', response);
-  
           if (response.rc) {
-            console.log('✅ Registrazione avvenuta con successo!');
-            console.log("response register: ", response)
+            this.isRcReg = true;
             this.CarS.createCarrello({utenteID: response.dati.id}).subscribe
             ((resp: any) => {
               if(resp.rc) {
                 console.log("Carrello creato con successo")
               }
             })
-            alert('Registrazione completata! Ora puoi accedere.');
-            this.router.navigate(['/login']); // 🔄 Dopo la registrazione, reindirizza al login
-          } else {
-            console.error('❌ Errore durante la registrazione:', response.msg);
-            alert(response.msg);
+            this.router.navigate(['/login']);
           }
-        },
-        error: (err) => {
-          console.error('❌ Errore durante la registrazione:', err);
-          alert('Errore di connessione al server!');
         }
       });
     }

@@ -15,6 +15,7 @@ export class LoginComponent {
   errorMessage: string = '';
   alertMessage : any
   showAlert : boolean = false
+  success : boolean = false
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -26,13 +27,29 @@ export class LoginComponent {
     }
 
     this.authService.login(this.username, this.password);
-    if (this.authService.isRC === false){
+    if (this.authService.isRcLog === false){
       this.showAlert = true
+      this.success = false
       this.alertMessage = "Credenziali errate"
-      this.errorMessage = "Credenziali errate"
 
-      console.log("isRC errato " + this.errorMessage)
-      setTimeout(() => this.showAlert = false, 3000);
+      console.log("isRC errato " + this.alertMessage)
+      setTimeout(() => this.showAlert = false, 5000);
+    } else {
+      this.showAlert = true
+      this.success = true
+      this.alertMessage = "Login effettuato con successo"
+      console.log("Login effettuato con successo")
+      setTimeout(() => {
+        this.showAlert = false;
+        this.router.navigate(['/home'])
+            .then(() => {
+                console.log('Navigazione avvenuta con successo');
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Errore nella navigazione:', error);
+            });
+    }, 3000);
     }
     
   }
