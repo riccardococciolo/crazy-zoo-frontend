@@ -7,6 +7,7 @@ import { LocalStorageService } from '../utils/local-storage.service';
 import { response } from 'express';
 import { tap } from 'rxjs/operators';
 import { CarrelliService } from '../services/carrelli.service';
+import { MailService } from '../services/mail.service';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ import { CarrelliService } from '../services/carrelli.service';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router, private localStorage: LocalStorageService, private CarS: CarrelliService) {}
+  constructor(private mail: MailService, private http: HttpClient, private router: Router, private localStorage: LocalStorageService, private CarS: CarrelliService) {}
   isRcLog : boolean = false;
   isRcReg : boolean = false;
   /** 🔹 LOGIN - Effettua il login e gestisce la risposta con subscribe */
@@ -75,6 +76,11 @@ export class AuthService {
         next: (response) => {
           if (response.rc) {
             this.isRcReg = true;
+            this.mail.sendEmail(email).subscribe((response:any) =>{
+              if(response.rc){
+                console.log("Email inviata a " +  email)
+              }
+            })
             this.CarS.createCarrello({utenteID: response.dati.id}).subscribe
             ((resp: any) => {
               if(resp.rc) {
