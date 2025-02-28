@@ -25,6 +25,7 @@ import { PrivacyComponent } from './componenti/privacy/privacy.component';
 import { ProdottiComponent } from './componenti/prodotti/prodotti.component';
 import { RegisterComponent } from './componenti/register/register.component';
 import { TerminiComponent } from './componenti/termini/termini.component';
+import { UtenteComponent } from './componenti/admin/utente/utente.component';
 
 
 const routes: Routes = [
@@ -56,7 +57,10 @@ const routes: Routes = [
         { path: 'animale', component: AnimaleComponent },
         { path: 'animale/update/:id', component: UpdateAnimaleComponent },
         { path: 'animale/create', component: CreateAnimaleComponent },
+
+
         {path:"ordine", component: OrdineComponent},
+        {path:"utenti", component: UtenteComponent},
   
         { path: 'marca', component: MarcaComponent },
         { path: 'marca/update/:id', component: UpdateMarcaComponent },

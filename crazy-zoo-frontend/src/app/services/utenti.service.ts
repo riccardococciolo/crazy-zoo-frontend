@@ -14,5 +14,15 @@ export class UtentiService {
       return this.http.get(CONSTANTS.API_URL + 'utente/listbyid', {params});
     }
 
+    getListUtente(){
+      return this.http.get(CONSTANTS.API_URL + 'utente/listall');
+    }
+
+    setAdmin(id:number){
+      let body = {id}
+      
+      return this.http.post(CONSTANTS.API_URL + 'utente/updaterole',body);
+    }
+
 
 }
