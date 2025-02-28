@@ -13,6 +13,8 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
+  alertMessage : any
+  showAlert : boolean = false
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -24,5 +26,14 @@ export class LoginComponent {
     }
 
     this.authService.login(this.username, this.password);
+    if (this.authService.isRC === false){
+      this.showAlert = true
+      this.alertMessage = "Credenziali errate"
+      this.errorMessage = "Credenziali errate"
+
+      console.log("isRC errato " + this.errorMessage)
+      setTimeout(() => this.showAlert = false, 3000);
+    }
+    
   }
 }

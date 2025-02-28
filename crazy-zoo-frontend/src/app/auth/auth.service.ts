@@ -15,7 +15,7 @@ import { CarrelliService } from '../services/carrelli.service';
 export class AuthService {
 
   constructor(private http: HttpClient, private router: Router, private localStorage: LocalStorageService, private CarS: CarrelliService) {}
-
+  isRC : boolean = false;
   /** 🔹 LOGIN - Effettua il login e gestisce la risposta con subscribe */
   login(username: string, password: string): void {
     this.http.post<any>(CONSTANTS.API_URL + 'auth/login', { username, password }).subscribe({
@@ -23,6 +23,7 @@ export class AuthService {
         console.log('📩 Risposta dal server:', response);
 
         if (response.rc) {
+          this.isRC =true;
           console.log("token: ", response.dati.token)
           // ✅ Credenziali corrette, salviamo il token e reindirizziamo
           this.localStorage.setToken(response.dati.token);
@@ -33,9 +34,7 @@ export class AuthService {
             window.location.reload();
         });
         } else {
-          // ❌ Credenziali errate, mostriamo un errore e non salviamo nulla
-          console.error('❌ Errore: Credenziali non valide!');
-          alert('Credenziali errate! Riprovare.');
+          
         }
       },
       error: (err) => {
