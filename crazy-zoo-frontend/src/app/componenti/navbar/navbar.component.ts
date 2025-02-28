@@ -16,6 +16,7 @@ export class NavbarComponent {
   showCart: boolean = false;
   searchTerm = '';
   nomeAnimale = '';
+  numeroProdotti = 0;
 
   isVisible(): boolean {
     const currentRoute = this.router.url;
@@ -23,6 +24,10 @@ export class NavbarComponent {
     return [
       '/prodotti'
     ].some(route => currentRoute.startsWith(route));
+  }
+
+  numeroProdottiAggiunti(prodotti: any) {
+    this.numeroProdotti = prodotti;
   }
 
   ngOnInit() {

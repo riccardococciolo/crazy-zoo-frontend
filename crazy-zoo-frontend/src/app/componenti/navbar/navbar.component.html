@@ -24,7 +24,7 @@
             <!-- Bottone per aprire il carrello come Offcanvas -->
             <button class="me-3 border-0 bg-white d-flex align-items-center" type="button" data-bs-toggle="offcanvas"
               data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
-              <mat-icon class="fs-3">shopping_cart</mat-icon>
+              <mat-icon [matBadge]="numeroProdotti" class="fs-3">shopping_cart</mat-icon>
             </button>
           </li>
           <li class=" d-flex align-items-center" *ngIf="isLogged">
@@ -102,6 +102,6 @@
   </div>
   <div class="offcanvas-body">
     <!-- Qui carichiamo il CarrelloComponent -->
-    <app-carrello></app-carrello>
+    <app-carrello (numeroProdotti)="numeroProdottiAggiunti($event)"></app-carrello>
   </div>
 </div>
