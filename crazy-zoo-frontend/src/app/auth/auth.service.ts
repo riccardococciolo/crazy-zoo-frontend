@@ -87,7 +87,6 @@ export class AuthService {
                 console.log("Carrello creato con successo")
               }
             })
-            this.router.navigate(['/login']);
           }
         }
       });

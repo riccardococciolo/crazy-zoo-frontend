@@ -1,3 +1,11 @@
+<div class="w-100 justify-content-center d-flex align-items-center">
+  <div class="w-75 mt-2 d-flex justify-content-center alert alert-dismissible fade show" [ngClass]="success ? 'alert-success' : 'alert-danger'" role="alert"
+      *ngIf="showAlert">
+      {{ alertMessage }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+</div>
+
 <mat-stepper class="" linear #stepper>
 
     <!-- 🔹 STEP 1: Informazioni personali -->

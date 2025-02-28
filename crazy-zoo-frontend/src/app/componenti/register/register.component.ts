@@ -12,6 +12,10 @@ import { MailService } from '../../services/mail.service';
 })
 export class RegisterComponent {
 
+  alertMessage : any
+  showAlert : boolean = false
+  success : boolean = false
+
   private _formBuilder: FormBuilder = inject(FormBuilder);
 
   registerForm: FormGroup;
@@ -40,6 +44,30 @@ export class RegisterComponent {
         userData.nome, userData.cognome, userData.username, userData.email, userData.cellulare,
         userData.via, userData.civico, userData.cap, userData.citta, userData.password)
     }
+    setTimeout(() => {if (this.authService.isRcReg === false){
+      this.showAlert = true
+      this.success = false
+      this.alertMessage = "Credenziali errate"
+
+      console.log("isRC errato " + this.alertMessage)
+      setTimeout(() => this.showAlert = false, 7000);
+    } else {
+      this.showAlert = true
+      this.success = true
+      this.alertMessage = "Registrazione effettuata con successo"
+      console.log("Registrazione effettuata con successo")
+      setTimeout(() => {
+        this.showAlert = false;
+        this.router.navigate(['/login'])
+            .then(() => {
+                console.log('Navigazione avvenuta con successo');
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Errore nella navigazione:', error);
+            });
+    }, 7000);
+    }}, 3000);
   }
 
 /** 🔹 Metodo per controllare se un campo è invalido */

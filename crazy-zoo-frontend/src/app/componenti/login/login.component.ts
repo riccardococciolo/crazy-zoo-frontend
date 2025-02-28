@@ -27,6 +27,7 @@ export class LoginComponent {
     }
 
     this.authService.login(this.username, this.password);
+    setTimeout(() => {
     if (this.authService.isRcLog === false){
       this.showAlert = true
       this.success = false
@@ -50,7 +51,7 @@ export class LoginComponent {
                 console.error('Errore nella navigazione:', error);
             });
     }, 3000);
-    }
+    }}, 3000);
     
   }
 }

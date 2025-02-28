@@ -10,6 +10,7 @@ import { UtentiService } from '../../../services/utenti.service';
 export class UtenteComponent implements OnInit{
 
   isRc : boolean = false
+  loader : boolean = false
 
   successMSG : any
   constructor(private utenteS:UtentiService){}
@@ -18,8 +19,10 @@ export class UtenteComponent implements OnInit{
     this.loadUsers()
   }
   loadUsers() {
+    this.loader = true
    this.utenteS.getListUtente().subscribe((resp:any) =>{
     if(resp.rc){
+      this.loader = false;
         this.listUser = resp.dati
     }
    })
