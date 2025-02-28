@@ -47,9 +47,9 @@ export class RegisterComponent {
     setTimeout(() => {if (this.authService.isRcReg === false){
       this.showAlert = true
       this.success = false
-      this.alertMessage = "Credenziali errate"
+      this.alertMessage = this.authService.errorMessage;
 
-      console.log("isRC errato " + this.alertMessage)
+      console.log(this.alertMessage)
       setTimeout(() => this.showAlert = false, 5000);
     } else {
       this.showAlert = true

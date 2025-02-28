@@ -18,6 +18,9 @@ export class AuthService {
   constructor(private mail: MailService, private http: HttpClient, private router: Router, private localStorage: LocalStorageService, private CarS: CarrelliService) {}
   isRcLog : boolean = false;
   isRcReg : boolean = false;
+  errorMessage: string ="";
+
+
   /** 🔹 LOGIN - Effettua il login e gestisce la risposta con subscribe */
   login(username: string, password: string): void {
     this.http.post<any>(CONSTANTS.API_URL + 'auth/login', { username, password }).subscribe({
@@ -28,7 +31,7 @@ export class AuthService {
           localStorage.setItem('user_data', JSON.stringify(response.dati));
           localStorage.setItem('user_role', response.dati.role);
         } else {
-          
+          return this.errorMessage=response.msg;
         }
       }
     });
@@ -87,8 +90,16 @@ export class AuthService {
                 console.log("Carrello creato con successo")
               }
             })
+          }else{
+            return this.errorMessage=response.msg;
+            console.log(this.errorMessage)
+            console.log("erroreeeeeeeeeeeeee")
+
           }
+          
+
         }
+        
       });
     }
 

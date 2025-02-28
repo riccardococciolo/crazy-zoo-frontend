@@ -31,7 +31,7 @@ export class LoginComponent {
     if (this.authService.isRcLog === false){
       this.showAlert = true
       this.success = false
-      this.alertMessage = "Credenziali errate"
+      this.alertMessage = this.authService.errorMessage;
 
       console.log("isRC errato " + this.alertMessage)
       setTimeout(() => this.showAlert = false, 5000);
@@ -51,7 +51,7 @@ export class LoginComponent {
                 console.error('Errore nella navigazione:', error);
             });
     }, 3000);
-    }}, 3000);
+    }}, 5000);
     
   }
 }

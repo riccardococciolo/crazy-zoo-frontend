@@ -226,7 +226,7 @@ export class CarrelloComponent implements OnInit {
           // 🔥 Svuota il carrello dopo la creazione dell'ordine
           this.svuotaCarrello();
           this.caricaCarrello();
-          this.onOrdineAggiunto(resp.dati.id)
+          this.onOrdineAggiunto();
           
         }
       }, error => {
@@ -235,8 +235,8 @@ export class CarrelloComponent implements OnInit {
       
     }
 
-    onOrdineAggiunto(nomeProdotto: string) {
-      this.alertMessage = `${nomeProdotto} aggiunto al carrello con successo!`;
+    onOrdineAggiunto() {
+      this.alertMessage = "Ordine completato!";
       this.showAlert = true;
       
       setTimeout(() => this.showAlert = false, 3000);
