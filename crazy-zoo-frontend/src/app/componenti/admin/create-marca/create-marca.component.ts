@@ -7,33 +7,30 @@ import { MarcheService } from '../../../services/marche.service';
   selector: 'app-create-marca',
   standalone: false,
   templateUrl: './create-marca.component.html',
-  styleUrl: './create-marca.component.css'
+  styleUrl: './create-marca.component.css',
 })
 export class CreateMarcaComponent {
+  msg: String = '';
+  createMarca: FormGroup = new FormGroup({
+    nome: new FormControl('', [Validators.required]),
+  });
 
-    msg: String = '';
-    createMarca: FormGroup = new FormGroup({
-        nome: new FormControl('', [Validators.required])
+  constructor(
+    private servT: MarcheService,
+    private routing: Router,
+  ) {}
+
+  onSubmit() {
+    this.servT
+      .createMarche({ nome: this.createMarca.value.nome })
+      .subscribe((resp: any) => {
+        if (resp.rc) {
+          this.routing.navigate(['/admin/marca']).then(() => {
+            window.location.reload();
+          });
+        } else {
+          this.msg = resp.msg;
+        }
       });
-
-
-       constructor(
-          
-          private servT: MarcheService,
-          private routing: Router,
-          private route: ActivatedRoute
-        ) {}
-
-    onSubmit(){this.servT.createMarche({nome: this.createMarca.value.nome}).subscribe((resp: any) => {
-      if (resp.rc) {
-        this.routing.navigate(['/admin/marca']).then(() => {
-          window.location.reload();
-        });
-      } else {
-        this.msg = resp.msg;
-      }
-    });
   }
-  
-
 }

@@ -26,7 +26,6 @@ import { UpdateMarcaComponent } from './componenti/admin/update-marca/update-mar
 import { TipologiaComponent } from './componenti/admin/tipologia/tipologia.component';
 import { CreateTipologiaComponent } from './componenti/admin/create-tipologia/create-tipologia.component';
 import { UpdateTipologiaComponent } from './componenti/admin/update-tipologia/update-tipologia.component';
-import { RecensioniComponent } from './componenti/recensioni/recensioni.component';
 import { OrdineComponent } from './componenti/ordine/ordine.component';
 import { NavbarComponent } from './componenti/navbar/navbar.component';
 import { FooterComponent } from './componenti/footer/footer.component';
@@ -53,8 +52,6 @@ import { FilterBarComponent } from './componenti/filter-bar/filter-bar.component
 import { ProdottiCardComponent } from './componenti/prodotti-card/prodotti-card.component';
 import { LoginComponent } from './componenti/login/login.component';
 import { RegisterComponent } from './componenti/register/register.component';
-import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.component';
-
 
 
 
@@ -89,7 +86,6 @@ import { UtenteComponent } from './componenti/admin/utente/utente.component';
     TipologiaComponent,
     CreateTipologiaComponent,
     UpdateTipologiaComponent,
-    RecensioniComponent,
     OrdineComponent,
     NavbarComponent,
     FooterComponent,
@@ -97,7 +93,6 @@ import { UtenteComponent } from './componenti/admin/utente/utente.component';
     ProdottiCardComponent,
     LoginComponent,
     RegisterComponent,
-    OrdineSuccesComponent,
     ErrorComponent,
     PrivacyComponent,
     TerminiComponent,
@@ -126,7 +121,7 @@ import { UtenteComponent } from './componenti/admin/utente/utente.component';
     MatBadgeModule
   ],
   providers: [
-    provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule with fetch
+    provideHttpClient(withFetch()), 
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
   ],

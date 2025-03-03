@@ -36,7 +36,6 @@ export class CreateProdottoComponent {
     private servA: AnimaliService,
     private servP: ProdottiService,
     private routing: Router,
-    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

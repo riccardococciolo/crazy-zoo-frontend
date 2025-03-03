@@ -2,15 +2,15 @@
     <h1 class="text-center">Utenti</h1>
     <div *ngIf="isRc" class="alert alert-success" role="alert">
         {{successMSG}}
-      </div>
+    </div>
 
-    
+
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Username</th> 
-                <th scope="col">Email</th> 
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
                 <th scope="col"> Ruolo</th>
                 <th scope="col">Imposta Admin</th>
             </tr>
@@ -28,10 +28,10 @@
                 <td>
                     {{user.ruolo}}
                 </td>
-                <td >
-                    <button  *ngIf="user.ruolo === 'CLIENTE'" class="btn btn-warning text-light me-4" (click)="setAdmin(user.id)"><i
-                            class="fa-solid fa-pencil"></i></button>
-                    
+                <td>
+                    <button *ngIf="user.ruolo === 'CLIENTE'" class="btn btn-warning text-light me-4"
+                        (click)="setAdmin(user.id)"><i class="fa-solid fa-pencil"></i></button>
+
                 </td>
             </tr>
         </tbody>

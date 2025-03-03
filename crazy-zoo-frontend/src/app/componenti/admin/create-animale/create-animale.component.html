@@ -6,19 +6,18 @@
                 <div class="form-container">
                     <mat-form-field class="form-column flex-fill pt-4">
                         <mat-label>Nome</mat-label>
-                        <input matInput type="text" name="nome" formControlName="nome">
+                        <input matInput type="text" name="nome" formControlName="nome" />
                         <mat-error *ngIf="createAnimale.get('nome')?.hasError('required')">
                             Il Nome è obbligatorio
                         </mat-error>
                     </mat-form-field>
-                    
                 </div>
-                <p>{{msg}}</p>
+                <p>{{ msg }}</p>
                 <div class="text-center py-5">
-                    <button mat-raised-button color="primary" type="submit"
-                        [disabled]="!createAnimale.valid">Crea</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!createAnimale.valid">
+                        Crea
+                    </button>
                 </div>
-
             </form>
         </div>
     </div>

@@ -9,7 +9,7 @@ import { TipologieService } from '../../services/tipologie.service';
   selector: 'app-filter-bar',
   standalone: false,
   templateUrl: './filter-bar.component.html',
-  styleUrl: './filter-bar.component.css'
+  styleUrl: './filter-bar.component.css',
 })
 export class FilterBarComponent {
   filtersForm: FormGroup;
@@ -19,20 +19,23 @@ export class FilterBarComponent {
   marche: any;
   tipologie: any;
 
-  minPrice= 0;
+  minPrice = 0;
   maxPrice = 100;
-  
-  
 
-  constructor(private fb: FormBuilder, private router: Router, private servM: MarcheService, private servA: AnimaliService, private servT: TipologieService) {
-    // Inizializza il form con i controlli per ciascun filtro
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private servM: MarcheService,
+    private servA: AnimaliService,
+    private servT: TipologieService
+  ) {
     console.log(this.minPrice);
-    
+
     this.filtersForm = this.fb.group({
       titolo: [],
       nomeMarca: [],
       nomeTipologia: [],
-      nomeAnimale: []
+      nomeAnimale: [],
     });
   }
 
@@ -53,16 +56,16 @@ export class FilterBarComponent {
 
   applyFilters(): void {
     // Recupera i valori dal form
-    
+
     let filters = this.filtersForm.value;
 
     filters.minPrice = this.minPrice;
     filters.maxPrice = this.maxPrice;
 
     console.log(this.filtersForm.value);
-    
+
     // Rimuovi eventuali campi vuoti per non inviare parametri inutili
-    Object.keys(filters).forEach(key => {
+    Object.keys(filters).forEach((key) => {
       if (filters[key] === '' || filters[key] == null) {
         delete filters[key];
       }
@@ -72,10 +75,8 @@ export class FilterBarComponent {
       titolo: '',
       nomeMarca: '',
       nomeAnimale: '',
-      nomeTipologia: ''
+      nomeTipologia: '',
     });
-
-    
 
     // Resetta i valori dello slider
     this.minPrice = 0;

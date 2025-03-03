@@ -1,21 +1,28 @@
-import { Component, EventEmitter, Input, OnInit, Output, output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  output,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { ProdottoCarrelloService } from '../../services/prodotto-carrello.service';
 import { AuthService } from '../../auth/auth.service';
 import { response } from 'express';
 
-
 @Component({
   selector: 'app-prodotti-card',
   standalone: false,
   templateUrl: './prodotti-card.component.html',
-  styleUrl: './prodotti-card.component.css'
+  styleUrl: './prodotti-card.component.css',
 })
-export class ProdottiCardComponent implements OnInit{
-
-  constructor(private prodCar: ProdottoCarrelloService, private authS: AuthService) {}
-
-
+export class ProdottiCardComponent implements OnInit {
+  constructor(
+    private prodCar: ProdottoCarrelloService,
+    private authS: AuthService,
+    private router: Router
+  ) {}
 
   id_carrello: any;
   isLogged: boolean = false;
@@ -31,16 +38,20 @@ export class ProdottiCardComponent implements OnInit{
       this.isLogged = true;
     }
 
-    if (this.cardData.prodotto.immagini && this.cardData.prodotto.immagini.length > 0) {
+    if (
+      this.cardData.prodotto.immagini &&
+      this.cardData.prodotto.immagini.length > 0
+    ) {
       const base64Data = this.cardData.prodotto.immagini[0].data;
-      const contentType = this.cardData.prodotto.immagini[0].tipoFile || 'image/jpeg';
+      const contentType =
+        this.cardData.prodotto.immagini[0].tipoFile || 'image/jpeg';
       const blob = this.base64ToBlob(base64Data, contentType);
       this.imageUrl = URL.createObjectURL(blob);
     }
 
     if (this.cardData.prodotto.quantita == 0) {
       this.soldOut = true;
-      console.log("Prodotto esaurito" + this.cardData.prodotto.id);
+      console.log('Prodotto esaurito' + this.cardData.prodotto.id);
     }
   }
 
@@ -54,16 +65,28 @@ export class ProdottiCardComponent implements OnInit{
     return new Blob([byteArray], { type: contentType });
   }
 
+  handleClick() {
+    if (this.isLogged) {
+      this.addCart();
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
   addCart() {
     let id_prodotti = this.cardData.prodotto.id;
 
-    this.prodCar.addProdottoToCarrello({ id_prodotti, id_carrello: this.id_carrello }).subscribe((resp: any) => {
-      if (resp.rc) {
-        this.prodottoAggiunto.emit(this.cardData.prodotto.titolo);
-        console.log("Prodotto con id: " + this.cardData.prodotto.id + " aggiunto con successo");
-      }
-    });
+    this.prodCar
+      .addProdottoToCarrello({ id_prodotti, id_carrello: this.id_carrello })
+      .subscribe((resp: any) => {
+        if (resp.rc) {
+          this.prodottoAggiunto.emit(this.cardData.prodotto.titolo);
+          console.log(
+            'Prodotto con id: ' +
+              this.cardData.prodotto.id +
+              ' aggiunto con successo'
+          );
+        }
+      });
   }
-
-  
 }

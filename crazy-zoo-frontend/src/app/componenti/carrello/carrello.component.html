@@ -1,63 +1,69 @@
-<div class="mt-2 d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert" *ngIf="showAlert">
-  {{ alertMessage }} 
+<div class="mt-2 d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert"
+  *ngIf="showAlert">
+  {{ alertMessage }}
   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
 <div class="cart-container">
   <h2>{{ listProdotti.length > 0 ? 'Il tuo carrello' : 'Il tuo carrello è vuoto' }}</h2>
-  
-    <div *ngIf="listProdotti.length > 0 && !loaderP">
-      <!-- Modifica qui: usa una funzione di raggruppamento -->
-      <div class="product-card" *ngFor="let prodotto of getProdottiRaggruppati(); index as i">
-        <div class="product-image">
-          <img [src]="prodotto.imgURL" [alt]="prodotto.titolo || 'Immagine del prodotto'">
-        </div>
-        <div class="product-info d-flex justify-content-between align-items-center gap-2">
-          
-          <div class="d-flex flex-column">
-            <h3 class="" >{{ prodotto.titolo }}</h3>
-            <div class="d-flex align-items-center gap-2 pt-3">
-          
-               <div class="quantity-selector d-flex justify-content-center align-items-center">
-                <!-- Bottone per decrementare -->
-                <button mat-mini-fab class="button-left d-flex justify-content-center align-items-center" (click)="rimuoviDalCarrello(prodotto.id)" aria-label="Diminuisci Quantità">
-                  <mat-icon class="icon">remove</mat-icon>
-                </button>
-              
-                <!-- Visualizzazione della quantità corrente -->
-                <div class="quantity"><span>{{ prodotto.quantita }}</span> </div>
-              
-                <!-- Bottone per incrementare -->
-                <button mat-mini-fab class="button-right" (click)="aggiungiAlCarrello(prodotto.id, i)" aria-label="Aumenta Quantità">
-                  <mat-icon class="icon">add</mat-icon>
-                </button>
-              </div>
 
-              <p class="d-flex align-items-center gap-2 fs-6"><mat-icon class="fs-6 d-flex align-items-center justify-content-center">close</mat-icon> {{ prodotto.prezzo | currency:'EUR' }}</p>
+  <div *ngIf="listProdotti.length > 0 && !loaderP">
+    <!-- Modifica qui: usa una funzione di raggruppamento -->
+    <div class="product-card" *ngFor="let prodotto of getProdottiRaggruppati(); index as i">
+      <div class="product-image">
+        <img [src]="prodotto.imgURL" [alt]="prodotto.titolo || 'Immagine del prodotto'">
+      </div>
+      <div class="product-info d-flex justify-content-between align-items-center gap-2">
+
+        <div class="d-flex flex-column">
+          <h3 class="">{{ prodotto.titolo }}</h3>
+          <div class="d-flex align-items-center gap-2 pt-3">
+
+            <div class="quantity-selector d-flex justify-content-center align-items-center">
+              <!-- Bottone per decrementare -->
+              <button mat-mini-fab class="button-left d-flex justify-content-center align-items-center"
+                (click)="rimuoviDalCarrello(prodotto.id)" aria-label="Diminuisci Quantità">
+                <mat-icon class="icon">remove</mat-icon>
+              </button>
+
+              <!-- Visualizzazione della quantità corrente -->
+              <div class="quantity"><span>{{ prodotto.quantita }}</span> </div>
+
+              <!-- Bottone per incrementare -->
+              <button mat-mini-fab class="button-right" (click)="aggiungiAlCarrello(prodotto.id, i)"
+                aria-label="Aumenta Quantità">
+                <mat-icon class="icon">add</mat-icon>
+              </button>
             </div>
-          </div>
-          <div class="example-button-container ps-2">
-            <button class="delete" (click)="rimuoviProdottoDalCarrello(prodotto.id, i)" mat-mini-fab aria-label="Elimina prodotto">
-              <mat-icon>delete</mat-icon>
-            </button>
+
+            <p class="d-flex align-items-center gap-2 fs-6"><mat-icon
+                class="fs-6 d-flex align-items-center justify-content-center">close</mat-icon> {{ prodotto.prezzo |
+              currency:'EUR' }}</p>
           </div>
         </div>
-      </div>
-  
-      <!-- Totale e Checkout -->
-      <div class="cart-footer">
-        <h3 class="py-2">Totale: {{ totale | currency:'EUR' }}</h3>
-        <button class="checkout-btn" (click)="completaOrdine()" [disabled]="listProdotti.length === 0">Completa Ordine</button>
+        <div class="example-button-container ps-2">
+          <button class="delete" (click)="rimuoviProdottoDalCarrello(prodotto.id, i)" mat-mini-fab
+            aria-label="Elimina prodotto">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div *ngIf="loaderP" class="py-5">
-      <mat-spinner class="w-100 d-flex justify-content-center align-items-center"></mat-spinner>
-    </div>
-    
-  
-    <!-- Messaggio se il carrello è vuoto -->
-    <div class="w-100 py-5 d-flex justify-content-center align-items-center" *ngIf="listProdotti.length == 0">
-      <mat-icon class="fs-1 cart-icon">shopping_cart</mat-icon>
+    <!-- Totale e Checkout -->
+    <div class="cart-footer">
+      <h3 class="py-2">Totale: {{ totale | currency:'EUR' }}</h3>
+      <button class="checkout-btn" (click)="completaOrdine()" [disabled]="listProdotti.length === 0">Completa
+        Ordine</button>
     </div>
   </div>
-  
+
+  <div *ngIf="loaderP" class="py-5">
+    <mat-spinner class="w-100 d-flex justify-content-center align-items-center"></mat-spinner>
+  </div>
+
+
+  <!-- Messaggio se il carrello è vuoto -->
+  <div class="w-100 py-5 d-flex justify-content-center align-items-center" *ngIf="listProdotti.length == 0">
+    <mat-icon class="fs-1 cart-icon">shopping_cart</mat-icon>
+  </div>
+</div>

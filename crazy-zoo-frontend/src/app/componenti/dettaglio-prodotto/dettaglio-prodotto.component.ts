@@ -10,37 +10,39 @@ import { lastValueFrom } from 'rxjs';
   selector: 'app-dettaglio-prodotto',
   standalone: false,
   templateUrl: './dettaglio-prodotto.component.html',
-  styleUrl: './dettaglio-prodotto.component.css'
+  styleUrl: './dettaglio-prodotto.component.css',
 })
-export class DettaglioProdottoComponent implements OnInit{
-
-  quantity: number = 1;  // Quantità corrente (default 1)
+export class DettaglioProdottoComponent implements OnInit {
+  quantity: number = 1; // Quantità corrente (default 1)
   @Output() quantityChange: EventEmitter<number> = new EventEmitter<number>();
 
   increment(): void {
-    if (this.quantity < this.infoProd[0].quantita) { // Assicurati che la quantità non superi la quantità disponibile
-    this.quantity++;
-    this.quantityChange.emit(this.quantity);
+    if (this.quantity < this.infoProd[0].quantita) {
+      this.quantity++;
+      this.quantityChange.emit(this.quantity);
     }
   }
 
   decrement(): void {
-    if (this.quantity > 1) { // Assicurati che la quantità non vada sotto 1
+    if (this.quantity > 1) {
       this.quantity--;
       this.quantityChange.emit(this.quantity);
     }
   }
-  
-  constructor(private prodS: ProdottiService, private router:Router,private route:ActivatedRoute
-    ,private recS:RecensioniService, private ut:AuthService, private prodCar : ProdottoCarrelloService)
-  {
 
-  }
-  id:any
- infoProd:any
- recensioni:any
- images: string[] = []
- selectedRating: number = 0;
+  constructor(
+    private prodS: ProdottiService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private recS: RecensioniService,
+    private ut: AuthService,
+    private prodCar: ProdottoCarrelloService
+  ) {}
+  id: any;
+  infoProd: any;
+  recensioni: any;
+  images: string[] = [];
+  selectedRating: number = 0;
   hoverRating: number = 0;
   reviewText: string = '';
   errorMessage: string = '';
@@ -49,7 +51,6 @@ export class DettaglioProdottoComponent implements OnInit{
   showAlert = false;
   alertMessage = '';
   loaderR: boolean = false;
-
 
   ngOnInit(): void {
     if (this.ut.isAuthenticated()) {
@@ -60,38 +61,37 @@ export class DettaglioProdottoComponent implements OnInit{
     this.loadRec();
   }
 
-  loadProductandRec(){
-    this.id= Number(this.route.snapshot.paramMap.get("id"))
-    
-    this.prodS.getProdottoAll({id : this.id}).subscribe((resp:any)=>{
-      console.log(resp)
+  loadProductandRec() {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.prodS.getProdottoAll({ id: this.id }).subscribe((resp: any) => {
+      console.log(resp);
       this.infoProd = resp;
-      console.log(this.infoProd)
+      console.log(this.infoProd);
       this.infoProd[0].immagini.forEach((immagine: { data: any }) => {
         const base64Data = immagine.data;
-        const contentType = 'image/jpeg'; 
+        const contentType = 'image/jpeg';
         const blob = this.base64ToBlob(base64Data, contentType);
-        console.log(blob)
-        const file = new File([blob], "nomefile.ext", { type: blob.type });
-        console.log(file)
+        console.log(blob);
+        const file = new File([blob], 'nomefile.ext', { type: blob.type });
+        console.log(file);
         const imageUrl = URL.createObjectURL(blob);
         this.images.push(imageUrl);
       });
-    })
+    });
   }
 
   loadRec() {
     this.loaderR = true;
-    this.recS.getRecensioniByProdotto(this.id).subscribe((resp:any)=>{
-      if(resp.rc){
-        this.recensioni =resp.dati
+    this.recS.getRecensioniByProdotto(this.id).subscribe((resp: any) => {
+      if (resp.rc) {
+        this.recensioni = resp.dati;
         this.loaderR = false;
-        console.log("Recensioni:", this.recensioni)
-      }else{
-        alert("Errore recensioni")
+        console.log('Recensioni:', this.recensioni);
+      } else {
+        alert('Errore recensioni');
       }
-    })
-    
+    });
   }
 
   base64ToBlob(base64: string, contentType: string): Blob {
@@ -109,13 +109,12 @@ export class DettaglioProdottoComponent implements OnInit{
   }
 
   submitReview() {
-    console.log("submitReview() chiamato");
-    if(!this.selectedRating || !this.reviewText) {
+    console.log('submitReview() chiamato');
+    if (!this.selectedRating || !this.reviewText) {
       this.errorMessage = 'Seleziona un voto e scrivi una recensione!';
       return;
     }
-    
-    // Invia i dati al backend
+
     const reviewData = {
       valutazione: this.selectedRating,
       descrizione: this.reviewText,
@@ -123,15 +122,15 @@ export class DettaglioProdottoComponent implements OnInit{
       utenteID: this.ut.getUserData().id,
     };
 
-    console.log(reviewData)
+    console.log(reviewData);
 
     this.recS.createRecensioni(reviewData).subscribe((resp: any) => {
-      if (resp.rc) {   
-          this.loadRec();
-          
+      if (resp.rc) {
+        this.loadRec();
       } else {
         this.errorMessage = resp.msg;
-      }});
+      }
+    });
     console.log('Recensione inviata:', reviewData);
     // Resetta il form
     this.selectedRating = 0;
@@ -139,37 +138,47 @@ export class DettaglioProdottoComponent implements OnInit{
     this.errorMessage = '';
   }
 
+  handleClick() {
+    if (this.isLogged) {
+      this.addCart();
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
   async addCart() {
-    let id_prodotti = this.id
-    console.log(id_prodotti)
+    let id_prodotti = this.id;
+    console.log(id_prodotti);
 
-    
-      for (let i = 0; i < this.quantity; i++) {
-        try {
-          const resp: any = await lastValueFrom(
-            this.prodCar.addProdottoToCarrello({ id_prodotti, id_carrello: this.id_carrello })
+    for (let i = 0; i < this.quantity; i++) {
+      try {
+        const resp: any = await lastValueFrom(
+          this.prodCar.addProdottoToCarrello({
+            id_prodotti,
+            id_carrello: this.id_carrello,
+          })
+        );
+        if (resp.rc) {
+          console.log(
+            `Prodotto con id: ${id_prodotti} aggiunto con successo, iterazione: ${
+              i + 1
+            }`
           );
-          if (resp.rc) {
-            console.log(`Prodotto con id: ${id_prodotti} aggiunto con successo, iterazione: ${i + 1}`);
-          } else {
-            console.error(`Errore alla chiamata ${i + 1}: ${resp.msg}`);
-          }
-        } catch (error) {
-          console.error(`Errore alla chiamata ${i + 1}:`, error);
+        } else {
+          console.error(`Errore alla chiamata ${i + 1}: ${resp.msg}`);
         }
+      } catch (error) {
+        console.error(`Errore alla chiamata ${i + 1}:`, error);
       }
+    }
 
-      this.onProdottoAggiunto(this.infoProd[0].titolo);
-    
-}
+    this.onProdottoAggiunto(this.infoProd[0].titolo);
+  }
 
-onProdottoAggiunto(nomeProdotto: string) {
-  this.alertMessage = `${nomeProdotto} aggiunto al carrello con successo!`;
-  this.showAlert = true;
-  
-  setTimeout(() => this.showAlert = false, 5000);
-}
+  onProdottoAggiunto(nomeProdotto: string) {
+    this.alertMessage = `${nomeProdotto} aggiunto al carrello con successo!`;
+    this.showAlert = true;
 
-
-    
+    setTimeout(() => (this.showAlert = false), 5000);
+  }
 }

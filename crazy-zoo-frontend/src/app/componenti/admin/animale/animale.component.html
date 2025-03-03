@@ -1,29 +1,31 @@
 <div class="container">
-    <h1 class="text-center">Animale</h1>
+  <h1 class="text-center">Animale</h1>
 
-    <div class="text-end my-4">
-        <a class="btn btn-success" routerLink="create">Crea nuovo Animale</a>
-    </div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let animale of data">
-                <th scope="row">{{animale.id}}</th>
-                <td>
-                    {{animale.nome}}
-                </td>
-                <td>
-                    <button class="btn btn-warning text-light me-4" routerLink="update/{{animale.id}}" href=""><i
-                            class="fa-solid fa-pencil"></i></button>
-                    <button class="btn btn-danger btn-delete" type="button" (click)="deleteAction(animale.id)"><i
-                            class="fa-regular fa-trash-can"></i></button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="text-end my-4">
+    <a class="btn btn-success" routerLink="create">Crea nuovo Animale</a>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let animale of data">
+        <th scope="row">{{ animale.id }}</th>
+        <td>
+          {{ animale.nome }}
+        </td>
+        <td>
+          <button class="btn btn-warning text-light me-4" routerLink="update/{{ animale.id }}" href="">
+            <i class="fa-solid fa-pencil"></i>
+          </button>
+          <button class="btn btn-danger btn-delete" type="button" (click)="deleteAction(animale.id)">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

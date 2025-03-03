@@ -8,7 +8,7 @@ import { TipologieService } from '../../services/tipologie.service';
   selector: 'app-footer',
   standalone: false,
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  styleUrl: './footer.component.css',
 })
 export class FooterComponent implements OnInit {
   animali: any;
@@ -29,10 +29,10 @@ export class FooterComponent implements OnInit {
       this.animali = resp.dati; // Popola l'array degli animali
     });
     this.marcaService.getMarche().subscribe((resp: any) => {
-      this.marche = resp.dati; 
+      this.marche = resp.dati;
     });
     this.tipologiaService.getTipologia().subscribe((resp: any) => {
-      this.tipologie = resp.dati; 
+      this.tipologie = resp.dati;
     });
   }
 }

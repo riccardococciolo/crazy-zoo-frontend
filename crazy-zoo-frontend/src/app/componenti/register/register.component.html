@@ -1,136 +1,132 @@
 <div class="w-100 justify-content-center d-flex align-items-center">
-  <div class="w-75 mt-2 d-flex justify-content-center alert alert-dismissible fade show" [ngClass]="success ? 'alert-success' : 'alert-danger'" role="alert"
-      *ngIf="showAlert">
-      {{ alertMessage }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <div class="w-75 mt-2 d-flex justify-content-center alert alert-dismissible fade show"
+    [ngClass]="success ? 'alert-success' : 'alert-danger'" role="alert" *ngIf="showAlert">
+    {{ alertMessage }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
 </div>
 
 <mat-stepper class="" linear #stepper>
 
-    <!-- 🔹 STEP 1: Informazioni personali -->
-    <mat-step class="d-flex w-25 flex-column justify-content-center align-items-center">
-      <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
-        <ng-template matStepLabel>Informazioni personali</ng-template>
-        
-        <mat-form-field>
-          <mat-label>Nome</mat-label>
-          <input matInput formControlName="nome" required>
-          <mat-error *ngIf="isFieldInvalid('nome')">Nome non valido</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <mat-label>Cognome</mat-label>
-          <input matInput formControlName="cognome" required>
-          <mat-error *ngIf="isFieldInvalid('cognome')">Cognome non valido</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <mat-label>Username</mat-label>
-          <input matInput formControlName="username" required>
-          <mat-error *ngIf="isFieldInvalid('username')">Username non valido</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" required>
-          <mat-error *ngIf="isFieldInvalid('email')">Email non valida</mat-error>
-        </mat-form-field>
-  
-        <div>
-          <button mat-button matStepperNext [disabled]="!isStepValid(['nome', 'cognome', 'username', 'email'])">Avanti</button>
-        </div>
-      </form>
-    </mat-step>
-  
-    <!-- 🔹 STEP 2: Contatti -->
-    <mat-step>
-      <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
-        <ng-template matStepLabel>Contatti</ng-template>
-        
-        <mat-form-field>
-          <mat-label>Cellulare</mat-label>
-          <input matInput formControlName="cellulare" required>
-          <mat-error *ngIf="isFieldInvalid('cellulare')">Numero non valido</mat-error>
-        </mat-form-field>
-  
-        <div>
-          <button mat-button matStepperPrevious>Indietro</button>
-          <button mat-button matStepperNext [disabled]="!isStepValid(['cellulare'])">Avanti</button>
-        </div>
-      </form>
-    </mat-step>
-  
-    <!-- 🔹 STEP 3: Indirizzo -->
-    <mat-step>
-      <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
-        <ng-template matStepLabel>Indirizzo</ng-template>
-        
-        <mat-form-field>
-          <mat-label>Via</mat-label>
-          <input matInput formControlName="via" required>
-          <mat-error *ngIf="isFieldInvalid('via')">Via non valida</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <mat-label>Civico</mat-label>
-          <input matInput formControlName="civico" required>
-          <mat-error *ngIf="isFieldInvalid('civico')">Civico non valido</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <mat-label>CAP</mat-label>
-          <input matInput formControlName="cap" required>
-          <mat-error *ngIf="isFieldInvalid('cap')">CAP non valido</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <mat-label>Città</mat-label>
-          <input matInput formControlName="citta" required>
-          <mat-error *ngIf="isFieldInvalid('citta')">Città non valida</mat-error>
-        </mat-form-field>
-  
-        <div>
-          <button mat-button matStepperPrevious>Indietro</button>
-          <button mat-button matStepperNext [disabled]="!isStepValid(['via', 'civico', 'cap', 'citta'])">Avanti</button>
-        </div>
-      </form>
-    </mat-step>
-  
-<!-- 🔹 STEP 4: Password -->
-<mat-step>
-  <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
-    <ng-template matStepLabel>Password</ng-template>
+  <mat-step class="d-flex w-25 flex-column justify-content-center align-items-center">
+    <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
+      <ng-template matStepLabel>Informazioni personali</ng-template>
 
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" required>
-      <mat-error *ngIf="isFieldInvalid('password')">
-        Minimo 8 caratteri, almeno una lettera e un numero
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" required>
+        <mat-error *ngIf="isFieldInvalid('nome')">Nome non valido</mat-error>
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Conferma Password</mat-label>
-      <input matInput type="password" formControlName="confirmPassword" required>
-      <mat-error *ngIf="isFieldInvalid('confirmPassword')">
-        Il campo non può essere vuoto
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Cognome</mat-label>
+        <input matInput formControlName="cognome" required>
+        <mat-error *ngIf="isFieldInvalid('cognome')">Cognome non valido</mat-error>
+      </mat-form-field>
 
-    <div class="text-danger" *ngIf="isPasswordMismatch()">
-      ❌ Le password non coincidono
-    </div>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required>
+        <mat-error *ngIf="isFieldInvalid('username')">Username non valido</mat-error>
+      </mat-form-field>
 
-    <div>
-      <button mat-button matStepperPrevious>Indietro</button>
-      <button mat-button (click)="register()" [disabled]="registerForm.invalid || isPasswordMismatch()">
-        Registrati
-      </button>
-    </div>
-  </form>
-</mat-step>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required>
+        <mat-error *ngIf="isFieldInvalid('email')">Email non valida</mat-error>
+      </mat-form-field>
 
-  
-  </mat-stepper>
-  
+      <div>
+        <button mat-button matStepperNext
+          [disabled]="!isStepValid(['nome', 'cognome', 'username', 'email'])">Avanti</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
+      <ng-template matStepLabel>Contatti</ng-template>
+
+      <mat-form-field>
+        <mat-label>Cellulare</mat-label>
+        <input matInput formControlName="cellulare" required>
+        <mat-error *ngIf="isFieldInvalid('cellulare')">Numero non valido</mat-error>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Indietro</button>
+        <button mat-button matStepperNext [disabled]="!isStepValid(['cellulare'])">Avanti</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
+      <ng-template matStepLabel>Indirizzo</ng-template>
+
+      <mat-form-field>
+        <mat-label>Via</mat-label>
+        <input matInput formControlName="via" required>
+        <mat-error *ngIf="isFieldInvalid('via')">Via non valida</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Civico</mat-label>
+        <input matInput formControlName="civico" required>
+        <mat-error *ngIf="isFieldInvalid('civico')">Civico non valido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CAP</mat-label>
+        <input matInput formControlName="cap" required>
+        <mat-error *ngIf="isFieldInvalid('cap')">CAP non valido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Città</mat-label>
+        <input matInput formControlName="citta" required>
+        <mat-error *ngIf="isFieldInvalid('citta')">Città non valida</mat-error>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Indietro</button>
+        <button mat-button matStepperNext [disabled]="!isStepValid(['via', 'civico', 'cap', 'citta'])">Avanti</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <form class="d-flex flex-column w-25 justify-content-center align-items-center" [formGroup]="registerForm">
+      <ng-template matStepLabel>Password</ng-template>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" required>
+        <mat-error *ngIf="isFieldInvalid('password')">
+          Minimo 8 caratteri, almeno una lettera e un numero
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Conferma Password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" required>
+        <mat-error *ngIf="isFieldInvalid('confirmPassword')">
+          Il campo non può essere vuoto
+        </mat-error>
+      </mat-form-field>
+
+      <div class="text-danger" *ngIf="isPasswordMismatch()">
+        Le password non coincidono
+      </div>
+
+      <div>
+        <button mat-button matStepperPrevious>Indietro</button>
+        <button mat-button (click)="register()" [disabled]="registerForm.invalid || isPasswordMismatch()">
+          Registrati
+        </button>
+      </div>
+    </form>
+  </mat-step>
+
+
+</mat-stepper>

@@ -22,17 +22,24 @@
     </div>
     <div *ngIf="!loaderU" class="user-card-body row">
       <strong class="col-4 pt-3">Nome:</strong>
-      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.nome }}</p>
+      <p class="d-flex m-0 col-8 pt-3">{{ dataUser.nome }}</p>
       <strong class="col-4 pt-3">Cognome:</strong>
-      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.cognome }}</p>
+      <p class="d-flex m-0 col-8 pt-3">{{ dataUser.cognome }}</p>
       <strong class="col-4 pt-3">Username:</strong>
-      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.username }}</p>
+      <p class="d-flex m-0 col-8 pt-3">{{ dataUser.username }}</p>
       <strong class="col-4 pt-3">Email:</strong>
-      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.email }}</p>
+      <p class="d-flex m-0 col-8 pt-3">{{ dataUser.email }}</p>
       <strong class="col-4 pt-3">Indirizzo:</strong>
-      <p class="d-flex m-0 col-8 pt-3 "> {{ dataUser.indirizzo.via }} {{ dataUser.indirizzo.civico }} {{ dataUser.indirizzo.cap }} {{ dataUser.indirizzo.citta }}</p>
+      <p class="d-flex m-0 col-8 pt-3">
+        {{ dataUser.indirizzo.via }} {{ dataUser.indirizzo.civico }}
+        {{ dataUser.indirizzo.cap }} {{ dataUser.indirizzo.citta }}
+      </p>
       <strong class="col-4 pt-3">Ruolo:</strong>
-      <p class="d-flex m-0 col-8 pt-3 "> <span [ngClass]="{ 'admin-role': isAdmin, 'user-role': !isAdmin }">{{ isAdmin ? 'Admin' : 'Utente' }}</span></p>
+      <p class="d-flex m-0 col-8 pt-3">
+        <span [ngClass]="{ 'admin-role': isAdmin, 'user-role': !isAdmin }">{{
+          isAdmin ? "Admin" : "Utente"
+          }}</span>
+      </p>
     </div>
   </div>
 
@@ -43,8 +50,8 @@
       <mat-spinner class=""></mat-spinner>
     </div>
     <div *ngIf="ordini.length === 0 && !loaderO">Nessun ordine trovato.</div>
-    
-    <div *ngFor="let ordine of ordini, index as i" class="ordine-card">
+
+    <div *ngFor="let ordine of ordini; index as i" class="ordine-card">
       <div class="ordine-header">
         <h4>Ordine #{{ i + 1 }}</h4>
       </div>
@@ -54,15 +61,14 @@
         <div class="product-container">
           <div class="product-card" *ngFor="let prodotto of ordine.prodotti; let i = index" @fadeOut>
             <div class="product-image">
-              <img [src]="prodotto.imgURL" [alt]="prodotto.titolo || 'Immagine del prodotto'">
+              <img [src]="prodotto.imgURL" [alt]="prodotto.titolo || 'Immagine del prodotto'" />
             </div>
             <div class="product-info w-100 ps-3">
               <h3 class="pb-2">{{ prodotto.titolo }}</h3>
               <div class="w-100 d-flex justify-content-between align-items-center gap-2">
-                <p>{{ prodotto.prezzo | currency:'EUR' }}</p>
-                <span class="pe-3">Quantità: {{prodotto.quantita}}</span>
+                <p>{{ prodotto.prezzo | currency : "EUR" }}</p>
+                <span class="pe-3">Quantità: {{ prodotto.quantita }}</span>
               </div>
-              
             </div>
           </div>
         </div>
@@ -70,7 +76,12 @@
 
       <!-- Footer della card con il totale evidenziato -->
       <div class="ordine-footer">
-        <p><strong>Totale: </strong> <span class="totale-evidenziato">{{ ordine.totale | currency:'EUR' }}</span></p>
+        <p>
+          <strong>Totale: </strong>
+          <span class="totale-evidenziato">{{
+            ordine.totale | currency : "EUR"
+            }}</span>
+        </p>
       </div>
     </div>
   </div>

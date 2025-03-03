@@ -8,17 +8,16 @@ import { CONSTANTS } from '../shared/constants';
 export class OrdiniService {
   constructor(private http: HttpClient) {}
 
-    createOrdine(body: {}) {
-      return this.http.post(CONSTANTS.API_URL + 'ordini/create', body);
-    }
+  createOrdine(body: {}) {
+    return this.http.post(CONSTANTS.API_URL + 'ordini/create', body);
+  }
 
-    listAll() {
-      return this.http.get(CONSTANTS.API_URL + 'ordini/listall');
-    }
+  listAll() {
+    return this.http.get(CONSTANTS.API_URL + 'ordini/listall');
+  }
 
-    
-    listByUtente(id: number) {
-      let params = new HttpParams().set('id', id.toString());
-      return this.http.get(CONSTANTS.API_URL + 'ordini/listbyutente', {params});
-    }
+  listByUtente(id: number) {
+    let params = new HttpParams().set('id', id.toString());
+    return this.http.get(CONSTANTS.API_URL + 'ordini/listbyutente', { params });
+  }
 }

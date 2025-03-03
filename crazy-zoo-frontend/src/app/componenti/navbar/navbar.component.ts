@@ -7,12 +7,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-navbar',
   standalone: false,
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  constructor(private auth:AuthService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
-  }
-  isLogged: boolean = false; // Di default l'utente non è loggato
+  constructor(
+    private auth: AuthService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+  isLogged: boolean = false;
   showCart: boolean = false;
   searchTerm = '';
   nomeAnimale = '';
@@ -20,10 +24,7 @@ export class NavbarComponent {
 
   isVisible(): boolean {
     const currentRoute = this.router.url;
-    // Lista delle route dove l'elemento deve essere visibile
-    return [
-      '/prodotti'
-    ].some(route => currentRoute.startsWith(route));
+    return ['/prodotti'].some((route) => currentRoute.startsWith(route));
   }
 
   numeroProdottiAggiunti(prodotti: any) {
@@ -31,19 +32,15 @@ export class NavbarComponent {
   }
 
   ngOnInit() {
-    // Simuliamo il controllo dell'autenticazione
-    
-    this.isLogged = this.auth.isAuthenticated()
-
-    /* this.route.queryParams.subscribe(params => {
-      this.nomeAnimale = params['nomeAnimale'] || '';
-      this.searchTerm = params['titolo'] || '';
-    }); */
+    this.isLogged = this.auth.isAuthenticated();
   }
 
   applySearch(): void {
     this.router.navigate(['/prodotti'], {
-      queryParams: { titolo: this.searchTerm || null, nomeAnimale: this.nomeAnimale || null }
+      queryParams: {
+        titolo: this.searchTerm || null,
+        nomeAnimale: this.nomeAnimale || null,
+      },
     });
   }
 
@@ -53,10 +50,10 @@ export class NavbarComponent {
   }
 
   logout() {
-    this.auth.logout()
+    this.auth.logout();
   }
 
   toggleCart(): void {
-    this.showCart = !this.showCart; // Cambia stato per mostrare/nascondere il carrello
+    this.showCart = !this.showCart;
   }
 }

@@ -6,31 +6,29 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-marca',
   standalone: false,
   templateUrl: './marca.component.html',
-  styleUrl: './marca.component.css'
+  styleUrl: './marca.component.css',
 })
 export class MarcaComponent {
-[x: string]: any;
   data: any;
   response: any;
   msg: string = '';
   constructor(
     private serv: MarcheService,
     private routing: Router,
-    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.serv.getMarche().subscribe((resp) => {
       this.response = resp;
       this.data = this.response.dati;
-    }); 
+    });
     console.log(this.data);
   }
 
   deleteAction(id: number) {
     console.log(id);
 
-    this.serv.deleteMarche({id:id}).subscribe((resp: any) => {
+    this.serv.deleteMarche({ id: id }).subscribe((resp: any) => {
       if (resp.rc) {
         console.log(resp.rc);
 

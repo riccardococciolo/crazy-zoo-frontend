@@ -15,21 +15,20 @@ export class TipologiaComponent {
   constructor(
     private serv: TipologieService,
     private routing: Router,
-    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.serv.getTipologia().subscribe((resp) => {
       this.response = resp;
       this.data = this.response.dati;
-    }); 
+    });
     console.log(this.data);
   }
 
   deleteAction(id: number) {
     console.log(id);
 
-    this.serv.deleteTipologia({id:id}).subscribe((resp: any) => {
+    this.serv.deleteTipologia({ id: id }).subscribe((resp: any) => {
       if (resp.rc) {
         console.log(resp.rc);
 

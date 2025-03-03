@@ -4,20 +4,22 @@
             <app-filter-bar></app-filter-bar>
         </div>
         <div class="col-9 border-light-subtle border-top border-2 d-flex h-100 flex-column align-items-between">
-            <div class="mt-2 d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert" *ngIf="showAlert">
-                {{ alertMessage }} 
+            <div class="mt-2 d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert"
+                *ngIf="showAlert">
+                {{ alertMessage }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>
+            </div>
             <div *ngIf="!loading" class="container row row-cols-3">
                 <div class="col pt-4" *ngFor="let prodotto of prodotti.content">
-                    <app-prodotti-card (prodottoAggiunto)="onProdottoAggiunto($event)" [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
+                    <app-prodotti-card (prodottoAggiunto)="onProdottoAggiunto($event)"
+                        [cardData]="{ prodotto: prodotto }"></app-prodotti-card>
                 </div>
             </div>
             <div *ngIf="loading" class="py-5 w-100 d-flex justify-content-center align-items-center">
                 <mat-spinner class=""></mat-spinner>
             </div>
-            <mat-paginator class="d-flex justify-content-center" [length]="totalElements" [pageSize]="pageSize" [pageIndex]="pageIndex"
-                [pageSizeOptions]="[12]" (page)="onPageChange($event)">
+            <mat-paginator class="d-flex justify-content-center" [length]="totalElements" [pageSize]="pageSize"
+                [pageIndex]="pageIndex" [pageSizeOptions]="[12]" (page)="onPageChange($event)">
             </mat-paginator>
 
         </div>

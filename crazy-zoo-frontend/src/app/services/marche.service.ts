@@ -23,6 +23,6 @@ export class MarcheService {
 
   getMarcaById(id: number) {
     let params = new HttpParams().set('id', id.toString());
-    return this.http.get(CONSTANTS.API_URL + 'marche/listbyid', {params});
+    return this.http.get(CONSTANTS.API_URL + 'marche/listbyid', { params });
   }
 }

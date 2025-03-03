@@ -18,7 +18,6 @@ export class ProdottoComponent {
   constructor(
     private serv: ProdottiService,
     private routing: Router,
-    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +25,7 @@ export class ProdottoComponent {
     const navigation = this.routing.getCurrentNavigation();
     if (navigation?.extras?.state && navigation.extras.state['alertMessage']) {
       this.alertMessage = navigation.extras.state['alertMessage'];
-      
+
       console.log(this.alertMessage);
     }
     this.loader = true;

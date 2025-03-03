@@ -17,9 +17,7 @@ export class ProdottiService {
     return this.http.post(CONSTANTS.API_URL + 'prodotto/delete', formData);
   }
 
-  getProdotto(
-    filters: any, pageIndex: number, pageSize: number
-  ) {
+  getProdotto(filters: any, pageIndex: number, pageSize: number) {
     let params = new HttpParams();
 
     if (filters.id != null) {
@@ -53,15 +51,13 @@ export class ProdottiService {
 
     params = params.set('page', pageIndex.toString());
     params = params.set('size', pageSize.toString());
-    
+
     return this.http.get(CONSTANTS.API_URL + 'prodotto/listbyfilterpage', {
       params,
     });
   }
 
-  getProdottoAll(
-    filters: any
-  ) {
+  getProdottoAll(filters: any) {
     let params = new HttpParams();
 
     if (filters.id != null) {
@@ -92,7 +88,7 @@ export class ProdottiService {
       params = params.set('descrizione', filters.descrizione);
     }
     console.log(params);
-    
+
     return this.http.get(CONSTANTS.API_URL + 'prodotto/listbyfilter', {
       params,
     });

@@ -1,15 +1,18 @@
 <div class="card-container" style="position: relative; width: 18rem;">
   <!-- Overlay "SOLD OUT" -->
   <div *ngIf="soldOut" class="soldout-overlay">
-    <div class="rounded-4 overflow-hidden position-relative d-flex justify-content-center align-items-center h-100 w-100">
+    <div
+      class="rounded-4 overflow-hidden position-relative d-flex justify-content-center align-items-center h-100 w-100">
       <span class="soldout">SOLD OUT</span>
     </div>
   </div>
-  
+
   <div class="card border-0">
     <a class="pb-1" [routerLink]="['/prodotti', cardData.prodotto.id]">
       <div class="shadow rounded-4">
-        <img class="my-shadow rounded-4 card-img-top" [src]="imageUrl || 'https://img.freepik.com/foto-gratuito/superficie-e-strutture-astratte-del-muro-di-pietra-concreto-bianco_74190-8189.jpg'" alt="Immagine prodotto">
+        <img class="my-shadow rounded-4 card-img-top"
+          [src]="imageUrl || 'https://img.freepik.com/foto-gratuito/superficie-e-strutture-astratte-del-muro-di-pietra-concreto-bianco_74190-8189.jpg'"
+          alt="Immagine prodotto">
       </div>
     </a>
     <div class="card-body d-flex flex-column gap-3">
@@ -19,7 +22,7 @@
           <span matTextPrefix>€&nbsp;</span>
           <span>{{ cardData.prodotto.prezzo }}</span>
         </div>
-        <button class="btn bg-color text-dark fw-bold rounded-4" (click)="addCart()" [disabled]="isLogged === false">add to cart</button>
+        <button class="btn bg-color text-dark fw-bold rounded-4" (click)="handleClick()">Aggiungi al carrello</button>
       </div>
     </div>
   </div>

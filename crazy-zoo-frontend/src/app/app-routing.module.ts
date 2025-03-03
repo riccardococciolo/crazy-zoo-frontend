@@ -19,7 +19,6 @@ import { DettaglioUtenteComponent } from './componenti/dettaglio-utente/dettagli
 import { ErrorComponent } from './componenti/error/error.component';
 import { HomeComponent } from './componenti/home/home.component';
 import { LoginComponent } from './componenti/login/login.component';
-import { OrdineSuccesComponent } from './componenti/ordine-succes/ordine-succes.component';
 import { OrdineComponent } from './componenti/ordine/ordine.component';
 import { PrivacyComponent } from './componenti/privacy/privacy.component';
 import { ProdottiComponent } from './componenti/prodotti/prodotti.component';
@@ -45,9 +44,6 @@ const routes: Routes = [
 
   // Utente
   { path: 'utente', component: DettaglioUtenteComponent, canActivate: [AuthGuard] },
-
-  { path: 'ordine-succes', component: OrdineSuccesComponent, canActivate: [AuthGuard]},
-
 
     // Admin - Sezione Protetta
     {

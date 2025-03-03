@@ -3,7 +3,7 @@
     <div class="text-end my-4">
         <a class="btn btn-success" (click)="exportCSV()">Esporta CSV</a>
     </div>
-    
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -12,6 +12,7 @@
                 <th scope="col">Cognome</th>
                 <th scope="col">Email</th>
                 <th scope="col">totale</th>
+                <th scope="col">indirizzo</th>
             </tr>
         </thead>
         <tbody>
@@ -29,12 +30,20 @@
                 <td>
                     {{ ordini.totale | currency:'EUR':'symbol':'1.2-2' }}
                 </td>
-                
+
+                <td>
+                    {{ ordini.utente.indirizzo.via }} {{ ordini.utente.indirizzo.civico }} {{
+                    ordini.utente.indirizzo.cap }} {{ ordini.utente.indirizzo.citta }}
+                </td>
+
                 <td>
                     <button class="btn btn-primary" (click)="exportCSVOrdine(ordini)">Esporta CSV</button>
                 </td>
-                
+
             </tr>
         </tbody>
     </table>
+    <div *ngIf="loader" class="py-5 w-100 d-flex justify-content-center align-items-center my-5">
+        <mat-spinner class="d-flex justify-content-center align-items-center"></mat-spinner>
+    </div>
 </div>
